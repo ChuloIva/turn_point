@@ -1,0 +1,9 @@
+API:
+  APIKEY: null
+  HOST: api.ndif.us
+  SSL: true
+  ZLIB: true
+APP:
+  CACHE_DIR: ~/.cache/nnsight/
+  DEBUG: true
+  REMOTE_LOGGING: true
