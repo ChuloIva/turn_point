@@ -1,0 +1,1 @@
+Write continuations or new versions of these thought patterns, but as if the excercises are being applied. so from the first person thought of how the stream of thought would look like if the excercises were applied. output only the thought pattern, no additional things
