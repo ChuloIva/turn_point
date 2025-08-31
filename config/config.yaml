@@ -1,0 +1,69 @@
+# Cognitive Pattern Analysis Configuration
+
+model:
+  name: "google/gemma-2-2b-it"
+  local_path: "/Users/ivanculo/Desktop/Projects/turn_point/models/Gemma-2-2B-IT"
+  device: "auto"  # auto, cuda, cpu
+  layers: [23, 29]  # Default layers for activation capture
+  torch_dtype: "float16"  # float16, float32
+
+data:
+  base_path: "./data/cognitive_patterns/"
+  cognitive_patterns: 
+    - "positive_patterns"
+    - "transitions" 
+    - "baseline"
+  format: "jsonl"  # jsonl, json, txt
+  max_samples_per_pattern: 1000
+  
+capture:
+  position: "all"  # last, all, or integer index
+  batch_size: 8
+  save_activations: true
+  activation_save_path: "./activations/"
+
+analysis:
+  methods: 
+    - "pca"
+    - "sae" 
+    - "selfie"
+    - "arithmetic"
+  
+  pca:
+    n_components: 50
+    standardize: true
+    explained_variance_threshold: 0.95
+    
+  sae:
+    model_path: "./sae_models/"  # PLACEHOLDER - need to download SAE files
+    use_neuronpedia: true
+    top_k_features: 20
+    
+  selfie:
+    max_interpretation_tokens: 150
+    temperature: 0.7
+    validation_keywords:
+      anxiety: ["worry", "fear", "anxious", "stress", "concern", "nervous"]
+      depression: ["sad", "hopeless", "negative", "down", "despair"] 
+      reasoning: ["logic", "analyze", "conclude", "infer", "deduce", "rational"]
+      emotional: ["feel", "emotion", "mood", "affect", "sentiment"]
+      narrative: ["story", "sequence", "plot", "timeline", "narrative"]
+      
+  arithmetic:
+    similarity_metric: "cosine"  # cosine, euclidean
+    interpolation_steps: 10
+
+output:
+  save_results: true
+  results_path: "./results/"
+  plot_figures: true
+  figures_path: "./figures/"
+  
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "./logs/analysis.log"
+  
+experimental:
+  use_mixed_precision: true
+  gradient_checkpointing: false
+  cache_activations: true

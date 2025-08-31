@@ -103,3 +103,22 @@ analysis:
   sae_model: "neuronpedia_compatible"
 ```
 
+  Created Structure:
+
+  ├── models/
+  │   ├── __init__.py
+  │   ├── model_loader.py          # Modular model loading (Gemma, Llama, 
+  Mistral support)
+  │   └── activation_capture.py    # ActivationCapturer class with
+  TransformerLens
+  ├── data/
+  │   ├── cognitive_patterns/      # Directory for your datasets  
+  │   └── data_loader.py          # Flexible JSONL/JSON/TXT loading
+  ├── analysis/
+  │   ├── pca_analysis.py         # PCA computations & visualization
+  │   ├── sae_interface.py        # SAE integration (placeholder for actual
+  SAE files)
+  │   └── interpretation.py       # Selfie method & activation arithmetic
+  ├── config/
+  │   └── config.yaml             # Complete configuration
+  └── main.py                     # Orchestration script
