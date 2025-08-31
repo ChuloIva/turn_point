@@ -3,9 +3,9 @@
 model:
   name: "google/gemma-2-2b-it"
   local_path: "/Users/ivanculo/Desktop/Projects/turn_point/models/Gemma-2-2B-IT"
-  device: "auto"  # auto, cuda, cpu
+  device: "auto"  # auto, cuda, mps, mlx, rocm, cpu
   layers: [23, 29]  # Default layers for activation capture
-  torch_dtype: "float16"  # float16, float32
+  torch_dtype: "auto"  # auto, float16, float32 (auto selects based on device)
 
 data:
   base_path: "./data/cognitive_patterns/"

@@ -2,18 +2,26 @@ import torch
 import numpy as np
 from typing import List, Dict, Optional, Union, Tuple, Any
 from transformer_lens import HookedTransformer
-from .model_loader import ModelLoader
+from model_loader import ModelLoader
+from utils.device_detection import get_device_manager
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ActivationCapturer:
-    """Capture and store model activations for cognitive pattern analysis."""
+    """Capture and store model activations for cognitive pattern analysis with multi-device support."""
     
     def __init__(self, model_name: str = "google/gemma-2-2b-it", device: str = "auto"):
         self.model_name = model_name
-        self.device = device
+        self.device_manager = get_device_manager()
+        self.device = self.device_manager.get_device(device)
+        self.device_type = self.device_manager.optimal_device[0] if device == "auto" else device
         self.model_loader = ModelLoader(model_name, device)
         self.model = None
         self.activations = {}
+        
+        logger.info(f"ActivationCapturer initialized with device: {self.device} (type: {self.device_type})")
         
     def load_model(self, local_path: Optional[str] = None) -> None:
         """Load the model for activation capture."""

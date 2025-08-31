@@ -16,12 +16,13 @@ import torch
 import numpy as np
 
 # Import our modules
-from models.model_loader import ModelLoader
-from models.activation_capture import ActivationCapturer
+from model_loader import ModelLoader
+from activation_capture import ActivationCapturer
 from data.data_loader import DataLoader
 from analysis.pca_analysis import PCAAnalyzer
 from analysis.sae_interface import SAEInterface
 from analysis.interpretation import SelfieInterpreter, ActivationArithmetic
+from utils.device_detection import get_device_manager, detect_and_print_devices
 
 
 class CognitivePatternAnalyzer:
@@ -31,6 +32,11 @@ class CognitivePatternAnalyzer:
         self.config = self.load_config(config_path)
         self.setup_logging()
         self.setup_directories()
+        
+        # Initialize device manager
+        self.device_manager = get_device_manager()
+        logging.info("Device detection results:")
+        self.device_manager.print_device_info()
         
         # Initialize components
         self.data_loader = None
@@ -380,8 +386,19 @@ def main():
         choices=["pca", "sae", "selfie", "arithmetic"],
         help="Analysis methods to run (overrides config)"
     )
+    parser.add_argument(
+        "--check-devices",
+        action="store_true",
+        help="Check available devices and exit"
+    )
     
     args = parser.parse_args()
+    
+    # Check devices and exit if requested
+    if args.check_devices:
+        print("Detecting available compute devices...")
+        detect_and_print_devices()
+        return
     
     # Create analyzer
     analyzer = CognitivePatternAnalyzer(config_path=args.config)
