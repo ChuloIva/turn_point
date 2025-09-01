@@ -1,124 +1,46 @@
-## Project Summary
-You want to analyze cognitive patterns by capturing model activations, performing arithmetic in semantic space, and interpreting the results using SAEs (Sparse Autoencoders) and other methods. The goal is to understand how different cognitive patterns are represented in neural networks.
+## Key Operations to Try
 
-## Detailed Implementation Requirements
+**Transition Direction Vectors:**
 
-### 1. Model Setup (Modular Architecture)
-```python
-class ActivationCapturer:
-    def __init__(self, model_name="google/gemma-2-2b-it", device="auto"):
-        # Support for multiple models
-        # - google/gemma-2-2b-it (default)  
-        # - google/gemma-2-9b-it
-        # - meta-llama/Llama-3.1-8B-Instruct
-        # - mistralai/Mistral-7B-Instruct-v0.3
-```
+- `positive_activation - depressive_activation` = recovery direction
+- `resolution_activation - depressive_activation` = therapeutic direction
+- `transition_activation - depressive_activation` = change process direction
 
-### 2. Data Input System (Modular)
-- **Configurable dataset parts**: Allow selection of specific cognitive patterns
-- **String categories to capture**:
-  - Cognitive patterns (various types)
-  - Transitions between patterns
-  - Healthy/baseline strings
-- **Flexible input format**: Support different string collections
+These difference vectors could capture the semantic "movement" from negative to positive states.
 
-### 3. Activation Capture Implementation
-```python
-def capture_activations(self, strings, layer_nums=[23, 29]):
-    # Use TransformersLens model.run_with_cache()
-    # Capture activations for entire strings
-    # Support multiple layers (default: 23, 29)
-    # Return activations for each token position
-    # Store by: model + cognitive_pattern + layer + position
-```
+**Reconstruction Experiments:**
 
-### 4. Analysis Pipeline
-```python
-class ActivationAnalyzer:
-    def compute_pca(self, activations):
-        # PCA on collected activations per cognitive pattern
-        
-    def arithmetic_operations(self, activations):
-        # Semantic space arithmetic between patterns
-        
-    def sae_interpretation(self, activations):
-        # Run activations through SAE for interpretation
-        
-    def selfie_interpretation(self, activations):
-        # Use model to interpret its own activations
-        # Inject activations and ask model to describe
-```
+- `depressive_activation + (positive - depressive)` should approximate positive states
+- `depressive_activation + resolution_direction` might generate transitional language
+- Test if `depressive + transition_vector` lands closer to your actual transition samples
 
-### 5. Interpretation Methods
-1. **SAE Analysis**: 
-   - Use pre-trained SAEs (NeuroNPedia compatible)
-   - Custom feature interpretation with prompts
-   
-2. **Selfie Method**:
-   - Inject activations during generation
-   - Ask model to describe the activation
-   - Validity check for captured concepts
+## Validation Approaches
 
-3. **Model Steering**:
-   - Use activations to steer model responses
-   - Self-report questionnaires based on cognitive patterns
+**Dot Product Analysis:**
 
-### 6. Required Directory Structure
-```
-project/
-├── models/
-│   ├── model_loader.py      # Modular model loading
-│   └── activation_capture.py # Capture implementation
-├── data/
-│   ├── cognitive_patterns/   # Your string datasets
-│   └── data_loader.py       # Modular data loading  
-├── analysis/
-│   ├── pca_analysis.py      # PCA computations
-│   ├── sae_interface.py     # SAE integration
-│   └── interpretation.py    # Selfie + SAE interpretation
-├── config/
-│   └── config.yaml          # Model, layer, dataset configs
-└── main.py                  # Orchestration script
-```
+- Check if `transition_activation · (positive - depressive)` is positive (aligned with recovery)
+- Measure `cos_similarity(resolution_samples, depressive + transition_vector)`
+- See if authentic transitions have higher similarity to computed directions than random text
 
-### 7. Key Implementation Features
-- **Model Agnostic**: Easy switching between Gemma, Llama, Mistral
-- **Layer Configurable**: Default layers 23, 29, but adjustable
-- **Batch Processing**: Handle multiple cognitive patterns efficiently  
-- **Token-Level Granularity**: Analyze which parts of strings activate what
-- **Validation Pipeline**: Cross-check SAE vs Selfie interpretations
+**Multi-sample Averaging:**
 
-### 8. Configuration Example
-```yaml
-model:
-  name: "google/gemma-2-2b-it"
-  layers: [23, 29]
-  
-data:
-  cognitive_patterns: ["pattern1", "pattern2", "transitions"]
-  base_path: "./data/cognitive_patterns/"
-  
-analysis:
-  methods: ["pca", "sae", "selfie"]
-  sae_model: "neuronpedia_compatible"
-```
+- Average multiple depressive samples to get a "canonical" depressive state
+- Same for positive samples and transitions
+- These averaged representations might be more stable direction vectors
 
-  Created Structure:
+**Layer-wise Analysis:**
 
-  ├── models/
-  │   ├── __init__.py
-  │   ├── model_loader.py          # Modular model loading (Gemma, Llama, 
-  Mistral support)
-  │   └── activation_capture.py    # ActivationCapturer class with
-  TransformerLens
-  ├── data/
-  │   ├── cognitive_patterns/      # Directory for your datasets  
-  │   └── data_loader.py          # Flexible JSONL/JSON/TXT loading
-  ├── analysis/
-  │   ├── pca_analysis.py         # PCA computations & visualization
-  │   ├── sae_interface.py        # SAE integration (placeholder for actual
-  SAE files)
-  │   └── interpretation.py       # Selfie method & activation arithmetic
-  ├── config/
-  │   └── config.yaml             # Complete configuration
-  └── main.py                     # Orchestration script
+- Earlier layers might capture surface linguistic patterns
+- Middle layers could represent emotional content
+- Later layers might encode therapeutic concepts
+- Try your operations across different layers
+
+## Specific Experiments
+
+1. **Transition Authenticity**: Does `depressive + (resolution - depressive)` produce activations similar to real therapeutic language?
+2. **Interpolation Paths**: Create a series `depressive + t*(positive - depressive)` for t ∈ [0,1] and see if intermediate points correspond to transitional states
+3. **Orthogonal Decomposition**: Project your transition samples onto the `(positive - depressive)` direction vs orthogonal directions
+4. **PCA on Combined Data**: Run PCA on all three types together - do they cluster as expected? Are transitions intermediate?
+
+This could reveal whether the model has learned a consistent geometric representation of psychological recovery processes. The residual stream might encode recovery as literal movement through representation space.
+

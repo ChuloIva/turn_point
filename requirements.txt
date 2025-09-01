@@ -55,7 +55,8 @@ asyncio-mqtt>=0.11.0
 # Optional: Advanced Libraries for Specific Features
 # repeng  # For representation engineering (if available)
 # nnsight  # For activation capture (if available)
-# saelens  # For sparse autoencoder analysis (if available)
+sae-lens>=3.0.0  # For sparse autoencoder analysis
+transformer-lens>=1.0.0  # For model analysis and SAE integration
 
 # Progress bars and utilities
 tqdm>=4.64.1
