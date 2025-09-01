@@ -58,7 +58,13 @@ class DataLoader:
                 data = json.loads(line.strip())
                 # Extract text field (flexible field names)
                 if isinstance(data, dict):
-                    text = data.get('text', data.get('content', data.get('string', str(data))))
+                    # Check for cognitive pattern specific fields first
+                    text = (data.get('positive_thought_pattern', 
+                           data.get('negative_thought_pattern',
+                           data.get('transition_thought_pattern',
+                           data.get('text', 
+                           data.get('content', 
+                           data.get('string', str(data))))))))
                 else:
                     text = str(data)
                 strings.append(text)
@@ -136,6 +142,48 @@ class DataLoader:
                 f.stem for f in self.base_path.glob(f"*{ext}")
             ])
         return list(set(pattern_files))
+    
+    def load_cognitive_pattern_types(self, jsonl_filepath: str) -> Dict[str, List[str]]:
+        """
+        Load cognitive patterns separated by type from your final dataset format.
+        
+        Args:
+            jsonl_filepath: Path to the JSONL file containing pattern data
+            
+        Returns:
+            Dictionary with 'positive', 'negative', 'transition' pattern lists
+        """
+        patterns = {'positive': [], 'negative': [], 'transition': []}
+        
+        filepath = Path(jsonl_filepath)
+        if not filepath.exists():
+            print(f"Warning: Could not find file '{jsonl_filepath}'")
+            return patterns
+            
+        with open(filepath, 'r', encoding='utf-8') as f:
+            for line in f:
+                try:
+                    data = json.loads(line.strip())
+                    
+                    # Extract positive pattern
+                    if 'positive_thought_pattern' in data:
+                        patterns['positive'].append(data['positive_thought_pattern'])
+                    
+                    # Extract negative pattern
+                    if 'reference_negative_example' in data:
+                        patterns['negative'].append(data['reference_negative_example'])
+                    
+                    # Extract transition/transformation pattern
+                    if 'reference_transformed_example' in data:
+                        patterns['transition'].append(data['reference_transformed_example'])
+                        
+                except json.JSONDecodeError as e:
+                    print(f"Error parsing line: {e}")
+                    continue
+        
+        # Update internal state
+        self.cognitive_patterns.update(patterns)
+        return patterns
     
     def get_pattern_stats(self) -> Dict[str, Dict[str, Union[int, float]]]:
         """Get statistics for loaded patterns."""

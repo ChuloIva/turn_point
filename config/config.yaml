@@ -2,17 +2,19 @@
 
 model:
   name: "google/gemma-2-2b-it"
-  local_path: "/Users/ivanculo/Desktop/Projects/turn_point/models/Gemma-2-2B-IT"
+  local_path: "google/gemma-2-2b-it"
   device: "auto"  # auto, cuda, mps, mlx, rocm, cpu
-  layers: [23, 29]  # Default layers for activation capture
+  layers: [17, 21]  # Default layers for activation capture - middle and late layers (model has 26 layers: 0-25)
   torch_dtype: "auto"  # auto, float16, float32 (auto selects based on device)
 
 data:
-  base_path: "./data/cognitive_patterns/"
+  base_path: "./data/final/"
+  # Path to main pattern dataset file
+  main_dataset: "./data/final/positive_patterns.jsonl"
   cognitive_patterns: 
-    - "positive_patterns"
-    - "transitions" 
-    - "baseline"
+    - "positive"
+    - "negative"
+    - "transition"
   format: "jsonl"  # jsonl, json, txt
   max_samples_per_pattern: 1000
   
