@@ -1,0 +1,207 @@
+{
+  "scan_timestamp": "2025-09-01T11:41:53.823478",
+  "activations_directory": "activations",
+  "total_files": 3,
+  "file_info": {
+    "8ff00d963316212d": {
+      "filename": "activations_8ff00d963316212d.pt",
+      "filepath": "activations/activations_8ff00d963316212d.pt",
+      "cache_key": "8ff00d963316212d",
+      "size_mb": 1901.25,
+      "modified": "2025-09-01 11:20:25",
+      "loaded": false,
+      "content": null
+    },
+    "e5ad16e9b3c33c9b": {
+      "filename": "activations_e5ad16e9b3c33c9b.pt",
+      "filepath": "activations/activations_e5ad16e9b3c33c9b.pt",
+      "cache_key": "e5ad16e9b3c33c9b",
+      "size_mb": 2385.71,
+      "modified": "2025-09-01 11:24:52",
+      "loaded": false,
+      "content": null
+    },
+    "332f24de2a3f82ff": {
+      "filename": "activations_332f24de2a3f82ff.pt",
+      "filepath": "activations/activations_332f24de2a3f82ff.pt",
+      "cache_key": "332f24de2a3f82ff",
+      "size_mb": 2842.74,
+      "modified": "2025-09-01 11:37:38",
+      "loaded": false,
+      "content": null
+    }
+  },
+  "detailed_analysis": {
+    "8ff00d963316212d": {
+      "file_path": "activations/activations_8ff00d963316212d.pt",
+      "data_type": "dict",
+      "keys": [
+        "negative_layer_17",
+        "negative_layer_21"
+      ],
+      "total_tensors": 2,
+      "tensor_info": {
+        "negative_layer_17": {
+          "shape": [
+            520,
+            208,
+            2304
+          ],
+          "dtype": "torch.float32",
+          "device": "cpu",
+          "requires_grad": false,
+          "memory_mb": 950.625
+        },
+        "negative_layer_21": {
+          "shape": [
+            520,
+            208,
+            2304
+          ],
+          "dtype": "torch.float32",
+          "device": "cpu",
+          "requires_grad": false,
+          "memory_mb": 950.625
+        }
+      },
+      "pattern_analysis": {
+        "inferred_patterns": [
+          "negative"
+        ],
+        "layer_info": {
+          "negative": [
+            17,
+            21
+          ]
+        },
+        "sample_counts": {
+          "negative": 520
+        },
+        "tensor_relationships": {}
+      }
+    },
+    "e5ad16e9b3c33c9b": {
+      "file_path": "activations/activations_e5ad16e9b3c33c9b.pt",
+      "data_type": "dict",
+      "keys": [
+        "positive_layer_17",
+        "positive_layer_21"
+      ],
+      "total_tensors": 2,
+      "tensor_info": {
+        "positive_layer_17": {
+          "shape": [
+            520,
+            261,
+            2304
+          ],
+          "dtype": "torch.float32",
+          "device": "cpu",
+          "requires_grad": false,
+          "memory_mb": 1192.8515625
+        },
+        "positive_layer_21": {
+          "shape": [
+            520,
+            261,
+            2304
+          ],
+          "dtype": "torch.float32",
+          "device": "cpu",
+          "requires_grad": false,
+          "memory_mb": 1192.8515625
+        }
+      },
+      "pattern_analysis": {
+        "inferred_patterns": [
+          "positive"
+        ],
+        "layer_info": {
+          "positive": [
+            17,
+            21
+          ]
+        },
+        "sample_counts": {
+          "positive": 520
+        },
+        "tensor_relationships": {}
+      }
+    },
+    "332f24de2a3f82ff": {
+      "file_path": "activations/activations_332f24de2a3f82ff.pt",
+      "data_type": "dict",
+      "keys": [
+        "transition_layer_17",
+        "transition_layer_21"
+      ],
+      "total_tensors": 2,
+      "tensor_info": {
+        "transition_layer_17": {
+          "shape": [
+            520,
+            311,
+            2304
+          ],
+          "dtype": "torch.float32",
+          "device": "cpu",
+          "requires_grad": false,
+          "memory_mb": 1421.3671875
+        },
+        "transition_layer_21": {
+          "shape": [
+            520,
+            311,
+            2304
+          ],
+          "dtype": "torch.float32",
+          "device": "cpu",
+          "requires_grad": false,
+          "memory_mb": 1421.3671875
+        }
+      },
+      "pattern_analysis": {
+        "inferred_patterns": [
+          "transition"
+        ],
+        "layer_info": {
+          "transition": [
+            17,
+            21
+          ]
+        },
+        "sample_counts": {
+          "transition": 520
+        },
+        "tensor_relationships": {}
+      }
+    }
+  },
+  "cache_key_patterns": {
+    "positive": {
+      "expected_pattern": "2b2f7e1b71ec6d84",
+      "full_content_template": "google/gemma-2-2b-it_[17, 21]_positive_last_1000_<strings_hash>"
+    },
+    "negative": {
+      "expected_pattern": "dbdfba5d542d739b",
+      "full_content_template": "google/gemma-2-2b-it_[17, 21]_negative_last_1000_<strings_hash>"
+    },
+    "transition": {
+      "expected_pattern": "409bccc500d8c44a",
+      "full_content_template": "google/gemma-2-2b-it_[17, 21]_transition_last_1000_<strings_hash>"
+    }
+  },
+  "summary": {
+    "cognitive_patterns_found": [
+      "positive",
+      "transition",
+      "negative"
+    ],
+    "layers_captured": [
+      17,
+      21
+    ],
+    "total_memory_mb": 7129.69,
+    "successfully_analyzed_files": 3
+  }
+}
