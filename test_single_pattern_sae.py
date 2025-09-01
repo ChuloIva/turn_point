@@ -19,6 +19,12 @@ import requests
 from datetime import datetime
 import sys
 import os
+import time
+import pandas as pd
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Add the SAELens directory to Python path
 sae_lens_path = Path(__file__).parent / "SAELens"
@@ -42,6 +48,73 @@ from activation_capture import ActivationCapturer
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+class NeuronpediaClient:
+    """Client for fetching feature explanations from Neuronpedia API."""
+    
+    def __init__(self, base_url: str = "https://www.neuronpedia.org"):
+        self.base_url = base_url
+        self.session = requests.Session()
+        self.session.headers.update({"Content-Type": "application/json"})
+        
+        # Add API key authentication if available
+        api_key = os.getenv("NEURONPEDIA_KEY")
+        if api_key:
+            self.session.headers.update({"x-api-key": api_key})
+            print(f"   🔑 Using Neuronpedia API key authentication")
+        else:
+            print(f"   ⚠️ No Neuronpedia API key found, using unauthenticated requests")
+    
+    def get_feature_explanation(self, model_id: str, layer: str, feature_idx: int) -> Dict[str, Any]:
+        """Fetch individual feature explanation from Neuronpedia API."""
+        url = f"{self.base_url}/api/feature/{model_id}/{layer}/{feature_idx}"
+        try:
+            response = self.fetch_with_retry(url)
+            return response
+        except Exception as e:
+            logger.warning(f"Failed to fetch feature {feature_idx}: {e}")
+            return {}
+    
+    def get_bulk_explanations(self, model_id: str, sae_id: str) -> pd.DataFrame:
+        """Fetch all explanations for an SAE as DataFrame."""
+        url = f"{self.base_url}/api/explanation/export?modelId={model_id}&saeId={sae_id}"
+        try:
+            response = self.fetch_with_retry(url)
+            if isinstance(response, list):
+                return pd.DataFrame(response)
+            elif isinstance(response, dict) and 'explanations' in response:
+                return pd.DataFrame(response['explanations'])
+            else:
+                logger.warning(f"Unexpected bulk response format: {type(response)}")
+                return pd.DataFrame()
+        except Exception as e:
+            logger.warning(f"Failed to fetch bulk explanations: {e}")
+            return pd.DataFrame()
+    
+    def batch_get_features(self, model_id: str, layer: str, feature_indices: List[int]) -> Dict[int, Dict[str, Any]]:
+        """Fetch multiple features with rate limiting and error handling."""
+        results = {}
+        for feature_idx in feature_indices:
+            try:
+                result = self.get_feature_explanation(model_id, layer, feature_idx)
+                results[feature_idx] = result
+                time.sleep(0.1)  # Rate limiting
+            except Exception as e:
+                logger.warning(f"Failed to fetch feature {feature_idx}: {e}")
+                results[feature_idx] = {}
+        return results
+    
+    def fetch_with_retry(self, url: str, max_retries: int = 3, delay: float = 1.0) -> Dict[str, Any]:
+        """Fetch with exponential backoff retry."""
+        for attempt in range(max_retries):
+            try:
+                response = self.session.get(url, timeout=10)
+                response.raise_for_status()
+                return response.json()
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    raise e
+                time.sleep(delay * (2 ** attempt))
 
 class SinglePatternSAETest:
     """Test class for running a single cognitive pattern through SAE analysis."""
@@ -72,93 +145,144 @@ class SinglePatternSAETest:
                 return torch.device("cpu")
         return torch.device(device)
     
-    def load_pattern_data(self, pattern_index: int = 0) -> Dict[str, Any]:
-        """Load data for a specific cognitive pattern."""
-        print(f"\n📊 Loading pattern data (index: {pattern_index})...")
+    def load_existing_activations(self) -> Dict[str, torch.Tensor]:
+        """Load negative, positive, and transition activations for one cognitive state."""
+        print(f"\n📊 Loading activations for all three states...")
         
-        # Load enriched metadata
-        metadata_path = self.base_path / "data" / "final" / "enriched_metadata.json"
-        if not metadata_path.exists():
-            raise FileNotFoundError(f"Metadata file not found: {metadata_path}")
+        # Load all three activation files
+        activation_files = {
+            'negative': 'activations_8ff00d963316212d.pt',
+            'positive': 'activations_e5ad16e9b3c33c9b.pt', 
+            'transition': 'activations_332f24de2a3f82ff.pt'
+        }
         
-        with open(metadata_path, 'r') as f:
-            metadata = json.load(f)
+        all_activations = {}
         
-        if pattern_index >= len(metadata):
-            raise IndexError(f"Pattern index {pattern_index} out of range (max: {len(metadata) - 1})")
+        for state_name, filename in activation_files.items():
+            file_path = self.base_path / "activations" / filename
+            if not file_path.exists():
+                print(f"   ⚠️ Missing {state_name} file: {filename}")
+                continue
+                
+            print(f"   Loading {state_name} activations from {filename}")
+            data = torch.load(file_path, map_location='cpu')
+            
+            # Store metadata from first file
+            if state_name == 'negative':
+                self.enriched_metadata = data.get('enriched_metadata', [])
+                self.metadata_info = data.get('metadata_info', {})
+            
+            # Get activation tensors and rename them
+            for key, tensor in data.items():
+                if key not in ['enriched_metadata', 'metadata_info']:
+                    # Rename key to include state (e.g., negative_layer_21 -> negative_layer_21)
+                    new_key = f"{state_name}_{key.split('_', 1)[1]}"  # Remove original prefix, add state prefix
+                    all_activations[new_key] = tensor
         
-        self.pattern_data = metadata[pattern_index]
-        pattern_name = self.pattern_data['bad_good_narratives_match']['cognitive_pattern_name_from_bad_good']
+        print(f"✅ Loaded activations for {len(activation_files)} states")
+        print(f"   Available patterns: {len(self.enriched_metadata)}")
+        print(f"   Tensor keys: {list(all_activations.keys())}")
         
-        print(f"✅ Loaded pattern: {pattern_name}")
-        print(f"   Type: {self.pattern_data['cognitive_pattern_type']}")
-        print(f"   Description: {self.pattern_data['pattern_description']}")
+        # Set pattern data from first pattern
+        if self.enriched_metadata:
+            self.pattern_data = self.enriched_metadata[0]
+            pattern_name = self.pattern_data.get('cognitive_pattern_name', 'Unknown Pattern')
+            print(f"   Using pattern: {pattern_name}")
         
-        return self.pattern_data
+        return all_activations
     
-    def generate_single_pattern_activations(self) -> Dict[str, torch.Tensor]:
-        """Generate activations for the current pattern using the activation capturer."""
-        if not self.pattern_data:
-            raise ValueError("No pattern data loaded. Call load_pattern_data() first.")
+    def prepare_activations_for_sae(self, activations: Dict[str, torch.Tensor], pattern_index: int = 0) -> Dict[str, torch.Tensor]:
+        """Prepare existing activations for SAE analysis by selecting a specific pattern."""
+        print(f"\n🧠 Preparing activations for SAE analysis (pattern {pattern_index})...")
         
-        print(f"\n🧠 Generating activations for pattern...")
+        if pattern_index >= len(self.enriched_metadata):
+            raise IndexError(f"Pattern index {pattern_index} out of range (max: {len(self.enriched_metadata) - 1})")
         
-        # Load model
-        model_loader = ModelLoader("google/gemma-2-2b-it", device=str(self.device))
-        self.model = model_loader.load_model()
+        # Update pattern data to selected pattern
+        self.pattern_data = self.enriched_metadata[pattern_index]
+        pattern_name = self.pattern_data.get('cognitive_pattern_name', 'Unknown Pattern')
+        print(f"   Selected pattern: {pattern_name}")
         
-        # Initialize activation capturer
-        capturer = ActivationCapturer("google/gemma-2-2b-it", device=str(self.device))
-        capturer.model = self.model
+        # Extract activations for the selected pattern (index in the batch dimension)
+        prepared_activations = {}
+        for key, tensor in activations.items():
+            if len(tensor.shape) >= 2:  # Should be [batch, seq, hidden] or similar
+                # Select the pattern at the given index from the batch
+                selected_activation = tensor[pattern_index:pattern_index+1]  # Keep batch dim = 1
+                prepared_activations[key] = selected_activation
+                print(f"   {key}: {selected_activation.shape}")
+            else:
+                prepared_activations[key] = tensor
         
-        # Extract the different thought patterns
-        negative_text = self.pattern_data['bad_good_narratives_match']['original_thought_pattern']
-        positive_text = self.pattern_data['positive_thought_pattern']
-        transition_text = self.pattern_data['bad_good_narratives_match']['transformed_thought_pattern']
+        self.activations = prepared_activations
+        print(f"✅ Prepared activations for pattern analysis")
         
-        print(f"   Negative: {negative_text[:100]}...")
-        print(f"   Positive: {positive_text[:100]}...")
-        print(f"   Transition: {transition_text[:100]}...")
+        return prepared_activations
+    
+    def get_neuronpedia_identifiers(self) -> Tuple[str, str]:
+        """Convert SAE config to Neuronpedia identifiers with fallbacks."""
+        if not self.sae:
+            raise ValueError("SAE not loaded")
         
-        # Capture activations for each state
-        layer_nums = [17, 21]  # Focus on these layers based on existing code
+        # Get model name from metadata
+        model_name = None
+        if hasattr(self.sae.cfg, 'metadata') and hasattr(self.sae.cfg.metadata, 'model_name'):
+            model_name = self.sae.cfg.metadata.model_name
         
-        activations = {}
+        # Try different layer format combinations
+        layer_formats = [
+            "21-res-65k",  # Standard format
+            "layer_21/width_65k/average_l0_111",  # SAE ID format
+            "21-res",
+            "layer_21",
+            "21"
+        ]
         
-        # Negative activations
-        neg_acts = capturer.capture_activations(
-            strings=[negative_text],
-            layer_nums=layer_nums,
-            cognitive_pattern="negative",
-            position="last"
-        )
+        model_formats = [
+            model_name if model_name else "gemma-2-2b",  # Use metadata model name
+            "gemma-2b",  # Alternative format
+            "gemma-2-2b-it",  # Another possible format
+        ]
         
-        # Positive activations  
-        pos_acts = capturer.capture_activations(
-            strings=[positive_text],
-            layer_nums=layer_nums,
-            cognitive_pattern="positive", 
-            position="last"
-        )
+        print(f"   Trying model formats: {model_formats}")
+        print(f"   Trying layer formats: {layer_formats}")
         
-        # Transition activations
-        trans_acts = capturer.capture_activations(
-            strings=[transition_text],
-            layer_nums=layer_nums,
-            cognitive_pattern="transition",
-            position="last"
-        )
-        
-        # Organize activations
-        for layer in layer_nums:
-            activations[f'negative_layer_{layer}'] = neg_acts[f'negative_layer_{layer}']
-            activations[f'positive_layer_{layer}'] = pos_acts[f'positive_layer_{layer}']
-            activations[f'transition_layer_{layer}'] = trans_acts[f'transition_layer_{layer}']
-        
-        self.activations = activations
-        print(f"✅ Generated activations for {len(layer_nums)} layers")
-        
-        return activations
+        # Return the first combination to try
+        return model_formats[0], layer_formats[0]
+    
+    def _extract_from_neuronpedia_id(self) -> Tuple[str, str]:
+        """Extract from SAE config neuronpedia_id if available."""
+        if hasattr(self.sae.cfg, 'neuronpedia_id') and self.sae.cfg.neuronpedia_id:
+            parts = self.sae.cfg.neuronpedia_id.split('/')
+            if len(parts) >= 2:
+                return parts[0], parts[1]
+        raise ValueError("No neuronpedia_id available")
+    
+    def _extract_from_model_name(self) -> Tuple[str, str]:
+        """Extract from model name in SAE config."""
+        if hasattr(self.sae.cfg, 'model_name') and self.sae.cfg.model_name:
+            model_name = self.sae.cfg.model_name.lower()
+            if 'gemma' in model_name and '2b' in model_name:
+                return "gemma-2b", "21-res-65k"
+        raise ValueError("Could not extract from model name")
+    
+    def _extract_from_release_name(self) -> Tuple[str, str]:
+        """Extract from release name."""
+        # For gemma-scope-2b-pt-res, extract model and layer info
+        hook_name = None
+        if hasattr(self.sae.cfg, 'hook_name'):
+            hook_name = self.sae.cfg.hook_name
+        elif hasattr(self.sae.cfg, 'metadata') and hasattr(self.sae.cfg.metadata, 'hook_name'):
+            hook_name = self.sae.cfg.metadata.hook_name
+            
+        if hook_name and ('blocks.21' in hook_name or 'layer_21' in hook_name):
+            return "gemma-2b", "21-res-65k"
+        raise ValueError("Could not extract from release name")
+    
+    def _manual_mapping(self) -> Tuple[str, str]:
+        """Manual mapping for known SAE configurations."""
+        # Default mapping for the current SAE being used
+        return "gemma-2b", "21-res-65k"
     
     def discover_available_saes(self) -> List[Dict[str, Any]]:
         """Discover available SAEs for the model."""
@@ -198,26 +322,17 @@ class SinglePatternSAETest:
             print(f"❌ Error discovering SAEs: {e}")
             return []
     
-    def load_sae(self, release: str = None, sae_id: str = None) -> bool:
-        """Load a specific SAE."""
+    def load_neuronpedia_sae(self) -> bool:
+        """Load the specific SAE from HuggingFace: google/gemma-scope-2b-pt-res/layer_21/width_65k/average_l0_111"""
         if not SAE_AVAILABLE:
             print("❌ SAELens not available")
             return False
         
-        # Default to a known working SAE for Gemma-2-2B
-        if not release or not sae_id:
-            # Try to find a suitable default
-            available_saes = self.discover_available_saes()
-            if available_saes:
-                sae_info = available_saes[0]  # Use the first available
-                release = sae_info['release']
-                sae_id = sae_info['sae_id']
-                print(f"🎯 Using default SAE: {release}/{sae_id}")
-            else:
-                print("❌ No suitable SAEs found")
-                return False
+        # The specific SAE from HuggingFace URL
+        release = "gemma-scope-2b-pt-res"
+        sae_id = "layer_21/width_65k/average_l0_111"
         
-        print(f"\n⚡ Loading SAE: {release}/{sae_id}...")
+        print(f"\n⚡ Loading HuggingFace SAE: {release}/{sae_id}...")
         
         try:
             self.sae = SAE.from_pretrained(
@@ -227,7 +342,29 @@ class SinglePatternSAETest:
             )
             
             print(f"✅ SAE loaded successfully!")
-            print(f"   Hook point: {self.sae.cfg.hook_name}")
+            
+            # Try different ways to access hook name for compatibility
+            hook_name = None
+            if hasattr(self.sae.cfg, 'hook_name'):
+                hook_name = self.sae.cfg.hook_name
+                print(f"   Found hook_name directly: {hook_name}")
+            elif hasattr(self.sae.cfg, 'metadata'):
+                print(f"   Found metadata: {type(self.sae.cfg.metadata)}")
+                if hasattr(self.sae.cfg.metadata, 'hook_name'):
+                    hook_name = self.sae.cfg.metadata.hook_name
+                    print(f"   Found hook_name in metadata: {hook_name}")
+                
+                # Check for neuronpedia_id in metadata
+                if hasattr(self.sae.cfg.metadata, 'neuronpedia_id'):
+                    neuronpedia_id = self.sae.cfg.metadata.neuronpedia_id
+                    print(f"   Found neuronpedia_id: {neuronpedia_id}")
+                
+                # Print other useful metadata
+                if hasattr(self.sae.cfg.metadata, 'model_name'):
+                    model_name = self.sae.cfg.metadata.model_name
+                    print(f"   Found model_name: {model_name}")
+            
+            print(f"   Hook point: {hook_name}")
             print(f"   Input dims: {self.sae.cfg.d_in}")
             print(f"   SAE dims: {self.sae.cfg.d_sae}")
             print(f"   Device: {self.sae.device}")
@@ -236,72 +373,92 @@ class SinglePatternSAETest:
             
         except Exception as e:
             print(f"❌ Error loading SAE: {e}")
+            print(f"   Trying alternative SAE identifiers...")
+            
+            # Try alternative identifiers that might work
+            alternatives = [
+                ("gemma-scope-2b-pt-res-canonical", "layer_21/width_65k/average_l0_111"),
+                ("gemma-scope-2b-pt-res", "layer_21/width_65k"),
+                ("google/gemma-scope-2b-pt-res", "layer_21/width_65k/average_l0_111"),
+            ]
+            
+            for alt_release, alt_sae_id in alternatives:
+                try:
+                    print(f"   Trying {alt_release}/{alt_sae_id}...")
+                    self.sae = SAE.from_pretrained(
+                        release=alt_release,
+                        sae_id=alt_sae_id,
+                        device=str(self.device)
+                    )
+                    print(f"✅ Alternative SAE loaded: {alt_release}/{alt_sae_id}")
+                    return True
+                except Exception as alt_e:
+                    print(f"   Failed: {alt_e}")
+                    continue
+            
+            print("❌ All SAE loading attempts failed")
             return False
     
-    def run_sae_analysis(self, layer: int = 17) -> Dict[str, Any]:
-        """Run SAE analysis on the activations."""
+    def run_sae_analysis(self, layer: int = 21) -> Dict[str, Any]:
+        """Run SAE analysis on the three activation types."""
         if not self.sae:
-            raise ValueError("SAE not loaded. Call load_sae() first.")
+            raise ValueError("SAE not loaded. Call load_neuronpedia_sae() first.")
         
         if not self.activations:
-            raise ValueError("No activations available. Call generate_single_pattern_activations() first.")
+            raise ValueError("No activations available. Call prepare_activations_for_sae() first.")
         
         print(f"\n🔬 Running SAE analysis on layer {layer}...")
         
-        # Get activations for the specified layer
-        neg_acts = self.activations[f'negative_layer_{layer}']
-        pos_acts = self.activations[f'positive_layer_{layer}']
-        trans_acts = self.activations[f'transition_layer_{layer}']
-        
-        print(f"   Negative shape: {neg_acts.shape}")
-        print(f"   Positive shape: {pos_acts.shape}")
-        print(f"   Transition shape: {trans_acts.shape}")
-        
-        # Ensure activations are on the same device as SAE
-        neg_acts = neg_acts.to(self.sae.device)
-        pos_acts = pos_acts.to(self.sae.device)
-        trans_acts = trans_acts.to(self.sae.device)
+        # Find activations for the specific layer
+        available_keys = [k for k in self.activations.keys() if f'layer_{layer}' in k]
+        if not available_keys:
+            raise ValueError(f"No activations found for layer {layer}. Available: {list(self.activations.keys())}")
         
         results = {}
         
-        # Process each activation type through SAE
-        for act_type, activations in [("negative", neg_acts), ("positive", pos_acts), ("transition", trans_acts)]:
-            print(f"   Processing {act_type} activations...")
+        # Process each activation type (negative, positive, transition)
+        for key in available_keys:
+            act_type = key.split('_layer_')[0]  # Extract 'negative', 'positive', 'transition'
+            activations = self.activations[key]
             
-            # Get feature activations
-            feature_acts = self.sae.encode(activations)
+            print(f"   Processing {act_type} activations: {activations.shape}")
             
-            # Get reconstructions
+            # Move to SAE device
+            activations = activations.to(self.sae.device)
+            
+            # Flatten to 2D for SAE processing [batch * seq_len, hidden_dim]
+            if len(activations.shape) == 3:
+                flat_activations = activations.reshape(-1, activations.shape[-1])
+            else:
+                flat_activations = activations.view(-1, activations.shape[-1])
+            
+            print(f"     Flattened to: {flat_activations.shape}")
+            
+            # Run through SAE
+            feature_acts = self.sae.encode(flat_activations)
             reconstructions = self.sae.decode(feature_acts)
             
-            # Calculate metrics
-            reconstruction_error = torch.nn.functional.mse_loss(activations, reconstructions, reduction='none')
+            # Simple metrics
             l0_norm = (feature_acts > 0).sum(dim=-1).float()
+            reconstruction_mse = torch.nn.functional.mse_loss(flat_activations, reconstructions)
             
-            # Find top features
-            if len(feature_acts.shape) == 2:  # [batch, features]
-                feature_vector = feature_acts[0, :]
-            else:  # Handle other shapes
-                feature_vector = feature_acts.flatten()
-            
-            top_k = 10
-            values, indices = torch.topk(feature_vector, k=top_k)
+            # Top 10 features by average activation
+            avg_feature_acts = feature_acts.mean(dim=0)
+            top_values, top_indices = torch.topk(avg_feature_acts, k=10)
             
             results[act_type] = {
-                'original_activations': activations.cpu(),
                 'feature_activations': feature_acts.cpu(),
-                'reconstructions': reconstructions.cpu(),
-                'reconstruction_error': reconstruction_error.cpu(),
-                'l0_norm': l0_norm.cpu(),
+                'avg_l0_norm': l0_norm.mean().item(),
+                'reconstruction_mse': reconstruction_mse.item(),
                 'top_features': {
-                    'values': values.cpu(),
-                    'indices': indices.cpu()
+                    'values': top_values.detach().cpu().numpy().tolist(),
+                    'indices': top_indices.detach().cpu().numpy().tolist()
                 }
             }
             
             print(f"     L0 sparsity: {l0_norm.mean().item():.2f}")
-            print(f"     Reconstruction MSE: {reconstruction_error.mean().item():.6f}")
-            print(f"     Top feature: {indices[0].item()} (activation: {values[0].item():.4f})")
+            print(f"     Reconstruction MSE: {reconstruction_mse.item():.6f}")
+            print(f"     Top feature: {top_indices[0].item()} (activation: {top_values[0].item():.4f})")
         
         return results
     
@@ -309,42 +466,184 @@ class SinglePatternSAETest:
         """Analyze differences between cognitive states in feature space."""
         print(f"\n🔍 Analyzing feature differences...")
         
-        # Get feature activations for each state
-        neg_features = sae_results['negative']['feature_activations'][0]  # Remove batch dim
-        pos_features = sae_results['positive']['feature_activations'][0]
-        trans_features = sae_results['transition']['feature_activations'][0]
+        # Get available activation types
+        available_types = list(sae_results.keys())
+        print(f"   Available activation types: {available_types}")
         
-        # Calculate differences
-        neg_to_pos_diff = pos_features - neg_features
-        neg_to_trans_diff = trans_features - neg_features
-        trans_to_pos_diff = pos_features - trans_features
-        
-        # Find top differential features
-        def get_top_diff_features(diff_tensor, name, k=10):
-            abs_diff = torch.abs(diff_tensor)
-            values, indices = torch.topk(abs_diff, k=k)
-            directions = torch.sign(diff_tensor[indices])
+        # For feature difference analysis, we need to average activations across positions
+        # since our current shape might be [positions, features]
+        averaged_features = {}
+        for act_type, results in sae_results.items():
+            feature_acts = results['feature_activations']
+            if len(feature_acts.shape) == 2:  # [positions, features]
+                averaged_features[act_type] = feature_acts.mean(dim=0)  # Average across positions
+            else:
+                averaged_features[act_type] = feature_acts.flatten()
             
-            print(f"   Top {k} differential features ({name}):")
-            feature_info = []
-            for i, (val, idx, direction) in enumerate(zip(values, indices, directions)):
-                direction_str = "↑" if direction > 0 else "↓"
-                print(f"     {i+1}. Feature {idx.item()}: {direction_str} {val.item():.4f}")
-                feature_info.append({
-                    'rank': i+1,
-                    'feature_idx': idx.item(),
-                    'abs_diff': val.item(),
-                    'direction': direction_str,
-                    'raw_diff': diff_tensor[idx].item()
-                })
-            
-            return feature_info
+            print(f"   {act_type} features shape: {averaged_features[act_type].shape}")
         
-        analysis = {
-            'negative_to_positive': get_top_diff_features(neg_to_pos_diff, "Negative → Positive"),
-            'negative_to_transition': get_top_diff_features(neg_to_trans_diff, "Negative → Transition"), 
-            'transition_to_positive': get_top_diff_features(trans_to_pos_diff, "Transition → Positive")
-        }
+        analysis = {}
+        
+        # Generate all pairwise comparisons between available types
+        for i, type1 in enumerate(available_types):
+            for j, type2 in enumerate(available_types):
+                if i < j:  # Avoid duplicate comparisons
+                    comparison_name = f"{type1}_to_{type2}"
+                    diff_tensor = averaged_features[type2] - averaged_features[type1]
+                    
+                    def get_top_diff_features(diff_tensor, name, k=10):
+                        abs_diff = torch.abs(diff_tensor)
+                        values, indices = torch.topk(abs_diff, k=k)
+                        directions = torch.sign(diff_tensor[indices])
+                        
+                        print(f"   Top {k} differential features ({name}):")
+                        feature_info = []
+                        for idx, (val, feature_idx, direction) in enumerate(zip(values, indices, directions)):
+                            direction_str = "↑" if direction > 0 else "↓"
+                            print(f"     {idx+1}. Feature {feature_idx.item()}: {direction_str} {val.item():.4f}")
+                            feature_info.append({
+                                'rank': idx+1,
+                                'feature_idx': feature_idx.item(),
+                                'abs_diff': val.item(),
+                                'direction': direction_str,
+                                'raw_diff': diff_tensor[feature_idx].item()
+                            })
+                        
+                        return feature_info
+                    
+                    analysis[comparison_name] = get_top_diff_features(
+                        diff_tensor, f"{type1.title()} → {type2.title()}"
+                    )
+        
+        return analysis
+    
+    def fetch_feature_descriptions(self, feature_indices: List[int]) -> Dict[int, Dict[str, Any]]:
+        """Fetch descriptions for a list of feature indices with multiple identifier attempts."""
+        print(f"\n📖 Fetching descriptions for {len(feature_indices)} features...")
+        
+        # Get potential identifier combinations
+        model_name = None
+        if hasattr(self.sae.cfg, 'metadata') and hasattr(self.sae.cfg.metadata, 'model_name'):
+            model_name = self.sae.cfg.metadata.model_name
+        
+        # Use the exact working API URL format:
+        # https://www.neuronpedia.org/api/feature/gemma-2-2b/21-gemmascope-res-65k/353
+        identifier_combinations = [
+            ("gemma-2-2b", "21-gemmascope-res-65k"),  # Confirmed working API format
+        ]
+        
+        print(f"   Will try identifier combinations: {identifier_combinations}")
+        
+        # Initialize client
+        client = NeuronpediaClient()
+        
+        descriptions = {}
+        
+        # Try each feature with different identifier combinations
+        for i, feature_idx in enumerate(feature_indices):
+            print(f"   Fetching {i+1}/{len(feature_indices)}: Feature {feature_idx}")
+            
+            feature_fetched = False
+            
+            # Try each identifier combination until one works
+            for model_id, sae_id in identifier_combinations:
+                try:
+                    print(f"     Trying {model_id}/{sae_id}")
+                    feature_data = client.get_feature_explanation(model_id, sae_id, feature_idx)
+                    
+                    # Check if we got actual data (not just empty response)
+                    if feature_data:
+                        # Extract explanation from explanations array if available
+                        explanation = ""
+                        explanation_score = 0.0
+                        
+                        if 'explanations' in feature_data and feature_data['explanations']:
+                            # Get the first explanation
+                            first_explanation = feature_data['explanations'][0]
+                            explanation = first_explanation.get('text', '')
+                            explanation_score = first_explanation.get('score', 0.0)
+                        
+                        # Also check for direct fields (backward compatibility)
+                        if not explanation:
+                            explanation = feature_data.get('explanation', feature_data.get('description', ''))
+                            explanation_score = feature_data.get('explanationScore', 0.0)
+                        
+                        if explanation or 'pos_str' in feature_data:  # Has explanation or activation data
+                            # Get top activating tokens for description
+                            pos_tokens = feature_data.get('pos_str', [])
+                            description = explanation if explanation else f"Activates on: {', '.join(pos_tokens[:5])}"
+                            
+                            descriptions[feature_idx] = {
+                                'description': description,
+                                'autointerp_explanation': explanation,
+                                'autointerp_score': explanation_score,
+                                'neuronpedia_url': f"https://neuronpedia.org/{model_id}/{sae_id}/{feature_idx}",
+                                'pos_tokens': pos_tokens[:10],  # Top 10 positive tokens
+                                'neg_tokens': feature_data.get('neg_str', [])[:10]  # Top 10 negative tokens
+                            }
+                            print(f"     ✅ Success with {model_id}/{sae_id}")
+                            if explanation:
+                                print(f"     Explanation: {explanation[:50]}...")
+                            else:
+                                print(f"     Activates on: {', '.join(pos_tokens[:3])}...")
+                            feature_fetched = True
+                            break
+                    
+                    print(f"     No useful data returned for {model_id}/{sae_id}")
+                    
+                except Exception as e:
+                    print(f"     Failed {model_id}/{sae_id}: {e}")
+                    continue
+                
+                # Rate limiting between attempts
+                time.sleep(0.1)
+            
+            # If all combinations failed, store a failure record
+            if not feature_fetched:
+                descriptions[feature_idx] = {
+                    'description': 'Failed to fetch from any identifier combination',
+                    'autointerp_explanation': '',
+                    'autointerp_score': 0.0,
+                    'neuronpedia_url': f"https://neuronpedia.org/{identifier_combinations[0][0]}/{identifier_combinations[0][1]}/{feature_idx}"
+                }
+        
+        successful_fetches = sum(1 for desc in descriptions.values() if 'Failed to fetch' not in desc['description'])
+        print(f"✅ Successfully fetched descriptions for {successful_fetches}/{len(feature_indices)} features")
+        return descriptions
+    
+    def analyze_feature_differences_with_descriptions(self, sae_results: Dict[str, Any]) -> Dict[str, Any]:
+        """Enhanced feature analysis with Neuronpedia descriptions."""
+        print(f"\n🔍 Analyzing feature differences with descriptions...")
+        
+        # Run the existing differential analysis
+        analysis = self.analyze_feature_differences(sae_results)
+        
+        # Collect all unique feature indices from top features
+        all_feature_indices = set()
+        for comparison_name, features in analysis.items():
+            for feature in features[:10]:  # Top 10 per comparison
+                all_feature_indices.add(feature['feature_idx'])
+        
+        print(f"   Found {len(all_feature_indices)} unique features across all comparisons")
+        
+        # Fetch descriptions for all unique features
+        descriptions = self.fetch_feature_descriptions(list(all_feature_indices))
+        
+        # Enrich analysis with descriptions
+        for comparison_name, features in analysis.items():
+            for feature in features:
+                feature_idx = feature['feature_idx']
+                feature['description'] = descriptions.get(feature_idx, {})
+        
+        print(f"\n🔍 Top Features with Descriptions:")
+        for comparison_name, features in analysis.items():
+            print(f"   {comparison_name}:")
+            for i, feature in enumerate(features[:3]):  # Show top 3 with descriptions
+                feature_idx = feature['feature_idx']
+                direction = feature['direction']
+                abs_diff = feature['abs_diff']
+                desc = feature['description'].get('description', 'No description')[:60]
+                print(f"     {i+1}. Feature {feature_idx}: {direction} {abs_diff:.4f} - \"{desc}...\"")
         
         return analysis
     
@@ -388,8 +687,52 @@ class SinglePatternSAETest:
         
         return dashboard_urls
     
+    def create_feature_summary_csv(self, differential_analysis: Dict[str, Any], 
+                                  descriptions: Dict[int, Dict[str, Any]], timestamp: str) -> str:
+        """Create CSV summary of top differential features with descriptions."""
+        print(f"\n📊 Creating feature summary CSV...")
+        
+        summary_data = []
+        for transition, features in differential_analysis.items():
+            for feature in features[:10]:  # Top 10 per transition
+                feature_idx = feature['feature_idx']
+                desc_data = descriptions.get(feature_idx, {})
+                
+                summary_data.append({
+                    'transition_type': transition,
+                    'feature_idx': feature_idx,
+                    'rank': feature['rank'],
+                    'direction': feature['direction'],
+                    'abs_diff': feature['abs_diff'],
+                    'raw_diff': feature['raw_diff'],
+                    'description': desc_data.get('description', ''),
+                    'autointerp_explanation': desc_data.get('autointerp_explanation', ''),
+                    'autointerp_score': desc_data.get('autointerp_score', 0.0),
+                    'neuronpedia_url': desc_data.get('neuronpedia_url', '')
+                })
+        
+        # Save as CSV
+        df = pd.DataFrame(summary_data)
+        csv_file = self.output_dir / f"feature_summary_{timestamp}.csv"
+        df.to_csv(csv_file, index=False)
+        
+        print(f"   📊 CSV saved: {csv_file}")
+        print(f"   📊 Records: {len(summary_data)}")
+        
+        return str(csv_file)
+    
+    def extract_descriptions_from_analysis(self, differential_analysis: Dict[str, Any]) -> Dict[int, Dict[str, Any]]:
+        """Extract descriptions from enriched differential analysis for separate handling."""
+        descriptions = {}
+        for comparison_name, features in differential_analysis.items():
+            for feature in features:
+                if 'description' in feature:
+                    descriptions[feature['feature_idx']] = feature['description']
+        return descriptions
+    
     def save_results(self, sae_results: Dict[str, Any], differential_analysis: Dict[str, Any],
-                    neuronpedia_urls: Dict[str, List[str]], release: str, sae_id: str) -> str:
+                    neuronpedia_urls: Dict[str, List[str]], descriptions: Dict[int, Dict[str, Any]], 
+                    release: str, sae_id: str) -> str:
         """Save all results to files."""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         pattern_name = self.pattern_data['bad_good_narratives_match']['cognitive_pattern_name_from_bad_good']
@@ -420,6 +763,8 @@ class SinglePatternSAETest:
                 }
             } for k, v in sae_results.items()},
             'differential_analysis': differential_analysis,
+            'feature_descriptions': descriptions,
+            'differential_analysis_with_descriptions': differential_analysis,
             'neuronpedia_urls': neuronpedia_urls,
             'timestamp': timestamp
         }
@@ -486,6 +831,24 @@ class SinglePatternSAETest:
                     f.write(f"- Feature {feature['feature_idx']}: {feature['direction']} {feature['abs_diff']:.4f}\n")
                 f.write("\n")
             
+            # Top Feature Descriptions Section
+            if 'differential_analysis_with_descriptions' in results_data:
+                f.write("## Top Feature Descriptions\n")
+                for transition, features in results_data['differential_analysis_with_descriptions'].items():
+                    f.write(f"### {transition.replace('_', ' ').title()}\n")
+                    for feature in features[:5]:
+                        feature_idx = feature['feature_idx']
+                        desc_data = feature.get('description', {})
+                        
+                        f.write(f"#### Feature {feature_idx} ({feature['direction']} {feature['abs_diff']:.4f})\n")
+                        f.write(f"**Description:** {desc_data.get('description', 'No description')}\n\n")
+                        
+                        if desc_data.get('autointerp_explanation'):
+                            f.write(f"**AutoInterp:** {desc_data['autointerp_explanation']}\n")
+                            f.write(f"**Score:** {desc_data.get('autointerp_score', 0.0):.2f}\n\n")
+                        
+                        f.write(f"**Dashboard:** [{desc_data.get('neuronpedia_url', 'N/A')}]({desc_data.get('neuronpedia_url', '#')})\n\n")
+            
             # Neuronpedia links
             f.write("## Neuronpedia Dashboard Links\n")
             for transition, url_data in results_data['neuronpedia_urls'].items():
@@ -498,56 +861,63 @@ class SinglePatternSAETest:
 
 
 def main():
-    """Main function to run the SAE test."""
-    print("🚀 Starting Single Pattern SAE Test")
+    """Main function to run the simplified SAE test with Neuronpedia interpretations."""
+    print("🚀 Starting SAE Test - Three Cognitive States with Neuronpedia")
     print("="*50)
     
     # Initialize test
     test = SinglePatternSAETest()
     
     try:
-        # Step 1: Load pattern data
-        pattern_data = test.load_pattern_data(pattern_index=0)  # Use first pattern
+        # Step 1: Load all three activation types (negative, positive, transition)
+        activations = test.load_existing_activations()
         
-        # Step 2: Generate activations
-        activations = test.generate_single_pattern_activations()
+        # Step 2: Prepare activations for pattern 0
+        pattern_index = 0
+        test.prepare_activations_for_sae(activations, pattern_index=pattern_index)
         
-        # Step 3: Discover and load SAE
-        available_saes = test.discover_available_saes()
-        if not available_saes:
-            print("❌ No suitable SAEs found. Exiting.")
-            return
-        
-        # Load the first available SAE
-        sae_info = available_saes[0]
-        success = test.load_sae(sae_info['release'], sae_info['sae_id'])
+        # Step 3: Load SAE
+        success = test.load_neuronpedia_sae()
         if not success:
             print("❌ Failed to load SAE. Exiting.")
             return
         
-        # Step 4: Run SAE analysis
-        sae_results = test.run_sae_analysis(layer=17)
+        # Step 4: Run SAE analysis on all three states
+        sae_results = test.run_sae_analysis(layer=21)
         
-        # Step 5: Analyze feature differences
-        differential_analysis = test.analyze_feature_differences(sae_results)
+        # Step 5: Collect all unique top features
+        all_feature_indices = set()
+        for state, results in sae_results.items():
+            for feature_idx in results['top_features']['indices'][:10]:  # Top 10 per state
+                all_feature_indices.add(feature_idx)
         
-        # Step 6: Generate Neuronpedia links
-        neuronpedia_urls = test.create_neuronpedia_dashboard(
-            differential_analysis, sae_info['release'], sae_info['sae_id']
-        )
+        print(f"\n🔍 Found {len(all_feature_indices)} unique features across all states")
         
-        # Step 7: Save results
-        report_path = test.save_results(
-            sae_results, differential_analysis, neuronpedia_urls,
-            sae_info['release'], sae_info['sae_id']
-        )
+        # Step 6: Fetch Neuronpedia descriptions
+        descriptions = test.fetch_feature_descriptions(list(all_feature_indices))
         
-        print(f"\n🎉 SAE analysis completed successfully!")
-        print(f"📋 Full report available at: {report_path}")
-        print(f"\n🔗 Key Neuronpedia links:")
-        for transition, url_data in neuronpedia_urls.items():
-            if url_data:  # Check if not empty
-                print(f"   {transition}: {url_data[0]['url']}")
+        # Step 7: Print results with descriptions
+        print(f"\n📊 SAE Analysis Results with Neuronpedia Interpretations:")
+        for state, results in sae_results.items():
+            print(f"\n{state.upper()} STATE:")
+            print(f"   L0 Sparsity: {results['avg_l0_norm']:.2f}")
+            print(f"   Reconstruction MSE: {results['reconstruction_mse']:.6f}")
+            print(f"   Top 5 Features with Interpretations:")
+            
+            for i, (feature_idx, activation) in enumerate(zip(results['top_features']['indices'][:5], 
+                                                            results['top_features']['values'][:5])):
+                desc_data = descriptions.get(feature_idx, {})
+                description = desc_data.get('description', 'No description available')
+                
+                print(f"     {i+1}. Feature {feature_idx}: {activation:.4f}")
+                print(f"        \"{description[:100]}...\"")
+                
+                neuronpedia_url = desc_data.get('neuronpedia_url', '')
+                if neuronpedia_url:
+                    print(f"        🔗 {neuronpedia_url}")
+                print()
+        
+        print(f"\n✅ SAE analysis with Neuronpedia interpretations completed!")
         
     except Exception as e:
         print(f"\n💥 Error during SAE test: {e}")
