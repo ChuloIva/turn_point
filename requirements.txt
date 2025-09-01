@@ -1,0 +1,71 @@
+# Core ML/AI Libraries
+torch>=2.0.0
+transformers>=4.30.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# TransformerLens Dependencies (based on pyproject.toml)
+accelerate>=0.23.0
+beartype>=0.14.1
+better-abc>=0.0.3
+datasets>=2.7.1
+einops>=0.6.0
+fancy-einsum>=0.0.3
+jaxtyping>=0.2.11
+pandas>=1.1.5
+rich>=12.6.0
+sentencepiece
+tqdm>=4.64.1
+transformers-stream-generator>=0.0.5
+typeguard>=4.2
+typing-extensions
+wandb>=0.13.5
+
+# Visualization and Analysis
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.12.0
+
+# Configuration and Data Handling
+PyYAML>=6.0
+requests>=2.28.0
+
+# Jupyter Notebook Support
+jupyter>=1.0.0
+ipywidgets>=8.1.1
+jupyterlab>=3.5.0
+
+# Ollama Integration
+ollama>=0.1.0
+
+# Development and Testing
+pytest>=7.2.0
+pytest-cov>=4.0.0
+
+# Model Download and HuggingFace
+huggingface-hub>=0.16.0
+python-dotenv>=1.0.0
+
+# Async Support
+asyncio-mqtt>=0.11.0
+
+# Optional: Apple Silicon Optimization
+# mlx>=0.0.5  # Uncomment if using Apple Silicon
+
+# Optional: Advanced Libraries for Specific Features
+# repeng  # For representation engineering (if available)
+# nnsight  # For activation capture (if available)
+# saelens  # For sparse autoencoder analysis (if available)
+
+# Progress bars and utilities
+tqdm>=4.64.1
+pathlib2>=2.3.0
+
+# Data processing
+jsonlines>=3.1.0
+
+# Logging and debugging
+colorlog>=6.7.0
+
+# Memory optimization
+psutil>=5.9.0

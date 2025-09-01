@@ -7,6 +7,7 @@ from transformer_lens import HookedTransformer
 from model_loader import ModelLoader
 from utils.device_detection import get_device_manager
 import logging
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
@@ -107,7 +108,7 @@ class ActivationCapturer:
         logger.info(f"Computing activations for {cognitive_pattern} (cache key: {cache_key})")
         all_activations = {}
         
-        for string in strings:
+        for string in tqdm(strings, desc=f"Processing {cognitive_pattern}"):
             # Tokenize input
             tokens = self.model.to_tokens(string, prepend_bos=True)
             
@@ -142,7 +143,25 @@ class ActivationCapturer:
         
         # Convert lists to tensors
         for key in all_activations:
-            all_activations[key] = torch.stack(all_activations[key])
+            if position == "all":
+                # For variable length sequences, we need to handle padding
+                max_seq_len = max(tensor.size(0) for tensor in all_activations[key])
+                
+                # Pad all sequences to same length
+                padded_tensors = []
+                for tensor in all_activations[key]:
+                    if tensor.size(0) < max_seq_len:
+                        # Pad with zeros
+                        pad_size = max_seq_len - tensor.size(0)
+                        padded = torch.cat([tensor, torch.zeros(pad_size, tensor.size(1), device=tensor.device)], dim=0)
+                        padded_tensors.append(padded)
+                    else:
+                        padded_tensors.append(tensor)
+                
+                all_activations[key] = torch.stack(padded_tensors)
+            else:
+                # For single position extractions, shapes should already match
+                all_activations[key] = torch.stack(all_activations[key])
         
         # Save to cache if requested
         if use_cache:
