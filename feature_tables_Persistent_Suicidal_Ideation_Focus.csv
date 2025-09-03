@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,826,1,28471,100.28,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,2,39353,20.69, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,3,10636,20.50," references to ""all"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/10636,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,4,46576,18.22,references to notable all-time teams or lists in sports discussions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46576,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,5,27326,18.08,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,6,28638,18.05, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,7,58815,17.23,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,8,10237,16.98," occurrences of the word ""all.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/10237,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,9,27530,16.29, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Persistent Suicidal Ideation Focus
+0,-10,<bos>,826,10,18343,15.30,the presence of specific tags or markers indicating structured data,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18343,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,1,28471,97.97,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,2,61367,23.34,"repetitive use of the word ""the.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61367,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,3,39353,20.57, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,4,8831,20.41, words and phrases related to marriage and familial relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8831,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,5,28638,18.90, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,6,58815,18.75,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,7,12907,18.50, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,8,31041,18.42,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,9,19985,18.30,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Persistent Suicidal Ideation Focus
+1,-9,Ugh,684,10,30795,15.07,references to personal connections and relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/30795,Persistent Suicidal Ideation Focus
+2,-8,",",916,1,28471,92.87,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+2,-8,",",916,2,48573,27.95, HTML tags and class/interface declarations in code snippets,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48573,Persistent Suicidal Ideation Focus
+2,-8,",",916,3,31041,26.04,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Persistent Suicidal Ideation Focus
+2,-8,",",916,4,39353,22.49, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+2,-8,",",916,5,12994,21.78,references to bows and bowing actions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12994,Persistent Suicidal Ideation Focus
+2,-8,",",916,6,33787,19.71, phrases that indicate methods or approaches to achieve goals or objectives,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33787,Persistent Suicidal Ideation Focus
+2,-8,",",916,7,58815,19.59,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+2,-8,",",916,8,58754,17.97,specific names and terms related to technology and innovations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58754,Persistent Suicidal Ideation Focus
+2,-8,",",916,9,45806,16.88, expressions indicating uncertainty or approximations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45806,Persistent Suicidal Ideation Focus
+2,-8,",",916,10,38805,16.56, terms related to content distribution and media publishing,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38805,Persistent Suicidal Ideation Focus
+3,-7, there,1164,1,28471,99.70,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+3,-7, there,1164,2,31041,31.79,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Persistent Suicidal Ideation Focus
+3,-7, there,1164,3,17984,26.90, code-related syntax or structure elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17984,Persistent Suicidal Ideation Focus
+3,-7, there,1164,4,40239,26.35,"references to the organization ""Life Arc""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40239,Persistent Suicidal Ideation Focus
+3,-7, there,1164,5,39353,24.26, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+3,-7, there,1164,6,27530,19.90, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Persistent Suicidal Ideation Focus
+3,-7, there,1164,7,14236,19.59, monetary values or financial figures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14236,Persistent Suicidal Ideation Focus
+3,-7, there,1164,8,57500,18.45,specific technical identifiers or codes related to programming and software libraries,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57500,Persistent Suicidal Ideation Focus
+3,-7, there,1164,9,8831,18.27, words and phrases related to marriage and familial relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8831,Persistent Suicidal Ideation Focus
+3,-7, there,1164,10,44626,17.20, baseball-related statistics and events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44626,Persistent Suicidal Ideation Focus
+4,-6, they,885,1,28471,101.95,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+4,-6, they,885,2,39353,21.85, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+4,-6, they,885,3,33475,20.26,"instances of the word ""well"" indicating emphasis or quality",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33475,Persistent Suicidal Ideation Focus
+4,-6, they,885,4,8740,19.31,specific biographical information and editing activity related to individuals,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8740,Persistent Suicidal Ideation Focus
+4,-6, they,885,5,167,19.26, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Persistent Suicidal Ideation Focus
+4,-6, they,885,6,12907,19.10, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Persistent Suicidal Ideation Focus
+4,-6, they,885,7,6416,18.01, instructions related to completing a form or making changes on a website,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6416,Persistent Suicidal Ideation Focus
+4,-6, they,885,8,51880,17.60, technical terminology related to programming and software,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51880,Persistent Suicidal Ideation Focus
+4,-6, they,885,9,31718,17.34, numerical data and statistical representations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31718,Persistent Suicidal Ideation Focus
+4,-6, they,885,10,5807,17.28,"variations of the word ""would.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/5807,Persistent Suicidal Ideation Focus
+5,-5, go,794,1,28471,104.70,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+5,-5, go,794,2,14236,22.52, monetary values or financial figures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14236,Persistent Suicidal Ideation Focus
+5,-5, go,794,3,28638,21.11, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Persistent Suicidal Ideation Focus
+5,-5, go,794,4,39353,20.37, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+5,-5, go,794,5,58815,19.78,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+5,-5, go,794,6,18460,18.77, elements related to manuscript versions and publication details,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18460,Persistent Suicidal Ideation Focus
+5,-5, go,794,7,12907,14.82, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Persistent Suicidal Ideation Focus
+5,-5, go,794,8,27530,14.73, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Persistent Suicidal Ideation Focus
+5,-5, go,794,9,26310,14.64, elements related to programming structures and access specifiers in code,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26310,Persistent Suicidal Ideation Focus
+5,-5, go,794,10,59919,13.91," mentions of the name ""Mark.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59919,Persistent Suicidal Ideation Focus
+6,-4, again,772,1,28471,115.99,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+6,-4, again,772,2,31718,22.30, numerical data and statistical representations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31718,Persistent Suicidal Ideation Focus
+6,-4, again,772,3,46054,20.89, references to NFL players and their positions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46054,Persistent Suicidal Ideation Focus
+6,-4, again,772,4,39353,20.14, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+6,-4, again,772,5,28638,19.21, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Persistent Suicidal Ideation Focus
+6,-4, again,772,6,28605,19.04, technical terms related to computing errors and system parameters,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28605,Persistent Suicidal Ideation Focus
+6,-4, again,772,7,31041,18.62,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Persistent Suicidal Ideation Focus
+6,-4, again,772,8,58815,17.63,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+6,-4, again,772,9,6674,17.62, instances of author names and scientific notation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6674,Persistent Suicidal Ideation Focus
+6,-4, again,772,10,48573,17.15, HTML tags and class/interface declarations in code snippets,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48573,Persistent Suicidal Ideation Focus
+7,-3, -,766,1,28471,90.93,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+7,-3, -,766,2,39353,20.76, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+7,-3, -,766,3,56333,18.35,"mentions of specific brands, names, or entities",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/56333,Persistent Suicidal Ideation Focus
+7,-3, -,766,4,20321,17.14, substrings related to the absence or lack of something,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20321,Persistent Suicidal Ideation Focus
+7,-3, -,766,5,62348,16.18,"terms expressing negation or lack, particularly in relation to existence or presence",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62348,Persistent Suicidal Ideation Focus
+7,-3, -,766,6,28080,14.75, phrases related to areas of focus and categorization,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28080,Persistent Suicidal Ideation Focus
+7,-3, -,766,7,31548,14.09,export statements in code,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31548,Persistent Suicidal Ideation Focus
+7,-3, -,766,8,15569,13.95, concepts related to inventions and technological advancements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15569,Persistent Suicidal Ideation Focus
+7,-3, -,766,9,167,13.95, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Persistent Suicidal Ideation Focus
+7,-3, -,766,10,48573,13.95, HTML tags and class/interface declarations in code snippets,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48573,Persistent Suicidal Ideation Focus
+8,-2, those,749,1,28471,112.54,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+8,-2, those,749,2,58815,32.98,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+8,-2, those,749,3,39353,24.13, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+8,-2, those,749,4,20165,22.67, mathematical expressions and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20165,Persistent Suicidal Ideation Focus
+8,-2, those,749,5,15030,21.61,terms related to specific chemical compounds or substances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15030,Persistent Suicidal Ideation Focus
+8,-2, those,749,6,31041,19.83,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Persistent Suicidal Ideation Focus
+8,-2, those,749,7,21451,17.46,references to the concept of evil,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21451,Persistent Suicidal Ideation Focus
+8,-2, those,749,8,3665,16.00, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Persistent Suicidal Ideation Focus
+8,-2, those,749,9,27007,15.08,references to mechanical devices and mechanisms,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27007,Persistent Suicidal Ideation Focus
+8,-2, those,749,10,40545,14.93,specific actions and conditions related to technology and privacy,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40545,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,1,28471,103.84,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,2,47900,28.43,different forms of punctuation or sentence end markers,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47900,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,3,58815,25.98,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,4,36956,20.24, punctuations or symbols indicating the end of sentences,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36956,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,5,8831,17.03, words and phrases related to marriage and familial relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8831,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,6,39353,16.63, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,7,28638,16.28, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,8,52335,15.54, tabulated data related to results and parameters in research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52335,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,9,18460,15.18, elements related to manuscript versions and publication details,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18460,Persistent Suicidal Ideation Focus
+9,-1, incessant,831,10,64664,15.16, mathematical expressions and formulas in a technical context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64664,Persistent Suicidal Ideation Focus

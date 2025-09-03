@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,926,1,28471,107.75,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+0,-10,<bos>,926,2,52907,29.16," gerunds and present participles, particularly those related to naming, linking, and activities",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52907,Overload with Entrapment Themes
+0,-10,<bos>,926,3,64664,23.51, mathematical expressions and formulas in a technical context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64664,Overload with Entrapment Themes
+0,-10,<bos>,926,4,28638,22.84, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overload with Entrapment Themes
+0,-10,<bos>,926,5,31041,20.28,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Overload with Entrapment Themes
+0,-10,<bos>,926,6,11926,20.19,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Overload with Entrapment Themes
+0,-10,<bos>,926,7,41804,19.61," terms related to tendencies, abilities, and conditions related to biological or medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/41804,Overload with Entrapment Themes
+0,-10,<bos>,926,8,50044,19.08,terms related to missions and expeditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50044,Overload with Entrapment Themes
+0,-10,<bos>,926,9,27530,18.19, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Overload with Entrapment Themes
+0,-10,<bos>,926,10,61825,17.64, expressions indicating insufficiency or limitations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61825,Overload with Entrapment Themes
+1,-9,I,647,1,28471,134.81,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+1,-9,I,647,2,58815,24.02,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+1,-9,I,647,3,59226,22.13,phrases and terms indicating complexity and uncertainty in situations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59226,Overload with Entrapment Themes
+1,-9,I,647,4,38842,20.75,elements related to software or web service configuration,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38842,Overload with Entrapment Themes
+1,-9,I,647,5,19545,20.29," instances of the word ""to"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19545,Overload with Entrapment Themes
+1,-9,I,647,6,16550,18.75, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overload with Entrapment Themes
+1,-9,I,647,7,39353,18.65, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+1,-9,I,647,8,28638,18.09, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overload with Entrapment Themes
+1,-9,I,647,9,27326,17.82,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Overload with Entrapment Themes
+1,-9,I,647,10,53016,17.47,references to legal titles or regulations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/53016,Overload with Entrapment Themes
+2,-8,',500,1,28471,132.70,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+2,-8,',500,2,58815,42.90,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+2,-8,',500,3,39353,24.28, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+2,-8,',500,4,21207,23.28, terms related to cadherins and specific individuals linked to them,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21207,Overload with Entrapment Themes
+2,-8,',500,5,30230,23.19, actions involving movement or transitions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/30230,Overload with Entrapment Themes
+2,-8,',500,6,64664,22.34, mathematical expressions and formulas in a technical context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64664,Overload with Entrapment Themes
+2,-8,',500,7,27447,20.88,terms related to escape mechanisms,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27447,Overload with Entrapment Themes
+2,-8,',500,8,16550,20.02, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overload with Entrapment Themes
+2,-8,',500,9,64062,17.89,references to numbers and financial figures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64062,Overload with Entrapment Themes
+2,-8,',500,10,199,14.75, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Overload with Entrapment Themes
+3,-7,m,880,1,28471,117.86,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+3,-7,m,880,2,58815,26.52,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+3,-7,m,880,3,28638,20.71, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overload with Entrapment Themes
+3,-7,m,880,4,31086,20.25,commands or requests that emphasize action or instruction,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31086,Overload with Entrapment Themes
+3,-7,m,880,5,17984,20.14, code-related syntax or structure elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17984,Overload with Entrapment Themes
+3,-7,m,880,6,44560,18.59, references to predictions or evaluations in a legal context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44560,Overload with Entrapment Themes
+3,-7,m,880,7,15530,17.43,references to explosive devices or bombs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15530,Overload with Entrapment Themes
+3,-7,m,880,8,32537,16.74, numerical data and statistical parameters,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32537,Overload with Entrapment Themes
+3,-7,m,880,9,39353,16.67, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+3,-7,m,880,10,1950,16.55, technical terminology related to databases and programming,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/1950,Overload with Entrapment Themes
+4,-6, trapped,679,1,28471,82.38,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+4,-6, trapped,679,2,58815,32.33,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+4,-6, trapped,679,3,22827,27.23,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overload with Entrapment Themes
+4,-6, trapped,679,4,39353,24.74, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+4,-6, trapped,679,5,23178,22.25, possessive pronouns and their usage in relation to characters' identities or belongings,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23178,Overload with Entrapment Themes
+4,-6, trapped,679,6,33856,21.93,phrases related to action and implementation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33856,Overload with Entrapment Themes
+4,-6, trapped,679,7,16550,21.13, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overload with Entrapment Themes
+4,-6, trapped,679,8,51223,15.47,chemical compounds and their compositions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51223,Overload with Entrapment Themes
+4,-6, trapped,679,9,47899,15.11,references to scientific authors and their affiliations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47899,Overload with Entrapment Themes
+4,-6, trapped,679,10,28638,14.91, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overload with Entrapment Themes
+5,-5, in,781,1,28471,125.31,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+5,-5, in,781,2,58815,25.96,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+5,-5, in,781,3,39353,24.72, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+5,-5, in,781,4,4598,23.72, terms related to online advertising and subscription services,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4598,Overload with Entrapment Themes
+5,-5, in,781,5,6600,22.47,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Overload with Entrapment Themes
+5,-5, in,781,6,49519,21.76,references to commands or requests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49519,Overload with Entrapment Themes
+5,-5, in,781,7,31041,21.71,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Overload with Entrapment Themes
+5,-5, in,781,8,13938,18.72, legal terminology related to motions and procedural requests in court cases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13938,Overload with Entrapment Themes
+5,-5, in,781,9,3665,18.60, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Overload with Entrapment Themes
+5,-5, in,781,10,23136,18.25, mentions of Vice Presidents in political contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23136,Overload with Entrapment Themes
+6,-4, this,817,1,28471,118.00,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+6,-4, this,817,2,58815,26.18,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+6,-4, this,817,3,44626,23.43, baseball-related statistics and events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44626,Overload with Entrapment Themes
+6,-4, this,817,4,16550,23.13, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overload with Entrapment Themes
+6,-4, this,817,5,27326,20.81,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Overload with Entrapment Themes
+6,-4, this,817,6,22827,17.81,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overload with Entrapment Themes
+6,-4, this,817,7,25547,17.67,"proper nouns, particularly names of people and organizations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25547,Overload with Entrapment Themes
+6,-4, this,817,8,41740,15.90,phrases indicating the concept of being born out of wedlock,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/41740,Overload with Entrapment Themes
+6,-4, this,817,9,31041,15.66,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Overload with Entrapment Themes
+6,-4, this,817,10,39353,15.17, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+7,-3, rut,764,1,28471,105.06,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+7,-3, rut,764,2,19143,34.03," the phrase ""with regard to.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19143,Overload with Entrapment Themes
+7,-3, rut,764,3,39353,21.38, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+7,-3, rut,764,4,33856,20.66,phrases related to action and implementation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33856,Overload with Entrapment Themes
+7,-3, rut,764,5,58815,19.50,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+7,-3, rut,764,6,13938,18.65, legal terminology related to motions and procedural requests in court cases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13938,Overload with Entrapment Themes
+7,-3, rut,764,7,27387,17.42, phrases indicating the presence or absence of conditions or features,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27387,Overload with Entrapment Themes
+7,-3, rut,764,8,7236,16.62, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Overload with Entrapment Themes
+7,-3, rut,764,9,62706,16.27, mathematical symbols and notations used in statistical or probability contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62706,Overload with Entrapment Themes
+7,-3, rut,764,10,27530,15.76, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Overload with Entrapment Themes
+8,-2,",",777,1,28471,135.78,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+8,-2,",",777,2,16550,28.29, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overload with Entrapment Themes
+8,-2,",",777,3,58815,27.89,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+8,-2,",",777,4,39353,25.00, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+8,-2,",",777,5,2203,21.44,technical instructions and references to system security implications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2203,Overload with Entrapment Themes
+8,-2,",",777,6,27326,20.83,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Overload with Entrapment Themes
+8,-2,",",777,7,11926,19.21,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Overload with Entrapment Themes
+8,-2,",",777,8,28638,17.74, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overload with Entrapment Themes
+8,-2,",",777,9,47,17.07, the start of a new segment or document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47,Overload with Entrapment Themes
+8,-2,",",777,10,17364,15.95,references to the author 'Ann' and related variants in scientific or academic contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17364,Overload with Entrapment Themes
+9,-1, there,596,1,28471,135.09,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overload with Entrapment Themes
+9,-1, there,596,2,58815,26.23,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overload with Entrapment Themes
+9,-1, there,596,3,22827,22.61,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overload with Entrapment Themes
+9,-1, there,596,4,47900,17.88,different forms of punctuation or sentence end markers,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47900,Overload with Entrapment Themes
+9,-1, there,596,5,51880,17.34, technical terminology related to programming and software,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51880,Overload with Entrapment Themes
+9,-1, there,596,6,36956,17.04, punctuations or symbols indicating the end of sentences,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36956,Overload with Entrapment Themes
+9,-1, there,596,7,27326,16.98,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Overload with Entrapment Themes
+9,-1, there,596,8,26554,16.90, indications of quantity or measurement in numerical contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26554,Overload with Entrapment Themes
+9,-1, there,596,9,39353,16.72, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overload with Entrapment Themes
+9,-1, there,596,10,11926,16.21,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Overload with Entrapment Themes

@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,585,1,28471,118.47,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+0,-10,<bos>,585,2,61079,39.37, inquiries or questions indicating curiosity,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61079,Self-Critical Rumination
+0,-10,<bos>,585,3,58815,25.95,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Self-Critical Rumination
+0,-10,<bos>,585,4,199,23.59, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Self-Critical Rumination
+0,-10,<bos>,585,5,56352,19.20, programming terms and code structure related to software development,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/56352,Self-Critical Rumination
+0,-10,<bos>,585,6,11322,18.86, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Self-Critical Rumination
+0,-10,<bos>,585,7,39353,17.70, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+0,-10,<bos>,585,8,16550,17.50, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Self-Critical Rumination
+0,-10,<bos>,585,9,27530,16.40, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Self-Critical Rumination
+0,-10,<bos>,585,10,31829,16.15,"the word ""that"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31829,Self-Critical Rumination
+1,-9,Why,626,1,28471,90.31,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+1,-9,Why,626,2,62958,33.08,conditional phrases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62958,Self-Critical Rumination
+1,-9,Why,626,3,27530,20.41, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Self-Critical Rumination
+1,-9,Why,626,4,51880,19.56, technical terminology related to programming and software,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51880,Self-Critical Rumination
+1,-9,Why,626,5,20165,18.62, mathematical expressions and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20165,Self-Critical Rumination
+1,-9,Why,626,6,39353,17.90, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+1,-9,Why,626,7,24611,15.94,commands and methods related to file handling and XML processing in programming,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24611,Self-Critical Rumination
+1,-9,Why,626,8,46054,15.39, references to NFL players and their positions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46054,Self-Critical Rumination
+1,-9,Why,626,9,22827,14.95,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+1,-9,Why,626,10,15890,14.92,"chemical compounds, specifically those relevant to scientific and medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15890,Self-Critical Rumination
+2,-8, did,618,1,28471,77.28,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+2,-8, did,618,2,6802,24.97," occurrences of the pronoun ""I"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6802,Self-Critical Rumination
+2,-8, did,618,3,199,24.63, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Self-Critical Rumination
+2,-8, did,618,4,51117,23.17,references to the speaker or self-identity,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51117,Self-Critical Rumination
+2,-8, did,618,5,22827,22.21,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+2,-8, did,618,6,25355,21.59,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Self-Critical Rumination
+2,-8, did,618,7,9546,20.61, scientific terms and notation related to quantum physics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9546,Self-Critical Rumination
+2,-8, did,618,8,39353,20.10, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+2,-8, did,618,9,58301,18.44, references to IP addresses and related concepts in technical contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58301,Self-Critical Rumination
+2,-8, did,618,10,47975,18.10, mathematical notations and expressions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47975,Self-Critical Rumination
+3,-7, I,589,1,28471,123.79,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+3,-7, I,589,2,22827,30.12,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+3,-7, I,589,3,199,23.25, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Self-Critical Rumination
+3,-7, I,589,4,12420,22.78, sequences indicating possessive pronouns and their associated terms,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12420,Self-Critical Rumination
+3,-7, I,589,5,24386,21.93," punctuation marks, particularly apostrophes",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24386,Self-Critical Rumination
+3,-7, I,589,6,58815,18.82,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Self-Critical Rumination
+3,-7, I,589,7,39353,17.15, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+3,-7, I,589,8,22194,14.91,escape characters and formatting symbols commonly used in programming or markup languages,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22194,Self-Critical Rumination
+3,-7, I,589,9,24961,14.88, biochemistry and physiological terms related to health and disease,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24961,Self-Critical Rumination
+3,-7, I,589,10,50579,14.62,ingredients and their quantities used in cooking,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50579,Self-Critical Rumination
+4,-6, have,873,1,28471,101.54,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+4,-6, have,873,2,39353,27.17, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+4,-6, have,873,3,27326,23.90,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Self-Critical Rumination
+4,-6, have,873,4,35187,20.51,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Self-Critical Rumination
+4,-6, have,873,5,22827,20.43,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+4,-6, have,873,6,59500,20.25, items related to political or technical acronyms and definitions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59500,Self-Critical Rumination
+4,-6, have,873,7,10749,18.57, specific food items and their ingredients in culinary contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/10749,Self-Critical Rumination
+4,-6, have,873,8,47014,18.54, technical terms related to graphics programming,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47014,Self-Critical Rumination
+4,-6, have,873,9,11926,17.80,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Self-Critical Rumination
+4,-6, have,873,10,31041,17.75,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Self-Critical Rumination
+5,-5, to,673,1,28471,129.63,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+5,-5, to,673,2,22827,26.53,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+5,-5, to,673,3,58815,19.38,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Self-Critical Rumination
+5,-5, to,673,4,39353,18.46, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+5,-5, to,673,5,199,17.63, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Self-Critical Rumination
+5,-5, to,673,6,35187,17.14,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Self-Critical Rumination
+5,-5, to,673,7,46018,16.16,adverbs that describe manner or intensify the meaning of verbs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46018,Self-Critical Rumination
+5,-5, to,673,8,12907,16.03, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Self-Critical Rumination
+5,-5, to,673,9,536,15.94,specific technical measurements and data points related to scientific experiments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/536,Self-Critical Rumination
+5,-5, to,673,10,42240,15.87," proper nouns, specifically names of people and entities",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/42240,Self-Critical Rumination
+6,-4, mess,546,1,28471,121.07,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+6,-4, mess,546,2,22827,30.96,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+6,-4, mess,546,3,58706,26.10,negations and expressions of inability or failure,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58706,Self-Critical Rumination
+6,-4, mess,546,4,43993,23.08,negative statements or expressions of negation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43993,Self-Critical Rumination
+6,-4, mess,546,5,39353,22.39, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+6,-4, mess,546,6,14707,18.95," negations and terms associated with the concept of ""not""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14707,Self-Critical Rumination
+6,-4, mess,546,7,17068,16.87," technical terms and phrases related to mechanisms, particularly in relation to reclining chairs and their features",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17068,Self-Critical Rumination
+6,-4, mess,546,8,27530,16.85, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Self-Critical Rumination
+6,-4, mess,546,9,55982,15.95, mathematical expressions and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55982,Self-Critical Rumination
+6,-4, mess,546,10,40752,15.80, phrases related to sharing and returning content,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40752,Self-Critical Rumination
+7,-3, that,560,1,28471,104.43,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+7,-3, that,560,2,7945,27.76, words expressing positivity or approval,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7945,Self-Critical Rumination
+7,-3, that,560,3,22827,20.89,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+7,-3, that,560,4,46581,19.33,references to pagan rituals and festivals,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46581,Self-Critical Rumination
+7,-3, that,560,5,27530,19.24, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Self-Critical Rumination
+7,-3, that,560,6,39353,18.77, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+7,-3, that,560,7,58815,18.35,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Self-Critical Rumination
+7,-3, that,560,8,57901,18.08, elements related to scientific results and data presentation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57901,Self-Critical Rumination
+7,-3, that,560,9,54264,17.41,terms related to improvements and enhancing processes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54264,Self-Critical Rumination
+7,-3, that,560,10,7236,16.88, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Self-Critical Rumination
+8,-2, up,1048,1,28471,119.54,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+8,-2, up,1048,2,22827,35.14,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+8,-2, up,1048,3,50579,23.89,ingredients and their quantities used in cooking,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50579,Self-Critical Rumination
+8,-2, up,1048,4,39353,22.17, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+8,-2, up,1048,5,16550,21.75, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Self-Critical Rumination
+8,-2, up,1048,6,30694,20.09,conditional statements and expressions of anticipation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/30694,Self-Critical Rumination
+8,-2, up,1048,7,20208,18.36," references to intensity or levels of ""high"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20208,Self-Critical Rumination
+8,-2, up,1048,8,35187,17.62,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Self-Critical Rumination
+8,-2, up,1048,9,59768,16.85, botanical terms related to plant cultivation and classification,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59768,Self-Critical Rumination
+8,-2, up,1048,10,8740,16.62,specific biographical information and editing activity related to individuals,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8740,Self-Critical Rumination
+9,-1, again,773,1,28471,131.14,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Self-Critical Rumination
+9,-1, again,773,2,55982,22.62, mathematical expressions and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55982,Self-Critical Rumination
+9,-1, again,773,3,39353,22.22, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Self-Critical Rumination
+9,-1, again,773,4,22827,21.53,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Self-Critical Rumination
+9,-1, again,773,5,50579,17.45,ingredients and their quantities used in cooking,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50579,Self-Critical Rumination
+9,-1, again,773,6,58815,16.35,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Self-Critical Rumination
+9,-1, again,773,7,57901,15.12, elements related to scientific results and data presentation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57901,Self-Critical Rumination
+9,-1, again,773,8,51870,14.82, punctuations or commas within sentences,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51870,Self-Critical Rumination
+9,-1, again,773,9,52647,14.38,specific legal terms and references to documentation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52647,Self-Critical Rumination
+9,-1, again,773,10,6600,14.08,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Self-Critical Rumination

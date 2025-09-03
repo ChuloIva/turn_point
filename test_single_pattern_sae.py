@@ -22,6 +22,8 @@ import os
 import time
 import pandas as pd
 from dotenv import load_dotenv
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 # Load environment variables
 load_dotenv()
@@ -175,9 +177,10 @@ class SinglePatternSAETest:
             # Get activation tensors and rename them
             for key, tensor in data.items():
                 if key not in ['enriched_metadata', 'metadata_info']:
-                    # Rename key to include state (e.g., negative_layer_21 -> negative_layer_21)
-                    new_key = f"{state_name}_{key.split('_', 1)[1]}"  # Remove original prefix, add state prefix
-                    all_activations[new_key] = tensor
+                    # Only load layer 17 activations
+                    if 'layer_17' in key:
+                        new_key = f"{state_name}_{key.split('_', 1)[1]}"
+                        all_activations[new_key] = tensor
         
         print(f"✅ Loaded activations for {len(activation_files)} states")
         print(f"   Available patterns: {len(self.enriched_metadata)}")
@@ -219,6 +222,310 @@ class SinglePatternSAETest:
         
         return prepared_activations
     
+    def prepare_activations_for_pattern_name(self, activations: Dict[str, torch.Tensor], 
+                                           pattern_name: str = None, 
+                                           use_all_samples: bool = True) -> Dict[str, torch.Tensor]:
+        """Prepare activations for SAE analysis using all samples of a specific cognitive pattern."""
+        print(f"\n🧠 Preparing activations for cognitive pattern: {pattern_name or 'first pattern'}...")
+        
+        # Find all indices for the specified pattern
+        if pattern_name is None:
+            # Use first pattern if none specified
+            pattern_name = self.enriched_metadata[0].get('cognitive_pattern_name', 'Unknown Pattern')
+        
+        # Find all samples with this pattern name
+        pattern_indices = []
+        for i, entry in enumerate(self.enriched_metadata):
+            entry_pattern_name = entry.get('cognitive_pattern_name')
+            if entry_pattern_name == pattern_name:
+                pattern_indices.append(i)
+        
+        if not pattern_indices:
+            raise ValueError(f"No samples found for pattern: {pattern_name}")
+        
+        print(f"   Found {len(pattern_indices)} samples for pattern: {pattern_name}")
+        print(f"   Sample indices: {pattern_indices}")
+        
+        # Update pattern data to first sample (for metadata)
+        self.pattern_data = self.enriched_metadata[pattern_indices[0]]
+        
+        prepared_activations = {}
+        
+        if use_all_samples:
+            # Use ALL samples and ALL tokens for this pattern
+            for key, tensor in activations.items():
+                if len(tensor.shape) >= 2:  # Should be [batch, seq, hidden] or similar
+                    # Select all samples for this pattern
+                    selected_samples = tensor[pattern_indices]  # Shape: [n_samples, seq_len, hidden_dim]
+                    
+                    # Flatten to combine all samples and all tokens: [n_samples * seq_len, hidden_dim]
+                    flattened_activation = selected_samples.reshape(-1, selected_samples.shape[-1])
+                    prepared_activations[key] = flattened_activation
+                    print(f"   {key}: {len(pattern_indices)} samples × {selected_samples.shape[1]} tokens = {flattened_activation.shape}")
+                else:
+                    prepared_activations[key] = tensor
+        else:
+            # Use only first sample (original behavior)
+            for key, tensor in activations.items():
+                if len(tensor.shape) >= 2:
+                    selected_activation = tensor[pattern_indices[0]:pattern_indices[0]+1]
+                    prepared_activations[key] = selected_activation
+                    print(f"   {key}: {selected_activation.shape}")
+                else:
+                    prepared_activations[key] = tensor
+        
+        self.activations = prepared_activations
+        print(f"✅ Prepared activations for pattern analysis")
+        
+        return prepared_activations
+    
+    def run_pca_on_activations(self, activations: Dict[str, torch.Tensor], n_components: int = 5) -> Dict[str, Dict]:
+        """Run PCA on raw activations to find principal component directions, then analyze with SAE."""
+        print(f"\n🧮 Running PCA analysis on raw activations...")
+        
+        pca_results = {}
+        
+        for state_key, activation_tensor in activations.items():
+            if 'layer_17' not in state_key:
+                continue
+                
+            state_name = state_key.split('_layer_')[0]
+            print(f"   Analyzing {state_name} activations: {activation_tensor.shape}")
+            
+            # Flatten activations to [n_tokens, hidden_dim]
+            if len(activation_tensor.shape) == 3:
+                flat_acts = activation_tensor.squeeze(0)  # Remove batch dim: [seq_len, hidden_dim]
+            else:
+                flat_acts = activation_tensor
+            
+            # Convert to numpy for sklearn
+            acts_np = flat_acts.detach().cpu().numpy()
+            print(f"     Flattened shape: {acts_np.shape}")
+            
+            # Center the data (subtract mean)
+            scaler = StandardScaler(with_std=False)  # Only center, don't scale
+            acts_centered = scaler.fit_transform(acts_np)
+            
+            # Run PCA
+            pca = PCA(n_components=n_components)
+            pca_transformed = pca.fit_transform(acts_centered)
+            
+            print(f"     PCA explained variance ratios: {pca.explained_variance_ratio_}")
+            print(f"     Total variance explained: {pca.explained_variance_ratio_.sum():.3f}")
+            
+            # Get the principal component directions (in original feature space)
+            pc_directions = pca.components_  # Shape: [n_components, hidden_dim]
+            
+            # Convert PC directions to torch tensors and pass through SAE
+            pc_sae_results = {}
+            for i, pc_direction in enumerate(pc_directions):
+                pc_tensor = torch.from_numpy(pc_direction).float().to(self.sae.device)
+                pc_tensor = pc_tensor.unsqueeze(0)  # Add batch dimension: [1, hidden_dim]
+                
+                # Pass through SAE
+                feature_acts = self.sae.encode(pc_tensor)
+                
+                # Get top features for this PC
+                feature_acts_flat = feature_acts.squeeze(0)  # Remove batch dim
+                top_values, top_indices = torch.topk(torch.abs(feature_acts_flat), k=20)
+                
+                # Store results
+                pc_sae_results[f'PC{i+1}'] = {
+                    'explained_variance_ratio': float(pca.explained_variance_ratio_[i]),
+                    'top_features': {
+                        'indices': top_indices.detach().cpu().numpy().tolist(),
+                        'values': feature_acts_flat[top_indices].detach().cpu().numpy().tolist(),
+                        'abs_values': top_values.detach().cpu().numpy().tolist()
+                    }
+                }
+                
+                print(f"     PC{i+1} (var={pca.explained_variance_ratio_[i]:.3f}): Top feature {top_indices[0].item()} = {feature_acts_flat[top_indices[0]].item():.4f}")
+            
+            pca_results[state_name] = {
+                'pca_object': pca,
+                'scaler': scaler,
+                'explained_variance_ratio': pca.explained_variance_ratio_.tolist(),
+                'total_variance_explained': float(pca.explained_variance_ratio_.sum()),
+                'pc_sae_results': pc_sae_results
+            }
+        
+        return pca_results
+    
+    def run_pca_on_all_tokens(self, activations: Dict[str, torch.Tensor], n_components: int = 5) -> Dict[str, Dict]:
+        """Run PCA on ALL tokens from ALL samples of the cognitive pattern."""
+        print(f"\n🧮 Running PCA analysis on all tokens from all samples...")
+        
+        pca_results = {}
+        
+        for state_key, activation_tensor in activations.items():
+            if 'layer_17' not in state_key:
+                continue
+                
+            state_name = state_key.split('_layer_')[0]
+            print(f"   Analyzing {state_name} activations: {activation_tensor.shape}")
+            
+            # The tensor is already flattened to [n_samples * seq_len, hidden_dim]
+            # from prepare_activations_for_pattern_name
+            flat_acts = activation_tensor
+            
+            # Convert to numpy for sklearn
+            acts_np = flat_acts.detach().cpu().numpy()
+            print(f"     Total tokens for PCA: {acts_np.shape[0]}")
+            print(f"     Hidden dimensions: {acts_np.shape[1]}")
+            
+            # Center the data (subtract mean across all tokens)
+            scaler = StandardScaler(with_std=False)  # Only center, don't scale
+            acts_centered = scaler.fit_transform(acts_np)
+            
+            # Run PCA on all tokens
+            pca = PCA(n_components=n_components)
+            pca_transformed = pca.fit_transform(acts_centered)
+            
+            print(f"     PCA explained variance ratios: {pca.explained_variance_ratio_}")
+            print(f"     Total variance explained: {pca.explained_variance_ratio_.sum():.3f}")
+            
+            # Get the principal component directions (in original feature space)
+            pc_directions = pca.components_  # Shape: [n_components, hidden_dim]
+            
+            # Convert PC directions to torch tensors and pass through SAE
+            pc_sae_results = {}
+            for i, pc_direction in enumerate(pc_directions):
+                pc_tensor = torch.from_numpy(pc_direction).float().to(self.sae.device)
+                pc_tensor = pc_tensor.unsqueeze(0)  # Add batch dimension: [1, hidden_dim]
+                
+                # Pass through SAE
+                feature_acts = self.sae.encode(pc_tensor)
+                
+                # Get top features for this PC
+                feature_acts_flat = feature_acts.squeeze(0)  # Remove batch dim
+                top_values, top_indices = torch.topk(torch.abs(feature_acts_flat), k=20)
+                
+                # Store results
+                pc_sae_results[f'PC{i+1}'] = {
+                    'explained_variance_ratio': float(pca.explained_variance_ratio_[i]),
+                    'top_features': {
+                        'indices': top_indices.detach().cpu().numpy().tolist(),
+                        'values': feature_acts_flat[top_indices].detach().cpu().numpy().tolist(),
+                        'abs_values': top_values.detach().cpu().numpy().tolist()
+                    }
+                }
+                
+                print(f"     PC{i+1} (var={pca.explained_variance_ratio_[i]:.3f}): Top feature {top_indices[0].item()} = {feature_acts_flat[top_indices[0]].item():.4f}")
+            
+            pca_results[state_name] = {
+                'pca_object': pca,
+                'scaler': scaler,
+                'explained_variance_ratio': pca.explained_variance_ratio_.tolist(),
+                'total_variance_explained': float(pca.explained_variance_ratio_.sum()),
+                'pc_sae_results': pc_sae_results,
+                'total_tokens_analyzed': acts_np.shape[0]  # Add this for tracking
+            }
+        
+        return pca_results
+    
+    def analyze_pca_features_with_neuronpedia(self, pca_results: Dict[str, Dict]) -> Dict[str, Any]:
+        """Collect PCA features and get Neuronpedia interpretations."""
+        print(f"\n🔍 Collecting PCA-derived features for Neuronpedia analysis...")
+        
+        # Collect all unique features from PCA analysis
+        all_pca_features = set()
+        for state_name, state_results in pca_results.items():
+            for pc_name, pc_data in state_results['pc_sae_results'].items():
+                for feature_idx in pc_data['top_features']['indices']:
+                    all_pca_features.add(feature_idx)
+        
+        print(f"   Found {len(all_pca_features)} unique PCA-derived features")
+        
+        # Fetch Neuronpedia descriptions
+        descriptions = self.fetch_feature_descriptions(list(all_pca_features))
+        
+        # Create structured dataset
+        pca_analysis_dataset = {
+            'analysis_metadata': {
+                'pattern_name': self.pattern_data.get('cognitive_pattern_name', 'Unknown'),
+                'pattern_type': self.pattern_data.get('cognitive_pattern_type', 'Unknown'),
+                'timestamp': datetime.now().isoformat(),
+                'total_unique_features': len(all_pca_features),
+                'sae_config': {
+                    'release': 'gemma-scope-2b-pt-res',
+                    'sae_id': 'layer_17/width_65k/average_l0_125',
+                    'layer': 17
+                }
+            },
+            'states': {}
+        }
+        
+        # Process each state's PCA results
+        for state_name, state_results in pca_results.items():
+            state_data = {
+                'total_variance_explained': state_results['total_variance_explained'],
+                'explained_variance_ratios': state_results['explained_variance_ratio'],
+                'principal_components': {}
+            }
+            
+            for pc_name, pc_data in state_results['pc_sae_results'].items():
+                pc_features = []
+                
+                for i, feature_idx in enumerate(pc_data['top_features']['indices']):
+                    feature_info = {
+                        'rank': i + 1,
+                        'feature_index': feature_idx,
+                        'activation_value': pc_data['top_features']['values'][i],
+                        'abs_activation': pc_data['top_features']['abs_values'][i],
+                        'description': descriptions.get(feature_idx, {}).get('description', 'No description'),
+                        'autointerp_explanation': descriptions.get(feature_idx, {}).get('autointerp_explanation', ''),
+                        'autointerp_score': descriptions.get(feature_idx, {}).get('autointerp_score', 0.0),
+                        'neuronpedia_url': descriptions.get(feature_idx, {}).get('neuronpedia_url', ''),
+                        'pos_tokens': descriptions.get(feature_idx, {}).get('pos_tokens', []),
+                        'neg_tokens': descriptions.get(feature_idx, {}).get('neg_tokens', [])
+                    }
+                    pc_features.append(feature_info)
+                
+                state_data['principal_components'][pc_name] = {
+                    'explained_variance_ratio': pc_data['explained_variance_ratio'],
+                    'top_features': pc_features
+                }
+            
+            pca_analysis_dataset['states'][state_name] = state_data
+        
+        return pca_analysis_dataset
+    
+    def save_pca_analysis_json(self, pca_dataset: Dict[str, Any]) -> str:
+        """Save PCA analysis results as JSON dataset."""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        pattern_name = pca_dataset['analysis_metadata']['pattern_name']
+        safe_pattern_name = "".join(c for c in pattern_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
+        safe_pattern_name = safe_pattern_name.replace(' ', '_')
+        
+        output_file = self.output_dir / f"pca_analysis_{safe_pattern_name}_{timestamp}.json"
+        
+        with open(output_file, 'w') as f:
+            json.dump(pca_dataset, f, indent=2)
+        
+        print(f"💾 PCA analysis JSON saved: {output_file}")
+        
+        # Also create a summary
+        summary_file = self.output_dir / f"pca_summary_{safe_pattern_name}_{timestamp}.txt"
+        with open(summary_file, 'w') as f:
+            f.write(f"PCA Analysis Summary\n")
+            f.write(f"===================\n\n")
+            f.write(f"Pattern: {pca_dataset['analysis_metadata']['pattern_name']}\n")
+            f.write(f"Total Unique Features: {pca_dataset['analysis_metadata']['total_unique_features']}\n\n")
+            
+            for state_name, state_data in pca_dataset['states'].items():
+                f.write(f"{state_name.upper()} STATE:\n")
+                f.write(f"Total Variance Explained: {state_data['total_variance_explained']:.3f}\n")
+                
+                for pc_name, pc_data in state_data['principal_components'].items():
+                    f.write(f"\n  {pc_name} (variance: {pc_data['explained_variance_ratio']:.3f}):\n")
+                    for feature in pc_data['top_features'][:5]:  # Top 5 per PC
+                        f.write(f"    {feature['rank']}. Feature {feature['feature_index']}: {feature['activation_value']:.4f}\n")
+                        f.write(f"       \"{feature['description'][:80]}...\"\n")
+                f.write(f"\n")
+        
+        print(f"📄 PCA summary saved: {summary_file}")
+        return str(output_file)
+    
     def get_neuronpedia_identifiers(self) -> Tuple[str, str]:
         """Convert SAE config to Neuronpedia identifiers with fallbacks."""
         if not self.sae:
@@ -231,11 +538,11 @@ class SinglePatternSAETest:
         
         # Try different layer format combinations
         layer_formats = [
-            "21-res-65k",  # Standard format
-            "layer_21/width_65k/average_l0_111",  # SAE ID format
-            "21-res",
-            "layer_21",
-            "21"
+            "17-gemmascope-res-65k",  # Standard format for layer 17
+            "layer_17/width_65k/average_l0_125",  # SAE ID format
+            "17-res-65k",
+            "layer_17",
+            "17"
         ]
         
         model_formats = [
@@ -275,14 +582,14 @@ class SinglePatternSAETest:
         elif hasattr(self.sae.cfg, 'metadata') and hasattr(self.sae.cfg.metadata, 'hook_name'):
             hook_name = self.sae.cfg.metadata.hook_name
             
-        if hook_name and ('blocks.21' in hook_name or 'layer_21' in hook_name):
-            return "gemma-2b", "21-res-65k"
+        if hook_name and ('blocks.17' in hook_name or 'layer_17' in hook_name):
+            return "gemma-2-2b", "17-gemmascope-res-65k"
         raise ValueError("Could not extract from release name")
     
     def _manual_mapping(self) -> Tuple[str, str]:
         """Manual mapping for known SAE configurations."""
         # Default mapping for the current SAE being used
-        return "gemma-2b", "21-res-65k"
+        return "gemma-2-2b", "17-gemmascope-res-65k"
     
     def discover_available_saes(self) -> List[Dict[str, Any]]:
         """Discover available SAEs for the model."""
@@ -323,14 +630,14 @@ class SinglePatternSAETest:
             return []
     
     def load_neuronpedia_sae(self) -> bool:
-        """Load the specific SAE from HuggingFace: google/gemma-scope-2b-pt-res/layer_21/width_65k/average_l0_111"""
+        """Load the specific SAE from HuggingFace: google/gemma-scope-2b-pt-res/layer_17/width_65k/average_l0_125"""
         if not SAE_AVAILABLE:
             print("❌ SAELens not available")
             return False
         
         # The specific SAE from HuggingFace URL
         release = "gemma-scope-2b-pt-res"
-        sae_id = "layer_21/width_65k/average_l0_111"
+        sae_id = "layer_17/width_65k/average_l0_125"
         
         print(f"\n⚡ Loading HuggingFace SAE: {release}/{sae_id}...")
         
@@ -377,9 +684,9 @@ class SinglePatternSAETest:
             
             # Try alternative identifiers that might work
             alternatives = [
-                ("gemma-scope-2b-pt-res-canonical", "layer_21/width_65k/average_l0_111"),
-                ("gemma-scope-2b-pt-res", "layer_21/width_65k"),
-                ("google/gemma-scope-2b-pt-res", "layer_21/width_65k/average_l0_111"),
+                ("gemma-scope-2b-pt-res-canonical", "layer_17/width_65k/average_l0_125"),
+                ("gemma-scope-2b-pt-res", "layer_17/width_65k"),
+                ("google/gemma-scope-2b-pt-res", "layer_17/width_65k/average_l0_125"),
             ]
             
             for alt_release, alt_sae_id in alternatives:
@@ -399,8 +706,8 @@ class SinglePatternSAETest:
             print("❌ All SAE loading attempts failed")
             return False
     
-    def run_sae_analysis(self, layer: int = 21) -> Dict[str, Any]:
-        """Run SAE analysis on the three activation types."""
+    def run_sae_analysis(self, layer: int = 17) -> Dict[str, Any]:
+        """Run SAE analysis on manually loaded activations using proper SAE workflow."""
         if not self.sae:
             raise ValueError("SAE not loaded. Call load_neuronpedia_sae() first.")
         
@@ -416,49 +723,45 @@ class SinglePatternSAETest:
         
         results = {}
         
-        # Process each activation type (negative, positive, transition)
-        for key in available_keys:
-            act_type = key.split('_layer_')[0]  # Extract 'negative', 'positive', 'transition'
-            activations = self.activations[key]
-            
-            print(f"   Processing {act_type} activations: {activations.shape}")
-            
-            # Move to SAE device
-            activations = activations.to(self.sae.device)
-            
-            # Flatten to 2D for SAE processing [batch * seq_len, hidden_dim]
-            if len(activations.shape) == 3:
-                flat_activations = activations.reshape(-1, activations.shape[-1])
-            else:
-                flat_activations = activations.view(-1, activations.shape[-1])
-            
-            print(f"     Flattened to: {flat_activations.shape}")
-            
-            # Run through SAE
-            feature_acts = self.sae.encode(flat_activations)
-            reconstructions = self.sae.decode(feature_acts)
-            
-            # Simple metrics
-            l0_norm = (feature_acts > 0).sum(dim=-1).float()
-            reconstruction_mse = torch.nn.functional.mse_loss(flat_activations, reconstructions)
-            
-            # Top 10 features by average activation
-            avg_feature_acts = feature_acts.mean(dim=0)
-            top_values, top_indices = torch.topk(avg_feature_acts, k=10)
-            
-            results[act_type] = {
-                'feature_activations': feature_acts.cpu(),
-                'avg_l0_norm': l0_norm.mean().item(),
-                'reconstruction_mse': reconstruction_mse.item(),
-                'top_features': {
-                    'values': top_values.detach().cpu().numpy().tolist(),
-                    'indices': top_indices.detach().cpu().numpy().tolist()
+        # Set SAE to eval mode (from tutorial)
+        self.sae.eval()
+        
+        with torch.no_grad():  # From tutorial - prevents error if expecting dead neuron mask
+            # Process each activation type (negative, positive, transition)
+            for key in available_keys:
+                act_type = key.split('_layer_')[0]  # Extract 'negative', 'positive', 'transition'
+                activations = self.activations[key]  # Keep using manually loaded activations
+                
+                print(f"   Processing {act_type} activations: {activations.shape}")
+                
+                # Move to SAE device
+                activations = activations.to(self.sae.device)
+                
+                # Use SAE encode/decode directly on activations (like tutorial - no flattening needed)
+                feature_acts = self.sae.encode(activations)
+                sae_out = self.sae.decode(feature_acts)
+                
+                # Calculate metrics (like tutorial)
+                l0_norm = (feature_acts > 0).sum(dim=-1).float()
+                reconstruction_mse = torch.nn.functional.mse_loss(activations, sae_out)
+                
+                # Top 20 features by average activation
+                avg_feature_acts = feature_acts.mean(dim=0)
+                top_values, top_indices = torch.topk(avg_feature_acts, k=20)
+                
+                results[act_type] = {
+                    'feature_activations': feature_acts.cpu(),
+                    'avg_l0_norm': l0_norm.mean().item(),
+                    'reconstruction_mse': reconstruction_mse.item(),
+                    'top_features': {
+                        'values': top_values.detach().cpu().numpy().tolist(),
+                        'indices': top_indices.detach().cpu().numpy().tolist()
+                    }
                 }
-            }
-            
-            print(f"     L0 sparsity: {l0_norm.mean().item():.2f}")
-            print(f"     Reconstruction MSE: {reconstruction_mse.item():.6f}")
-            print(f"     Top feature: {top_indices[0].item()} (activation: {top_values[0].item():.4f})")
+                
+                print(f"     L0 sparsity: {l0_norm.mean().item():.2f}")
+                print(f"     Reconstruction MSE: {reconstruction_mse.item():.6f}")
+                print(f"     Top feature: {top_indices[0].item()} (activation: {top_values[0].item():.4f})")
         
         return results
     
@@ -527,9 +830,9 @@ class SinglePatternSAETest:
             model_name = self.sae.cfg.metadata.model_name
         
         # Use the exact working API URL format:
-        # https://www.neuronpedia.org/api/feature/gemma-2-2b/21-gemmascope-res-65k/353
+        # https://www.neuronpedia.org/api/feature/gemma-2-2b/17-gemmascope-res-65k/878
         identifier_combinations = [
-            ("gemma-2-2b", "21-gemmascope-res-65k"),  # Confirmed working API format
+            ("gemma-2-2b", "17-gemmascope-res-65k"),  # Confirmed working API format for layer 17
         ]
         
         print(f"   Will try identifier combinations: {identifier_combinations}")
@@ -553,6 +856,7 @@ class SinglePatternSAETest:
                     
                     # Check if we got actual data (not just empty response)
                     if feature_data:
+                        print(f"     Raw API response keys: {list(feature_data.keys()) if isinstance(feature_data, dict) else 'Not a dict'}")
                         # Extract explanation from explanations array if available
                         explanation = ""
                         explanation_score = 0.0
@@ -560,39 +864,62 @@ class SinglePatternSAETest:
                         if 'explanations' in feature_data and feature_data['explanations']:
                             # Get the first explanation
                             first_explanation = feature_data['explanations'][0]
-                            explanation = first_explanation.get('text', '')
-                            explanation_score = first_explanation.get('score', 0.0)
+                            explanation = first_explanation.get('description', '')
+                            # Try different score fields that might exist
+                            scores_array = first_explanation.get('scores', [])
+                            explanation_score = scores_array[0] if scores_array else 0.0
                         
                         # Also check for direct fields (backward compatibility)
                         if not explanation:
                             explanation = feature_data.get('explanation', feature_data.get('description', ''))
                             explanation_score = feature_data.get('explanationScore', 0.0)
                         
-                        if explanation or 'pos_str' in feature_data:  # Has explanation or activation data
-                            # Get top activating tokens for description
-                            pos_tokens = feature_data.get('pos_str', [])
-                            description = explanation if explanation else f"Activates on: {', '.join(pos_tokens[:5])}"
-                            
-                            descriptions[feature_idx] = {
-                                'description': description,
-                                'autointerp_explanation': explanation,
-                                'autointerp_score': explanation_score,
-                                'neuronpedia_url': f"https://neuronpedia.org/{model_id}/{sae_id}/{feature_idx}",
-                                'pos_tokens': pos_tokens[:10],  # Top 10 positive tokens
-                                'neg_tokens': feature_data.get('neg_str', [])[:10]  # Top 10 negative tokens
-                            }
-                            print(f"     ✅ Success with {model_id}/{sae_id}")
-                            if explanation:
-                                print(f"     Explanation: {explanation[:50]}...")
-                            else:
-                                print(f"     Activates on: {', '.join(pos_tokens[:3])}...")
-                            feature_fetched = True
-                            break
+                        # Extract activating tokens from the activations data
+                        pos_tokens = []
+                        neg_tokens = []
+                        
+                        # Try different field names for token data
+                        pos_tokens = feature_data.get('pos_str', [])
+                        neg_tokens = feature_data.get('neg_str', [])
+                        
+                        # If pos_str/neg_str not found, try extracting from activations
+                        if not pos_tokens and 'activations' in feature_data:
+                            # Extract tokens from activation entries
+                            for activation in feature_data['activations'][:10]:  # Top 10 activations
+                                if 'tokens' in activation:
+                                    tokens = activation['tokens']
+                                    if 'maxValueTokenIndex' in activation and activation['maxValueTokenIndex'] < len(tokens):
+                                        max_token = tokens[activation['maxValueTokenIndex']]
+                                        if max_token not in pos_tokens:
+                                            pos_tokens.append(max_token)
+                        
+                        # Always create an entry if we got any response from the API
+                        description = explanation if explanation else f"Activates on: {', '.join(pos_tokens[:5])}" if pos_tokens else "No description available"
+                        
+                        descriptions[feature_idx] = {
+                            'description': description,
+                            'autointerp_explanation': explanation,
+                            'autointerp_score': explanation_score,
+                            'neuronpedia_url': f"https://neuronpedia.org/{model_id}/{sae_id}/{feature_idx}",
+                            'pos_tokens': pos_tokens[:10],  # Top 10 positive tokens
+                            'neg_tokens': neg_tokens[:10]   # Top 10 negative tokens
+                        }
+                        print(f"     ✅ Success with {model_id}/{sae_id}")
+                        if explanation:
+                            print(f"     Explanation: {explanation[:50]}...")
+                        elif pos_tokens:
+                            print(f"     Activates on: {', '.join(pos_tokens[:3])}...")
+                        else:
+                            print(f"     Basic data retrieved (no explanation)")
+                        feature_fetched = True
+                        break
                     
                     print(f"     No useful data returned for {model_id}/{sae_id}")
                     
                 except Exception as e:
                     print(f"     Failed {model_id}/{sae_id}: {e}")
+                    import traceback
+                    traceback.print_exc()
                     continue
                 
                 # Rate limiting between attempts
@@ -711,15 +1038,15 @@ class SinglePatternSAETest:
                     'neuronpedia_url': desc_data.get('neuronpedia_url', '')
                 })
         
-        # Save as CSV
+        # Save as JSON
         df = pd.DataFrame(summary_data)
-        csv_file = self.output_dir / f"feature_summary_{timestamp}.csv"
-        df.to_csv(csv_file, index=False)
+        json_file = self.output_dir / f"feature_summary_{timestamp}.json"
+        df.to_json(json_file, orient='records', indent=2)
         
-        print(f"   📊 CSV saved: {csv_file}")
+        print(f"   📊 JSON saved: {json_file}")
         print(f"   📊 Records: {len(summary_data)}")
         
-        return str(csv_file)
+        return str(json_file)
     
     def extract_descriptions_from_analysis(self, differential_analysis: Dict[str, Any]) -> Dict[int, Dict[str, Any]]:
         """Extract descriptions from enriched differential analysis for separate handling."""
@@ -859,11 +1186,54 @@ class SinglePatternSAETest:
             
             f.write(f"---\n*Generated on {results_data['timestamp']}*\n")
 
+    def create_simple_features_csv(self, sae_results: Dict[str, Any], 
+                                  descriptions: Dict[int, Dict[str, Any]], timestamp: str) -> str:
+        """Create a simple CSV with top features and descriptions for each state."""
+        print(f"\n📊 Creating simple features CSV...")
+        
+        csv_data = []
+        for state, results in sae_results.items():
+            for i, (feature_idx, activation) in enumerate(zip(
+                results['top_features']['indices'][:20],  # Top 20 features per state
+                results['top_features']['values'][:20]
+            )):
+                desc_data = descriptions.get(feature_idx, {})
+                
+                csv_data.append({
+                    'state': state,
+                    'rank': i + 1,
+                    'feature_idx': feature_idx,
+                    'activation_value': activation,
+                    'description': desc_data.get('description', ''),
+                    'autointerp_explanation': desc_data.get('autointerp_explanation', ''),
+                    'autointerp_score': desc_data.get('autointerp_score', 0.0),
+                    'neuronpedia_url': desc_data.get('neuronpedia_url', ''),
+                    'l0_sparsity': results['avg_l0_norm'],
+                    'reconstruction_mse': results['reconstruction_mse']
+                })
+        
+        # Save as JSON
+        df = pd.DataFrame(csv_data)
+        json_file = self.output_dir / f"feature_summary_{timestamp}.json"
+        df.to_json(json_file, orient='records', indent=2)
+        
+        print(f"   📊 JSON saved: {json_file}")
+        print(f"   📊 Records: {len(csv_data)}")
+        
+        return str(json_file)
+
 
 def main():
-    """Main function to run the simplified SAE test with Neuronpedia interpretations."""
-    print("🚀 Starting SAE Test - Three Cognitive States with Neuronpedia")
-    print("="*50)
+    """Main function to run SAE analysis with optional PCA analysis and Neuronpedia interpretations."""
+    
+    # Configuration parameters
+    RUN_PCA = False  # Set to True to enable PCA analysis, False to disable (default)
+    
+    if RUN_PCA:
+        print("🚀 Starting PCA-SAE Analysis - All Samples & Tokens for One Cognitive Pattern")
+    else:
+        print("🚀 Starting SAE Analysis - All Samples & Tokens for One Cognitive Pattern")
+    print("="*70)
     
     # Initialize test
     test = SinglePatternSAETest()
@@ -872,9 +1242,13 @@ def main():
         # Step 1: Load all three activation types (negative, positive, transition)
         activations = test.load_existing_activations()
         
-        # Step 2: Prepare activations for pattern 0
-        pattern_index = 0
-        test.prepare_activations_for_sae(activations, pattern_index=pattern_index)
+        # Step 2: Prepare activations for a specific pattern using ALL samples and tokens
+        target_pattern = None  # Will use first pattern, or specify like "Executive Fatigue / Avolition"
+        test.prepare_activations_for_pattern_name(
+            activations, 
+            pattern_name=target_pattern, 
+            use_all_samples=True
+        )
         
         # Step 3: Load SAE
         success = test.load_neuronpedia_sae()
@@ -882,45 +1256,70 @@ def main():
             print("❌ Failed to load SAE. Exiting.")
             return
         
-        # Step 4: Run SAE analysis on all three states
-        sae_results = test.run_sae_analysis(layer=21)
-        
-        # Step 5: Collect all unique top features
-        all_feature_indices = set()
-        for state, results in sae_results.items():
-            for feature_idx in results['top_features']['indices'][:10]:  # Top 10 per state
-                all_feature_indices.add(feature_idx)
-        
-        print(f"\n🔍 Found {len(all_feature_indices)} unique features across all states")
-        
-        # Step 6: Fetch Neuronpedia descriptions
-        descriptions = test.fetch_feature_descriptions(list(all_feature_indices))
-        
-        # Step 7: Print results with descriptions
-        print(f"\n📊 SAE Analysis Results with Neuronpedia Interpretations:")
-        for state, results in sae_results.items():
-            print(f"\n{state.upper()} STATE:")
-            print(f"   L0 Sparsity: {results['avg_l0_norm']:.2f}")
-            print(f"   Reconstruction MSE: {results['reconstruction_mse']:.6f}")
-            print(f"   Top 5 Features with Interpretations:")
+        if RUN_PCA:
+            # PCA Analysis Path
+            print("\n🧮 Running PCA analysis...")
             
-            for i, (feature_idx, activation) in enumerate(zip(results['top_features']['indices'][:5], 
-                                                            results['top_features']['values'][:5])):
-                desc_data = descriptions.get(feature_idx, {})
-                description = desc_data.get('description', 'No description available')
+            # Step 4: Run PCA on ALL tokens from ALL samples
+            pca_results = test.run_pca_on_all_tokens(test.activations, n_components=5)
+            
+            # Step 5: Analyze PCA features with Neuronpedia
+            pca_dataset = test.analyze_pca_features_with_neuronpedia(pca_results)
+            
+            # Step 6: Save JSON dataset
+            json_file = test.save_pca_analysis_json(pca_dataset)
+            
+            # Step 7: Print summary results
+            print(f"\n📊 PCA-SAE Analysis Results:")
+            print(f"Pattern: {pca_dataset['analysis_metadata']['pattern_name']}")
+            print(f"Total Unique Features: {pca_dataset['analysis_metadata']['total_unique_features']}")
+            
+            for state_name, state_data in pca_dataset['states'].items():
+                print(f"\n{state_name.upper()} STATE:")
+                if state_name in pca_results and 'total_tokens_analyzed' in pca_results[state_name]:
+                    print(f"   Total Tokens Analyzed: {pca_results[state_name]['total_tokens_analyzed']}")
+                print(f"   Total Variance Explained by 5 PCs: {state_data['total_variance_explained']:.3f}")
                 
-                print(f"     {i+1}. Feature {feature_idx}: {activation:.4f}")
-                print(f"        \"{description[:100]}...\"")
-                
-                neuronpedia_url = desc_data.get('neuronpedia_url', '')
-                if neuronpedia_url:
-                    print(f"        🔗 {neuronpedia_url}")
-                print()
-        
-        print(f"\n✅ SAE analysis with Neuronpedia interpretations completed!")
+                for pc_name, pc_data in state_data['principal_components'].items():
+                    print(f"\n   {pc_name} (explains {pc_data['explained_variance_ratio']:.3f} variance):")
+                    for feature in pc_data['top_features'][:3]:  # Top 3 features per PC
+                        print(f"     {feature['rank']}. Feature {feature['feature_index']}: {feature['activation_value']:.4f}")
+                        print(f"        \"{feature['description'][:80]}...\"")
+                        if feature['neuronpedia_url']:
+                            print(f"        🔗 {feature['neuronpedia_url']}")
+            
+            print(f"\n✅ PCA-SAE analysis with all samples and tokens completed!")
+            print(f"📄 JSON dataset: {json_file}")
+            
+        else:
+            # Standard SAE Analysis Path (no PCA)
+            print("\n🔬 Running standard SAE analysis...")
+            
+            # Step 4: Run SAE analysis
+            sae_results = test.run_sae_analysis()
+            
+            # Step 5: Analyze feature differences
+            differential_analysis = test.analyze_feature_differences_with_descriptions(sae_results)
+            
+            # Step 6: Save feature CSV
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            descriptions = test.extract_descriptions_from_analysis(differential_analysis)
+            csv_file = test.create_simple_features_csv(sae_results, descriptions, timestamp)
+            
+            print(f"\n📊 Standard SAE Analysis Results:")
+            print(f"Pattern: {test.pattern_data.get('cognitive_pattern_name', 'Unknown')}")
+            
+            for state_name, results in sae_results.items():
+                print(f"\n{state_name.upper()} STATE:")
+                print(f"   L0 Sparsity: {results['avg_l0_norm']:.2f}")
+                print(f"   Reconstruction MSE: {results['reconstruction_mse']:.6f}")
+                print(f"   Top feature: {results['top_features']['indices'][0]} (activation: {results['top_features']['values'][0]:.4f})")
+            
+            print(f"\n✅ Standard SAE analysis completed!")
+            print(f"📄 Feature data: {csv_file}")
         
     except Exception as e:
-        print(f"\n💥 Error during SAE test: {e}")
+        print(f"\n💥 Error during SAE analysis: {e}")
         import traceback
         traceback.print_exc()
 

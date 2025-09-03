@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,825,1,28471,96.68,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+0,-10,<bos>,825,2,199,19.91, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Existential Overload & Worthlessness
+0,-10,<bos>,825,3,39353,19.82, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+0,-10,<bos>,825,4,60173,17.74, punctuation marks and symbols in context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60173,Existential Overload & Worthlessness
+0,-10,<bos>,825,5,31041,17.52,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Existential Overload & Worthlessness
+0,-10,<bos>,825,6,14818,16.86,punctuation marks in contexts related to economic and social critiques,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14818,Existential Overload & Worthlessness
+0,-10,<bos>,825,7,22827,16.86,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Existential Overload & Worthlessness
+0,-10,<bos>,825,8,8577,16.85, instances of notable statistical events or metrics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8577,Existential Overload & Worthlessness
+0,-10,<bos>,825,9,34374,16.50,elements related to mathematical probability calculations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/34374,Existential Overload & Worthlessness
+0,-10,<bos>,825,10,6600,16.27,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Existential Overload & Worthlessness
+1,-9,What,467,1,28471,92.75,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+1,-9,What,467,2,5807,27.87,"variations of the word ""would.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/5807,Existential Overload & Worthlessness
+1,-9,What,467,3,46054,20.61, references to NFL players and their positions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46054,Existential Overload & Worthlessness
+1,-9,What,467,4,199,20.30, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Existential Overload & Worthlessness
+1,-9,What,467,5,39353,19.33, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+1,-9,What,467,6,60644,17.95, modal verbs and expressions indicating obligation or necessity,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60644,Existential Overload & Worthlessness
+1,-9,What,467,7,58314,17.27,conditional statements and speculative language,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58314,Existential Overload & Worthlessness
+1,-9,What,467,8,40537,17.10," proper nouns, particularly names and titles related to individuals and their affiliations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40537,Existential Overload & Worthlessness
+1,-9,What,467,9,16550,16.57, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Existential Overload & Worthlessness
+1,-9,What,467,10,45496,16.48,references to an object's properties or methods in coding contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45496,Existential Overload & Worthlessness
+2,-8,',741,1,28471,111.70,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+2,-8,',741,2,23118,20.65,"the pronoun ""it"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23118,Existential Overload & Worthlessness
+2,-8,',741,3,39353,20.49, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+2,-8,',741,4,31041,19.18,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Existential Overload & Worthlessness
+2,-8,',741,5,59389,18.78," instances of the pronoun ""it"" used in sentences",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59389,Existential Overload & Worthlessness
+2,-8,',741,6,20663,18.51, biological markers and abbreviations related to medical research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20663,Existential Overload & Worthlessness
+2,-8,',741,7,21766,17.80,"repeated uses of the word ""It"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21766,Existential Overload & Worthlessness
+2,-8,',741,8,63544,16.58,phrases related to consent and information release policies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63544,Existential Overload & Worthlessness
+2,-8,',741,9,29318,16.55, data related to optical measurements and concentration in a scientific context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/29318,Existential Overload & Worthlessness
+2,-8,',741,10,38240,16.41," instances of the verb ""think"" in various forms and contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38240,Existential Overload & Worthlessness
+3,-7,s,714,1,28471,94.84,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+3,-7,s,714,2,28269,31.90,"intensifiers, particularly the word ""really"" in varying contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28269,Existential Overload & Worthlessness
+3,-7,s,714,3,28638,21.78, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Existential Overload & Worthlessness
+3,-7,s,714,4,27530,18.57, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Existential Overload & Worthlessness
+3,-7,s,714,5,22827,17.91,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Existential Overload & Worthlessness
+3,-7,s,714,6,31041,17.86,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Existential Overload & Worthlessness
+3,-7,s,714,7,39353,16.60, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+3,-7,s,714,8,7236,15.23, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Existential Overload & Worthlessness
+3,-7,s,714,9,60120,14.94,terms related to spiritual principles and church doctrine,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60120,Existential Overload & Worthlessness
+3,-7,s,714,10,26734,14.17, references and citations related to scientific research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26734,Existential Overload & Worthlessness
+4,-6, the,517,1,28471,90.76,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+4,-6, the,517,2,39353,24.11, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+4,-6, the,517,3,45660,20.79,references to specific individuals or organizations involved in cultural or social commentary,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45660,Existential Overload & Worthlessness
+4,-6, the,517,4,199,19.77, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Existential Overload & Worthlessness
+4,-6, the,517,5,6600,18.00,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Existential Overload & Worthlessness
+4,-6, the,517,6,31041,16.73,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Existential Overload & Worthlessness
+4,-6, the,517,7,23744,15.16, phrases related to the company Dominick & Dominick and its business activities,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23744,Existential Overload & Worthlessness
+4,-6, the,517,8,25124,14.90,academic names and titles in scientific contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25124,Existential Overload & Worthlessness
+4,-6, the,517,9,61002,14.16, expressions related to emotional states or feelings,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61002,Existential Overload & Worthlessness
+4,-6, the,517,10,7236,12.78, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Existential Overload & Worthlessness
+5,-5, point,442,1,28471,91.07,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+5,-5, point,442,2,52665,30.11," prepositions, specifically the word ""in""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52665,Existential Overload & Worthlessness
+5,-5, point,442,3,31041,20.48,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Existential Overload & Worthlessness
+5,-5, point,442,4,4230,18.48, occurrences of the beginning-of-sequence token,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4230,Existential Overload & Worthlessness
+5,-5, point,442,5,27530,18.34, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Existential Overload & Worthlessness
+5,-5, point,442,6,6824,17.59, references to data structures and their properties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6824,Existential Overload & Worthlessness
+5,-5, point,442,7,39353,14.40, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+5,-5, point,442,8,4869,14.39, phrases indicating strong emotional commitment and sacrifice,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4869,Existential Overload & Worthlessness
+5,-5, point,442,9,22827,13.47,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Existential Overload & Worthlessness
+5,-5, point,442,10,48711,13.41," terms related to scientific or technical concepts, especially those involving measurements or expressions",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48711,Existential Overload & Worthlessness
+6,-4, of,451,1,28471,87.60,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+6,-4, of,451,2,39353,21.74, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+6,-4, of,451,3,51307,19.47, references to games and gameplay,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51307,Existential Overload & Worthlessness
+6,-4, of,451,4,6600,19.21,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Existential Overload & Worthlessness
+6,-4, of,451,5,63544,18.99,phrases related to consent and information release policies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63544,Existential Overload & Worthlessness
+6,-4, of,451,6,34641,18.82," repeated occurrences of the article ""the"" and underscores or placeholders",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/34641,Existential Overload & Worthlessness
+6,-4, of,451,7,16796,18.75, context-specific references to data attributes and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16796,Existential Overload & Worthlessness
+6,-4, of,451,8,1893,15.08,references to specific historical figures or titles,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/1893,Existential Overload & Worthlessness
+6,-4, of,451,9,12907,13.82, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Existential Overload & Worthlessness
+6,-4, of,451,10,48573,12.98, HTML tags and class/interface declarations in code snippets,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48573,Existential Overload & Worthlessness
+7,-3, anything,603,1,28471,96.15,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+7,-3, anything,603,2,19985,21.32,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Existential Overload & Worthlessness
+7,-3, anything,603,3,16550,20.09, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Existential Overload & Worthlessness
+7,-3, anything,603,4,49289,19.53," words related to ""pe"" or variations of ""pe""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49289,Existential Overload & Worthlessness
+7,-3, anything,603,5,39353,18.34, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+7,-3, anything,603,6,31041,16.66,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Existential Overload & Worthlessness
+7,-3, anything,603,7,54262,16.12,"references to the concept of ""white"" and its various associations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54262,Existential Overload & Worthlessness
+7,-3, anything,603,8,14128,16.09,phrases indicating capability or potential,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14128,Existential Overload & Worthlessness
+7,-3, anything,603,9,6600,15.88,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Existential Overload & Worthlessness
+7,-3, anything,603,10,9471,14.72, phrases related to personal relationships and their complexities,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9471,Existential Overload & Worthlessness
+8,-2,?,828,1,28471,100.55,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+8,-2,?,828,2,39353,25.10, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+8,-2,?,828,3,58815,19.59,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Existential Overload & Worthlessness
+8,-2,?,828,4,11603,18.86,the beginning of paragraphs or sections in a document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11603,Existential Overload & Worthlessness
+8,-2,?,828,5,64874,18.56,error codes and related messages,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64874,Existential Overload & Worthlessness
+8,-2,?,828,6,64262,17.91, references to various types of schemes or frameworks in a theoretical context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64262,Existential Overload & Worthlessness
+8,-2,?,828,7,48605,16.42, references to regulatory bodies and study approvals,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48605,Existential Overload & Worthlessness
+8,-2,?,828,8,16550,15.56, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Existential Overload & Worthlessness
+8,-2,?,828,9,52254,15.33,the presence of a specific starting token or phrase that indicates the beginning of a new section or entry in a document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52254,Existential Overload & Worthlessness
+8,-2,?,828,10,33475,15.30,"instances of the word ""well"" indicating emphasis or quality",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33475,Existential Overload & Worthlessness
+9,-1, Every,617,1,28471,97.88,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Existential Overload & Worthlessness
+9,-1, Every,617,2,46054,26.65, references to NFL players and their positions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46054,Existential Overload & Worthlessness
+9,-1, Every,617,3,27326,23.80,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Existential Overload & Worthlessness
+9,-1, Every,617,4,23819,18.46, inquiries or questions in the text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23819,Existential Overload & Worthlessness
+9,-1, Every,617,5,58815,16.08,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Existential Overload & Worthlessness
+9,-1, Every,617,6,39353,15.89, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Existential Overload & Worthlessness
+9,-1, Every,617,7,45866,15.81,questions or expressions of uncertainty,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45866,Existential Overload & Worthlessness
+9,-1, Every,617,8,22827,15.53,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Existential Overload & Worthlessness
+9,-1, Every,617,9,51343,15.44, the beginning of new sections or paragraphs indicated by a specific token format,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51343,Existential Overload & Worthlessness
+9,-1, Every,617,10,24913,15.18, references to prisons or penal systems,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24913,Existential Overload & Worthlessness

@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,335,1,28471,105.99,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+0,-10,<bos>,335,2,58571,21.60," the word ""are"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58571,Disorganized Thought & Derealization
+0,-10,<bos>,335,3,28081,19.88,mathematical expressions related to thermodynamics and statistical mechanics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28081,Disorganized Thought & Derealization
+0,-10,<bos>,335,4,58815,19.86,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+0,-10,<bos>,335,5,28638,16.92, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Disorganized Thought & Derealization
+0,-10,<bos>,335,6,199,16.02, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Disorganized Thought & Derealization
+0,-10,<bos>,335,7,22827,15.72,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Disorganized Thought & Derealization
+0,-10,<bos>,335,8,11926,15.26,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Disorganized Thought & Derealization
+0,-10,<bos>,335,9,39353,14.30, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+0,-10,<bos>,335,10,11924,12.85,technical specifications or identifiers in document formats,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11924,Disorganized Thought & Derealization
+1,-9,Ugh,373,1,28471,89.22,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+1,-9,Ugh,373,2,23603,23.47, questions related to existence or availability,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23603,Disorganized Thought & Derealization
+1,-9,Ugh,373,3,58815,21.33,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+1,-9,Ugh,373,4,39353,20.52, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+1,-9,Ugh,373,5,28638,18.51, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Disorganized Thought & Derealization
+1,-9,Ugh,373,6,46543,17.94,"the word ""these"" in various forms and contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46543,Disorganized Thought & Derealization
+1,-9,Ugh,373,7,199,16.17, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Disorganized Thought & Derealization
+1,-9,Ugh,373,8,31041,12.38,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Disorganized Thought & Derealization
+1,-9,Ugh,373,9,16550,11.81, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Disorganized Thought & Derealization
+1,-9,Ugh,373,10,53095,11.62,discounts or promotions related to products,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/53095,Disorganized Thought & Derealization
+2,-8,",",476,1,28471,96.65,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+2,-8,",",476,2,28269,24.56,"intensifiers, particularly the word ""really"" in varying contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28269,Disorganized Thought & Derealization
+2,-8,",",476,3,28638,24.12, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Disorganized Thought & Derealization
+2,-8,",",476,4,39353,21.85, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+2,-8,",",476,5,17984,18.29, code-related syntax or structure elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17984,Disorganized Thought & Derealization
+2,-8,",",476,6,11926,16.50,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Disorganized Thought & Derealization
+2,-8,",",476,7,26734,16.31, references and citations related to scientific research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26734,Disorganized Thought & Derealization
+2,-8,",",476,8,22827,16.23,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Disorganized Thought & Derealization
+2,-8,",",476,9,58815,16.16,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+2,-8,",",476,10,12907,15.78, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Disorganized Thought & Derealization
+3,-7, nothing,441,1,28471,66.49,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+3,-7, nothing,441,2,39353,30.40, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+3,-7, nothing,441,3,13779,28.75,terms related to memory and remembrance,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13779,Disorganized Thought & Derealization
+3,-7, nothing,441,4,52254,20.89,the presence of a specific starting token or phrase that indicates the beginning of a new section or entry in a document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52254,Disorganized Thought & Derealization
+3,-7, nothing,441,5,31041,20.58,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Disorganized Thought & Derealization
+3,-7, nothing,441,6,19985,18.38,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Disorganized Thought & Derealization
+3,-7, nothing,441,7,33890,17.82,references to Alzheimer's disease and its effects on cognitive functions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33890,Disorganized Thought & Derealization
+3,-7, nothing,441,8,58815,16.84,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+3,-7, nothing,441,9,18343,15.12,the presence of specific tags or markers indicating structured data,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18343,Disorganized Thought & Derealization
+3,-7, nothing,441,10,50437,14.59, elements related to coding and programming errors,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50437,Disorganized Thought & Derealization
+4,-6, feels,421,1,28471,89.37,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+4,-6, feels,421,2,15431,25.16,"variations of the word ""Or""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15431,Disorganized Thought & Derealization
+4,-6, feels,421,3,44834,20.85,"instances of the word ""or.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44834,Disorganized Thought & Derealization
+4,-6, feels,421,4,21251,18.26,references to successful sports plays and teamwork in a game context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21251,Disorganized Thought & Derealization
+4,-6, feels,421,5,22827,17.26,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Disorganized Thought & Derealization
+4,-6, feels,421,6,39353,16.67, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+4,-6, feels,421,7,31718,16.11, numerical data and statistical representations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31718,Disorganized Thought & Derealization
+4,-6, feels,421,8,3665,15.26, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Disorganized Thought & Derealization
+4,-6, feels,421,9,12907,15.04, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Disorganized Thought & Derealization
+4,-6, feels,421,10,11337,14.59, numerical data and references to software releases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11337,Disorganized Thought & Derealization
+5,-5, real,400,1,28471,109.11,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+5,-5, real,400,2,32923,26.35," the frequent usage of the word ""some"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32923,Disorganized Thought & Derealization
+5,-5, real,400,3,58815,25.47,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+5,-5, real,400,4,33303,24.92,terms indicating repetition or distinctions among categories,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33303,Disorganized Thought & Derealization
+5,-5, real,400,5,39353,17.84, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+5,-5, real,400,6,28638,15.97, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Disorganized Thought & Derealization
+5,-5, real,400,7,45660,14.72,references to specific individuals or organizations involved in cultural or social commentary,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45660,Disorganized Thought & Derealization
+5,-5, real,400,8,12092,13.90," references to the concept of ""one"" or singularity in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12092,Disorganized Thought & Derealization
+5,-5, real,400,9,45808,13.68, terms related to specificity in biological contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45808,Disorganized Thought & Derealization
+5,-5, real,400,10,35187,13.55,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Disorganized Thought & Derealization
+6,-4, anymore,647,1,28471,86.73,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+6,-4, anymore,647,2,3575,34.25,"the word ""kind.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3575,Disorganized Thought & Derealization
+6,-4, anymore,647,3,63544,22.53,phrases related to consent and information release policies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63544,Disorganized Thought & Derealization
+6,-4, anymore,647,4,22827,20.33,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Disorganized Thought & Derealization
+6,-4, anymore,647,5,35187,19.94,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Disorganized Thought & Derealization
+6,-4, anymore,647,6,28638,18.08, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Disorganized Thought & Derealization
+6,-4, anymore,647,7,54972,17.47,"instances of the word ""ignorance"" and variations or related forms of the verb ""ignore.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54972,Disorganized Thought & Derealization
+6,-4, anymore,647,8,33303,17.33,terms indicating repetition or distinctions among categories,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33303,Disorganized Thought & Derealization
+6,-4, anymore,647,9,45660,16.98,references to specific individuals or organizations involved in cultural or social commentary,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45660,Disorganized Thought & Derealization
+6,-4, anymore,647,10,49784,16.88,terms related to wild-type organisms or references to wild horses,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49784,Disorganized Thought & Derealization
+7,-3,.,325,1,28471,103.34,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+7,-3,.,325,2,63002,23.90," occurrences of the word ""of"" with varying frequencies",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63002,Disorganized Thought & Derealization
+7,-3,.,325,3,58815,20.75,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+7,-3,.,325,4,39353,20.65, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+7,-3,.,325,5,5127,19.02," variations of the word ""of.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/5127,Disorganized Thought & Derealization
+7,-3,.,325,6,28638,18.72, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Disorganized Thought & Derealization
+7,-3,.,325,7,22827,18.63,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Disorganized Thought & Derealization
+7,-3,.,325,8,35730,16.61," the word ""of"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35730,Disorganized Thought & Derealization
+7,-3,.,325,9,2247,13.72,"information related to endangered species, specifically rhinos and their conservation status",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2247,Disorganized Thought & Derealization
+7,-3,.,325,10,13763,13.35, structured content related to software or programming tasks,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13763,Disorganized Thought & Derealization
+8,-2, Is,700,1,28471,109.41,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+8,-2, Is,700,2,58815,23.19,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization
+8,-2, Is,700,3,39353,22.48, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+8,-2, Is,700,4,63544,20.32,phrases related to consent and information release policies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63544,Disorganized Thought & Derealization
+8,-2, Is,700,5,11679,19.79,terms related to the release and analysis of histamine and adenosine levels in a medical context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11679,Disorganized Thought & Derealization
+8,-2, Is,700,6,16550,17.90, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Disorganized Thought & Derealization
+8,-2, Is,700,7,6773,17.86, geographical references and their implications on cultural or societal issues,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6773,Disorganized Thought & Derealization
+8,-2, Is,700,8,27530,17.66, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Disorganized Thought & Derealization
+8,-2, Is,700,9,45784,17.05," mentions of the terms ""II"" and ""III"" as they relate to specific designations or classifications",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45784,Disorganized Thought & Derealization
+8,-2, Is,700,10,12907,16.94, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Disorganized Thought & Derealization
+9,-1, this,576,1,28471,92.57,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Disorganized Thought & Derealization
+9,-1, this,576,2,20165,22.19, mathematical expressions and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20165,Disorganized Thought & Derealization
+9,-1, this,576,3,39353,21.24, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Disorganized Thought & Derealization
+9,-1, this,576,4,22827,19.14,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Disorganized Thought & Derealization
+9,-1, this,576,5,31041,17.82,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Disorganized Thought & Derealization
+9,-1, this,576,6,41046,17.80,terms related to homogeneity or homogenous concepts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/41046,Disorganized Thought & Derealization
+9,-1, this,576,7,8562,16.58,references to botanical classification and species identification,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8562,Disorganized Thought & Derealization
+9,-1, this,576,8,62058,15.83, mathematical symbols and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62058,Disorganized Thought & Derealization
+9,-1, this,576,9,6076,15.54, terms related to trends and classifications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6076,Disorganized Thought & Derealization
+9,-1, this,576,10,58815,14.99,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Disorganized Thought & Derealization

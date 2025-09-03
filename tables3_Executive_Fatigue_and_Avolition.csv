@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+47 (rel: -10),-10, muster,1022,1,28471,99.21,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,2,3665,39.15, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,3,22827,24.13,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,4,62051,20.67, punctuation marks and parentheses,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62051,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,5,21207,18.07, terms related to cadherins and specific individuals linked to them,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21207,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,6,17364,17.90,references to the author 'Ann' and related variants in scientific or academic contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17364,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,7,28638,16.68, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,8,64874,16.22,error codes and related messages,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64874,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,9,39353,15.99, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+47 (rel: -10),-10, muster,1022,10,46224,15.38, the start of various sections or paragraphs in the text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46224,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,1,28471,103.34,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,2,18612,35.31," instances of the word ""up"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18612,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,3,45977,21.32,terms related to medical conditions and procedures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45977,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,4,31041,20.89,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,5,22827,20.34,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,6,26310,19.06, elements related to programming structures and access specifiers in code,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26310,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,7,16550,18.61, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,8,13938,18.39, legal terminology related to motions and procedural requests in court cases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13938,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,9,39353,17.85, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+48 (rel: -9),-9, up,581,10,28638,17.58, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,1,28471,92.70,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,2,31041,29.66,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,3,29318,24.33, data related to optical measurements and concentration in a scientific context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/29318,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,4,16550,22.94, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,5,27530,21.79, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,6,22827,20.61,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,7,28638,20.50, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,8,4559,18.98, mathematical relationships and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4559,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,9,35856,18.92, scientific names and specific terms related to plants and their properties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35856,Executive Fatigue & Avolition
+49 (rel: -8),-8, enough,1168,10,17984,18.69, code-related syntax or structure elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17984,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,1,28471,104.62,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,2,39353,25.01, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,3,16550,20.65, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,4,31041,20.47,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,5,29964,20.25, the presence of the beginning of a section or paragraph in a text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/29964,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,6,9858,18.66,references to solid and liquid states or phases in scientific contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9858,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,7,43398,17.60, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,8,59698,17.50,references to song lyrics and performances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59698,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,9,45660,17.06,references to specific individuals or organizations involved in cultural or social commentary,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45660,Executive Fatigue & Avolition
+50 (rel: -7),-7, energy,945,10,50235,17.00, phrases indicating possession or existence,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50235,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,1,28471,106.16,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,2,19545,32.46," instances of the word ""to"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19545,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,3,16550,27.26, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,4,63573,25.26, mathematical expressions and calculations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63573,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,5,22827,24.14,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,6,39353,23.67, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,7,52827,20.04, phrases related to shipping and order delivery information,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52827,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,8,13839,18.91, references to coding and programming concepts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13839,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,9,27565,18.54, references to a website and its content,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27565,Executive Fatigue & Avolition
+51 (rel: -6),-6, to,811,10,4636,17.19," phrases related to the act of laying something down, both literally and metaphorically",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4636,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,1,28471,97.16,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,2,31041,22.84,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,3,16550,22.64, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,4,28638,20.90, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,5,29784,19.31," the continuous use or repetition of the word ""do.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/29784,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,6,39353,17.24, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,7,33040,17.01, programming concepts related to pointers and dynamic memory management,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33040,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,8,27530,16.88, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,9,7712,16.82,"the use of the verb ""do"" and its variations in different contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7712,Executive Fatigue & Avolition
+52 (rel: -5),-5, do,606,10,13839,15.90, references to coding and programming concepts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13839,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,1,28471,82.78,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,2,62703,29.27, phrases indicating personal sentiments or reflections,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62703,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,3,31041,22.97,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,4,39353,22.03, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,5,167,21.66, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,6,8562,19.68,references to botanical classification and species identification,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8562,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,7,45808,18.98, terms related to specificity in biological contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45808,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,8,28638,18.69, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,9,52715,18.68, technical terms and concepts related to software development and programming environments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52715,Executive Fatigue & Avolition
+53 (rel: -4),-4, something,1194,10,48314,18.56, mathematical definitions and relationships in physics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48314,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,1,28471,109.68,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,2,54970,31.80," the word ""so"" and its variations used for emphasis",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54970,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,3,39353,24.13, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,4,22088,22.36,"the word ""so"" used in a variety of contexts, often indicating causation or consequence",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22088,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,5,278,22.34,references to specific teams or players in game summaries,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/278,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,6,14422,20.96, phrases related to writing and authorship,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14422,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,7,43398,20.82, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,8,28638,20.31, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,9,16550,19.91, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+54 (rel: -3),-3, so,764,10,11926,19.82,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,1,28471,107.78,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,2,39353,22.31, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,3,52891,21.87, elements related to mathematical formatting or structure,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52891,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,4,8831,21.45, words and phrases related to marriage and familial relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8831,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,5,16550,20.27, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,6,23671,19.14,emphasis or expressive marks in a text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23671,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,7,9471,18.12, phrases related to personal relationships and their complexities,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9471,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,8,9954,16.38,recognition or appreciation of contributions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9954,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,9,27530,16.10, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Executive Fatigue & Avolition
+55 (rel: -2),-2, mundane,918,10,8155,15.96, references to changing one's mind or making decisions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8155,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,1,28471,104.34,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,2,31041,25.90,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,3,16550,24.69, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,4,45866,24.40,questions or expressions of uncertainty,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45866,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,5,29964,20.13, the presence of the beginning of a section or paragraph in a text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/29964,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,6,46526,19.70," programming-related keywords and functions, particularly those concerning data manipulation and responses",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46526,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,7,23819,18.49, inquiries or questions in the text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23819,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,8,52891,16.29, elements related to mathematical formatting or structure,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52891,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,9,26954,15.74, punctuation and formatting related to company information,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26954,Executive Fatigue & Avolition
+56 (rel: -1),-1,?,1134,10,8010,15.62,references to moving or relocation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8010,Executive Fatigue & Avolition

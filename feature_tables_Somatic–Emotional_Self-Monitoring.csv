@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,604,1,28471,91.38,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,2,62703,23.40, phrases indicating personal sentiments or reflections,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62703,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,3,58815,22.71,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,4,16989,22.34,"questions and inquiries about intentions, desires, and actions",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16989,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,5,39353,20.38, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,6,16550,15.01, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,7,56260,14.98, references to heraldry or family symbolism,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/56260,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,8,22827,14.35,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,9,1019,14.04, phrases associated with violence and conflict,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/1019,Somatic–Emotional Self-Monitoring
+0,-10,<bos>,604,10,31041,13.59,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,1,28471,94.14,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,2,44626,25.30, baseball-related statistics and events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44626,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,3,19545,21.62," instances of the word ""to"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19545,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,4,22827,20.32,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,5,39353,18.87, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,6,13938,18.07, legal terminology related to motions and procedural requests in court cases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13938,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,7,12907,17.51, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,8,60536,16.13, numerical data and proportions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60536,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,9,4071,14.59, terms related to packing and organizational tools,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4071,Somatic–Emotional Self-Monitoring
+1,-9,Ugh,792,10,64157,14.49,the start of new sections or segments in a document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64157,Somatic–Emotional Self-Monitoring
+2,-8,",",667,1,28471,104.68,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+2,-8,",",667,2,39353,28.28, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+2,-8,",",667,3,57427,17.35," significant programming constructs and features, particularly in Python",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57427,Somatic–Emotional Self-Monitoring
+2,-8,",",667,4,19985,17.23,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Somatic–Emotional Self-Monitoring
+2,-8,",",667,5,51658,16.84, code syntax and definitions in programming languages,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51658,Somatic–Emotional Self-Monitoring
+2,-8,",",667,6,58815,16.51,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Somatic–Emotional Self-Monitoring
+2,-8,",",667,7,12907,16.26, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Somatic–Emotional Self-Monitoring
+2,-8,",",667,8,4973,16.23,terms related to analog signals and their representation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4973,Somatic–Emotional Self-Monitoring
+2,-8,",",667,9,44071,15.58,"references to statistical functions, specifically point functions",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44071,Somatic–Emotional Self-Monitoring
+2,-8,",",667,10,7746,15.52,terms related to medical procedures and assessments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7746,Somatic–Emotional Self-Monitoring
+3,-7, my,771,1,28471,63.33,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+3,-7, my,771,2,31041,26.11,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Somatic–Emotional Self-Monitoring
+3,-7, my,771,3,63136,24.83, terms associated with biochemical processes and molecular structures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63136,Somatic–Emotional Self-Monitoring
+3,-7, my,771,4,19985,24.30,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Somatic–Emotional Self-Monitoring
+3,-7, my,771,5,39353,23.28, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+3,-7, my,771,6,15030,18.54,terms related to specific chemical compounds or substances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15030,Somatic–Emotional Self-Monitoring
+3,-7, my,771,7,48605,14.88, references to regulatory bodies and study approvals,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48605,Somatic–Emotional Self-Monitoring
+3,-7, my,771,8,61888,14.68, web addresses and links related to online media,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61888,Somatic–Emotional Self-Monitoring
+3,-7, my,771,9,60768,14.61, topics related to trends in materials and lifestyle changes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60768,Somatic–Emotional Self-Monitoring
+3,-7, my,771,10,43398,14.28, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,1,28471,84.69,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,2,22827,26.44,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,3,39353,22.76, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,4,58815,20.61,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,5,57427,18.71," significant programming constructs and features, particularly in Python",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57427,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,6,167,17.55, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,7,31041,16.61,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,8,8562,16.47,references to botanical classification and species identification,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8562,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,9,27530,15.95, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Somatic–Emotional Self-Monitoring
+4,-6, chest,565,10,21291,14.80,conjunctions and relative clauses that relate to conditions or qualifications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21291,Somatic–Emotional Self-Monitoring
+5,-5, is,685,1,28471,107.73,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+5,-5, is,685,2,39353,24.80, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+5,-5, is,685,3,58815,23.70,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Somatic–Emotional Self-Monitoring
+5,-5, is,685,4,35187,16.35,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Somatic–Emotional Self-Monitoring
+5,-5, is,685,5,16550,15.61, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Somatic–Emotional Self-Monitoring
+5,-5, is,685,6,12907,14.34, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Somatic–Emotional Self-Monitoring
+5,-5, is,685,7,18221,14.22,references to geographical features and landscapes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18221,Somatic–Emotional Self-Monitoring
+5,-5, is,685,8,22827,13.78,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Somatic–Emotional Self-Monitoring
+5,-5, is,685,9,64062,13.62,references to numbers and financial figures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64062,Somatic–Emotional Self-Monitoring
+5,-5, is,685,10,6,13.52, initialization tokens and variables in programming contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,1,28471,87.16,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,2,39353,21.49, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,3,58815,19.06,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,4,167,17.46, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,5,15952,16.99,mention of familial relationships and personal connections,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15952,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,6,27530,16.70, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,7,7236,15.08, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,8,12907,14.68, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,9,52715,14.68, technical terms and concepts related to software development and programming environments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52715,Somatic–Emotional Self-Monitoring
+6,-4, tightening,734,10,6600,14.24,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Somatic–Emotional Self-Monitoring
+7,-3, again,628,1,28471,110.64,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+7,-3, again,628,2,39353,27.26, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+7,-3, again,628,3,22827,26.92,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Somatic–Emotional Self-Monitoring
+7,-3, again,628,4,20165,26.68, mathematical expressions and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20165,Somatic–Emotional Self-Monitoring
+7,-3, again,628,5,18343,18.47,the presence of specific tags or markers indicating structured data,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18343,Somatic–Emotional Self-Monitoring
+7,-3, again,628,6,54972,18.30,"instances of the word ""ignorance"" and variations or related forms of the verb ""ignore.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54972,Somatic–Emotional Self-Monitoring
+7,-3, again,628,7,21291,17.67,conjunctions and relative clauses that relate to conditions or qualifications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21291,Somatic–Emotional Self-Monitoring
+7,-3, again,628,8,28638,17.41, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Somatic–Emotional Self-Monitoring
+7,-3, again,628,9,7236,17.35, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Somatic–Emotional Self-Monitoring
+7,-3, again,628,10,40928,16.83," the word ""just"" in various forms and contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40928,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,1,28471,89.39,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,2,27530,25.84, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,3,39353,23.00, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,4,12907,22.84, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,5,59798,21.76, punctuation related to quotes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59798,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,6,31041,21.16,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,7,53706,20.63,terms related to arthritis and arthropathy,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/53706,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,8,12399,19.82,"the presence of the substring ""ve"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12399,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,9,37597,18.59,references to technology and devices in a formal context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/37597,Somatic–Emotional Self-Monitoring
+8,-2, –,1120,10,6600,17.47,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Somatic–Emotional Self-Monitoring
+9,-1, that,728,1,28471,103.66,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Somatic–Emotional Self-Monitoring
+9,-1, that,728,2,45866,28.67,questions or expressions of uncertainty,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45866,Somatic–Emotional Self-Monitoring
+9,-1, that,728,3,39353,23.96, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Somatic–Emotional Self-Monitoring
+9,-1, that,728,4,58815,22.16,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Somatic–Emotional Self-Monitoring
+9,-1, that,728,5,44626,21.26, baseball-related statistics and events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44626,Somatic–Emotional Self-Monitoring
+9,-1, that,728,6,19985,19.33,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Somatic–Emotional Self-Monitoring
+9,-1, that,728,7,22827,19.19,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Somatic–Emotional Self-Monitoring
+9,-1, that,728,8,23819,17.97, inquiries or questions in the text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23819,Somatic–Emotional Self-Monitoring
+9,-1, that,728,9,61825,16.49, expressions indicating insufficiency or limitations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61825,Somatic–Emotional Self-Monitoring
+9,-1, that,728,10,23970,15.76, the beginning of document sections or new paragraphs indicated by a specific token,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23970,Somatic–Emotional Self-Monitoring

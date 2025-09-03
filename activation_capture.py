@@ -85,7 +85,7 @@ class ActivationCapturer:
             strings: List of input strings
             layer_nums: Layers to capture activations from
             cognitive_pattern: Pattern category for organization
-            position: Token position to extract ('last', 'all', or int)
+            position: Token position to extract ('last', 'all', 'last_10', or int)
             use_cache: Whether to use cached activations if available
             
         Returns:
@@ -134,6 +134,11 @@ class ActivationCapturer:
                     pos_activation = activation[-1, :].detach()
                 elif position == "all":
                     pos_activation = activation.detach()
+                elif position == "last_10":
+                    # Take last 10 tokens, or all tokens if sequence is shorter
+                    seq_len = activation.shape[0]
+                    start_pos = max(0, seq_len - 10)
+                    pos_activation = activation[start_pos:, :].detach()
                 elif isinstance(position, int):
                     pos_activation = activation[position, :].detach()
                 else:
@@ -143,7 +148,7 @@ class ActivationCapturer:
         
         # Convert lists to tensors
         for key in all_activations:
-            if position == "all":
+            if position == "all" or position == "last_10":
                 # For variable length sequences, we need to handle padding
                 max_seq_len = max(tensor.size(0) for tensor in all_activations[key])
                 
@@ -151,9 +156,14 @@ class ActivationCapturer:
                 padded_tensors = []
                 for tensor in all_activations[key]:
                     if tensor.size(0) < max_seq_len:
-                        # Pad with zeros
+                        # Pad with zeros at the beginning for last_10 to maintain "last" semantics
                         pad_size = max_seq_len - tensor.size(0)
-                        padded = torch.cat([tensor, torch.zeros(pad_size, tensor.size(1), device=tensor.device)], dim=0)
+                        if position == "last_10":
+                            # Pad at the beginning to preserve the "last" tokens
+                            padded = torch.cat([torch.zeros(pad_size, tensor.size(1), device=tensor.device), tensor], dim=0)
+                        else:
+                            # Pad at the end for "all"
+                            padded = torch.cat([tensor, torch.zeros(pad_size, tensor.size(1), device=tensor.device)], dim=0)
                         padded_tensors.append(padded)
                     else:
                         padded_tensors.append(tensor)

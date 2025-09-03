@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+65 (rel: -10),-10,",",665,1,28471,114.53,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,2,14818,31.63,punctuation marks in contexts related to economic and social critiques,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14818,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,3,55982,28.92, mathematical expressions and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55982,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,4,8335,26.78, punctuations or breaks in text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8335,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,5,22827,26.75,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,6,60173,22.58, punctuation marks and symbols in context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60173,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,7,28638,21.80, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,8,21207,20.48, terms related to cadherins and specific individuals linked to them,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21207,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,9,27326,18.13,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Overwhelmed Narrative Processing
+65 (rel: -10),-10,",",665,10,62132,17.33, structured data representations and their properties in code,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62132,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,1,28471,96.65,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,2,21207,27.10, terms related to cadherins and specific individuals linked to them,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21207,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,3,27326,21.90,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,4,56046,21.27," possessive pronouns, particularly ""my"" and variations thereof",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/56046,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,5,23178,21.08, possessive pronouns and their usage in relation to characters' identities or belongings,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23178,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,6,22827,20.98,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,7,10614,20.92, information related to numerical data and statistics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/10614,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,8,58815,20.15,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,9,54209,18.53,"references to personal ownership or involvement, especially in relation to data or cookies",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54209,Overwhelmed Narrative Processing
+66 (rel: -9),-9, my,605,10,199,17.82, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,1,28471,99.44,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,2,31041,35.55,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,3,24708,28.76," variations and forms of the word ""braze.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24708,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,4,31244,24.92, mentions of the brain and related conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31244,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,5,39353,21.05, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,6,33856,20.30,phrases related to action and implementation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33856,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,7,58815,19.50,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,8,22827,18.40,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,9,28638,17.76, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+67 (rel: -8),-8, brain,880,10,62458,17.63, discussions about governance and regulation-related challenges and improvements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62458,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,1,28471,113.82,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,2,22827,24.63,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,3,28638,20.93, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,4,44626,18.06, baseball-related statistics and events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44626,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,5,58815,17.68,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,6,21207,17.01, terms related to cadherins and specific individuals linked to them,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21207,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,7,63713,16.86,"the word ""is"" and its variations in different forms and contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63713,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,8,39353,14.18, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,9,62458,14.06, discussions about governance and regulation-related challenges and improvements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62458,Overwhelmed Narrative Processing
+68 (rel: -7),-7, is,436,10,3591,13.27,references to political parties and their actions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3591,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,1,28471,111.69,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,2,28638,25.06, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,3,58815,21.96,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,4,39353,21.83, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,5,22827,20.59,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,6,25355,19.81,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,7,19011,18.16,the start or beginning of sections or topics in documents,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19011,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,8,27530,17.91, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,9,40928,17.80," the word ""just"" in various forms and contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40928,Overwhelmed Narrative Processing
+69 (rel: -6),-6, just,566,10,16550,16.98, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,1,28471,124.76,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,2,21207,22.87, terms related to cadherins and specific individuals linked to them,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21207,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,3,39353,21.02, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,4,28638,18.04, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,5,199,16.37, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,6,16550,16.23, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,7,26554,15.92, indications of quantity or measurement in numerical contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26554,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,8,22827,15.48,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,9,58815,15.27,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+70 (rel: -5),-5, a,501,10,14182,15.20, programming-related keywords and code structure,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/14182,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,1,28471,127.90,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,2,58815,27.52,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,3,20663,22.58, biological markers and abbreviations related to medical research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20663,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,4,22827,22.00,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,5,9797,20.45,phrases related to lessons learned and opportunities for growth,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9797,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,6,28638,20.11, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,7,39353,18.73, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,8,18989,16.80,phrases indicating negative consequences or potential dangers,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18989,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,9,38842,16.54,elements related to software or web service configuration,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38842,Overwhelmed Narrative Processing
+71 (rel: -4),-4, j,570,10,25355,16.08,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,1,28471,116.04,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,2,22827,27.48,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,3,28638,22.84, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,4,39353,22.65, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,5,11570,22.31,"expectations in testing code, especially assertions related to structure and value checks",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11570,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,6,58815,22.31,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,7,19363,21.98,"references to the word ""Ba"" and its variations, likely indicating a focus on proper names or locations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19363,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,8,3665,19.93, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,9,56352,17.46, programming terms and code structure related to software development,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/56352,Overwhelmed Narrative Processing
+72 (rel: -3),-3,umbled,1298,10,2331,17.15, references to specific programming concepts or terms,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2331,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,1,28471,102.65,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,2,39353,28.57, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,3,58815,24.48,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,4,8155,24.09, references to changing one's mind or making decisions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8155,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,5,51428,22.60, keywords related to laboratory techniques and biological processes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51428,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,6,28638,22.19, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,7,32388,19.53, code elements and structure in programming or markup languages,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32388,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,8,19985,19.52,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,9,31041,18.95,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Overwhelmed Narrative Processing
+73 (rel: -2),-2, mess,865,10,2321,18.19,"proper nouns, particularly names of places, organizations, and people",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2321,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,1,28471,127.67,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,2,58815,33.46,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,3,28852,24.91, ellipses or omissions in text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28852,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,4,39353,22.99, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,5,11783,22.34, terms related to accounts and account management,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11783,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,6,17590,21.83, occurrences of ellipses or sequences of ellipsis in the text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17590,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,7,33856,17.78,phrases related to action and implementation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33856,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,8,22827,17.69,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,9,28638,17.07, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Overwhelmed Narrative Processing
+74 (rel: -1),-1,...,546,10,31041,16.91,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Overwhelmed Narrative Processing

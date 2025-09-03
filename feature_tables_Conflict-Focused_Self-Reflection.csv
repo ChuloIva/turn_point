@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,671,1,28471,88.16,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,2,39186,27.20,"the word ""without"" and phrases indicating a lack or absence of something",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39186,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,3,39353,24.99, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,4,62348,23.91,"terms expressing negation or lack, particularly in relation to existence or presence",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62348,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,5,65296,21.91, legal terminology related to court proceedings and evidence,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/65296,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,6,60185,17.98, instances of the beginning of new sections or topics in text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60185,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,7,38323,17.55, references to legal or procedural terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38323,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,8,20321,17.14, substrings related to the absence or lack of something,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20321,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,9,22827,16.61,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+0,-10,<bos>,671,10,24363,14.48, introductory phrases or transitions in text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24363,Conflict-Focused Self-Reflection
+1,-9,Why,667,1,28471,101.18,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+1,-9,Why,667,2,58815,23.57,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+1,-9,Why,667,3,39353,22.77, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+1,-9,Why,667,4,27530,20.71, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Conflict-Focused Self-Reflection
+1,-9,Why,667,5,31041,20.51,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Conflict-Focused Self-Reflection
+1,-9,Why,667,6,60340,17.52,elements related to character development and authenticity in storytelling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60340,Conflict-Focused Self-Reflection
+1,-9,Why,667,7,199,17.43, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Conflict-Focused Self-Reflection
+1,-9,Why,667,8,8257,17.34, logical reasoning and evaluative statements regarding conclusions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8257,Conflict-Focused Self-Reflection
+1,-9,Why,667,9,7236,16.45, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Conflict-Focused Self-Reflection
+1,-9,Why,667,10,16743,16.42,passive voice constructions related to participant inclusion and medical criteria,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16743,Conflict-Focused Self-Reflection
+2,-8, am,708,1,28471,108.49,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+2,-8, am,708,2,39353,21.83, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+2,-8, am,708,3,2128,20.33, end-of-statement punctuation in code and structured data formatting,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2128,Conflict-Focused Self-Reflection
+2,-8, am,708,4,60340,20.18,elements related to character development and authenticity in storytelling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60340,Conflict-Focused Self-Reflection
+2,-8, am,708,5,5949,17.15, numerical values and quantities related to time or dates,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/5949,Conflict-Focused Self-Reflection
+2,-8, am,708,6,48970,16.90, numerical data and statistics related to economic indicators,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48970,Conflict-Focused Self-Reflection
+2,-8, am,708,7,28638,16.56, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Conflict-Focused Self-Reflection
+2,-8, am,708,8,22827,16.35,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+2,-8, am,708,9,21835,15.57,terms related to socio-political issues and cardiovascular health,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21835,Conflict-Focused Self-Reflection
+2,-8, am,708,10,25208,15.48, indications of a dual nature or contrasting qualities,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25208,Conflict-Focused Self-Reflection
+3,-7, I,821,1,28471,114.44,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+3,-7, I,821,2,39353,27.34, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+3,-7, I,821,3,12022,22.33, terms related to digital access and nursing roles,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12022,Conflict-Focused Self-Reflection
+3,-7, I,821,4,2128,19.10, end-of-statement punctuation in code and structured data formatting,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2128,Conflict-Focused Self-Reflection
+3,-7, I,821,5,28638,18.09, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Conflict-Focused Self-Reflection
+3,-7, I,821,6,58815,17.83,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+3,-7, I,821,7,22827,17.14,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+3,-7, I,821,8,12932,16.82,"specific geographical locations, particularly names associated with Scotland and related terms",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12932,Conflict-Focused Self-Reflection
+3,-7, I,821,9,65214,16.81, numerical data,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/65214,Conflict-Focused Self-Reflection
+3,-7, I,821,10,17562,16.80, various types of closing parentheses and curly braces in code syntax,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17562,Conflict-Focused Self-Reflection
+4,-6, even,888,1,28471,108.23,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+4,-6, even,888,2,31041,36.27,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Conflict-Focused Self-Reflection
+4,-6, even,888,3,58815,25.72,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+4,-6, even,888,4,52907,24.80," gerunds and present participles, particularly those related to naming, linking, and activities",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52907,Conflict-Focused Self-Reflection
+4,-6, even,888,5,22827,19.37,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+4,-6, even,888,6,9858,18.64,references to solid and liquid states or phases in scientific contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9858,Conflict-Focused Self-Reflection
+4,-6, even,888,7,46054,18.04, references to NFL players and their positions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46054,Conflict-Focused Self-Reflection
+4,-6, even,888,8,39353,17.78, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+4,-6, even,888,9,5021,16.98," words and phrases related to processes or actions, particularly those indicating confirmation, attempts, or modification",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/5021,Conflict-Focused Self-Reflection
+4,-6, even,888,10,28638,16.93, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Conflict-Focused Self-Reflection
+5,-5, doubting,661,1,28471,125.55,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+5,-5, doubting,661,2,31041,24.19,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Conflict-Focused Self-Reflection
+5,-5, doubting,661,3,39353,23.38, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+5,-5, doubting,661,4,58815,21.17,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+5,-5, doubting,661,5,28638,20.38, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Conflict-Focused Self-Reflection
+5,-5, doubting,661,6,7236,19.14, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Conflict-Focused Self-Reflection
+5,-5, doubting,661,7,36921,18.04,substantive and chronic medical terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36921,Conflict-Focused Self-Reflection
+5,-5, doubting,661,8,38707,17.07,"the start of segments in a structured format, indicating new sections or categories",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38707,Conflict-Focused Self-Reflection
+5,-5, doubting,661,9,199,16.28, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Conflict-Focused Self-Reflection
+5,-5, doubting,661,10,22827,15.84,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+6,-4, myself,772,1,28471,107.14,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+6,-4, myself,772,2,58815,28.16,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+6,-4, myself,772,3,39353,24.15, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+6,-4, myself,772,4,28638,21.44, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Conflict-Focused Self-Reflection
+6,-4, myself,772,5,10237,19.85," occurrences of the word ""all.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/10237,Conflict-Focused Self-Reflection
+6,-4, myself,772,6,60340,17.75,elements related to character development and authenticity in storytelling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60340,Conflict-Focused Self-Reflection
+6,-4, myself,772,7,6084,17.53, identifiers or references to legal documents or claims,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6084,Conflict-Focused Self-Reflection
+6,-4, myself,772,8,27530,16.30, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Conflict-Focused Self-Reflection
+6,-4, myself,772,9,31041,15.94,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Conflict-Focused Self-Reflection
+6,-4, myself,772,10,22827,15.86,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+7,-3,?,440,1,28471,100.11,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+7,-3,?,440,2,39353,23.88, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+7,-3,?,440,3,58815,20.33,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+7,-3,?,440,4,61367,19.60,"repetitive use of the word ""the.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61367,Conflict-Focused Self-Reflection
+7,-3,?,440,5,11322,19.41, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Conflict-Focused Self-Reflection
+7,-3,?,440,6,60185,16.92, instances of the beginning of new sections or topics in text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60185,Conflict-Focused Self-Reflection
+7,-3,?,440,7,28638,15.38, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Conflict-Focused Self-Reflection
+7,-3,?,440,8,7236,14.09, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Conflict-Focused Self-Reflection
+7,-3,?,440,9,12907,13.61, programming-related keywords and syntax elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12907,Conflict-Focused Self-Reflection
+7,-3,?,440,10,30694,13.41,conditional statements and expressions of anticipation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/30694,Conflict-Focused Self-Reflection
+8,-2, Everything,634,1,28471,92.41,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+8,-2, Everything,634,2,39353,22.97, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+8,-2, Everything,634,3,58815,22.36,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+8,-2, Everything,634,4,22366,22.12," references to a specific publication or media outlet, particularly related to ""Time"" and its content",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22366,Conflict-Focused Self-Reflection
+8,-2, Everything,634,5,65214,21.45, numerical data,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/65214,Conflict-Focused Self-Reflection
+8,-2, Everything,634,6,27530,19.92, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Conflict-Focused Self-Reflection
+8,-2, Everything,634,7,50579,19.72,ingredients and their quantities used in cooking,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50579,Conflict-Focused Self-Reflection
+8,-2, Everything,634,8,11322,19.06, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Conflict-Focused Self-Reflection
+8,-2, Everything,634,9,38323,17.93, references to legal or procedural terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38323,Conflict-Focused Self-Reflection
+8,-2, Everything,634,10,9975,17.78,mathematical expressions and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9975,Conflict-Focused Self-Reflection
+9,-1, always,777,1,28471,104.89,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Conflict-Focused Self-Reflection
+9,-1, always,777,2,31041,30.49,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Conflict-Focused Self-Reflection
+9,-1, always,777,3,50579,19.26,ingredients and their quantities used in cooking,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50579,Conflict-Focused Self-Reflection
+9,-1, always,777,4,22827,19.26,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Conflict-Focused Self-Reflection
+9,-1, always,777,5,39353,18.80, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Conflict-Focused Self-Reflection
+9,-1, always,777,6,27326,18.78,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Conflict-Focused Self-Reflection
+9,-1, always,777,7,51343,16.97, the beginning of new sections or paragraphs indicated by a specific token format,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/51343,Conflict-Focused Self-Reflection
+9,-1, always,777,8,43129,16.59,URLs and formatting symbols associated with web documentation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43129,Conflict-Focused Self-Reflection
+9,-1, always,777,9,58815,16.38,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Conflict-Focused Self-Reflection
+9,-1, always,777,10,45333,15.93, references to potential complications and injuries in medical contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45333,Conflict-Focused Self-Reflection

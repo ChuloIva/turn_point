@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+36 (rel: -10),-10, supposed,720,1,28471,116.23,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,2,28638,22.66, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,3,54264,22.40,terms related to improvements and enhancing processes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54264,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,4,39353,20.60, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,5,667,19.94, numeric data related to scientific measurements or findings,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/667,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,6,58815,18.24,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,7,21669,17.47, instances of opening or starting tokens in text,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21669,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,8,11322,16.78, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,9,22827,15.14,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+36 (rel: -10),-10, supposed,720,10,25355,14.62,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,1,28471,133.66,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,2,28638,25.84, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,3,39353,24.97, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,4,58815,24.26,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,5,22827,23.03,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,6,59698,20.61,references to song lyrics and performances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59698,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,7,8257,18.72, logical reasoning and evaluative statements regarding conclusions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8257,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,8,18585,15.73, references to judicial or administrative districts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18585,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,9,12692,15.20," occurrences of the word ""to"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12692,Identity-Focused Life Narrative
+37 (rel: -9),-9, to,495,10,167,14.15, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,1,28471,107.00,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,2,58039,26.96,"the verb ""be"" and its various forms",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58039,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,3,39353,26.04, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,4,55982,23.21, mathematical expressions and equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55982,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,5,22827,23.06,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,6,199,18.77, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,7,15890,18.11,"chemical compounds, specifically those relevant to scientific and medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15890,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,8,28638,16.63, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,9,1571,16.48, references to legal and financial obligations or judgments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/1571,Identity-Focused Life Narrative
+38 (rel: -8),-8, be,661,10,32275,16.40,symbols and punctuation in structured text or equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32275,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,1,28471,94.59,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,2,62958,33.02,conditional phrases,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62958,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,3,22827,21.90,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,4,39353,20.76, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,5,38323,18.72, references to legal or procedural terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38323,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,6,7388,18.65, structured formatting and numerical data elements,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7388,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,7,28638,17.76, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,8,63930,16.06,"references to parallel processes or methodologies, particularly in a computational or mathematical context",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63930,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,9,59768,15.37, botanical terms related to plant cultivation and classification,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59768,Identity-Focused Life Narrative
+39 (rel: -7),-7, if,627,10,32275,15.22,symbols and punctuation in structured text or equations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32275,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,1,28471,112.16,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,2,22827,28.32,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,3,58706,22.16,negations and expressions of inability or failure,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58706,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,4,43993,21.00,negative statements or expressions of negation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43993,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,5,28638,19.04, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,6,39353,17.81, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,7,25355,16.36,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,8,11322,16.34, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,9,52553,15.26, programming functions and method definitions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52553,Identity-Focused Life Narrative
+40 (rel: -6),-6, not,425,10,2163,14.01, terms related to genetic analysis and studies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2163,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,1,28471,87.77,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,2,39353,26.19, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,3,28638,22.56, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,4,22827,21.69,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,5,62703,17.71, phrases indicating personal sentiments or reflections,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62703,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,6,6824,17.28, references to data structures and their properties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6824,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,7,30940,16.82, phrases related to excuses or justifications involving personal responsibility,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/30940,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,8,38741,16.72, code syntax related to error messages and data retrieval in a programming context,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38741,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,9,199,16.04, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Identity-Focused Life Narrative
+41 (rel: -5),-5, someone,603,10,58815,15.61,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,1,28471,109.60,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,2,63544,28.27,phrases related to consent and information release policies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63544,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,3,1642,27.31,"references to the word ""who"" and its variants, indicating a focus on questions or statements involving identity or agency",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/1642,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,4,52549,25.20,"the word ""who"" and its variations in different contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52549,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,5,39353,19.28, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,6,31041,17.18,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,7,16550,15.07, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,8,27530,14.65, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,9,25355,14.44,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Identity-Focused Life Narrative
+42 (rel: -4),-4, who,332,10,6971,14.32,"questions involving the word ""who.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6971,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,1,28471,110.25,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,2,39353,26.99, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,3,34093,21.97, data structure elements and their hierarchical relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/34093,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,4,22827,21.57,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,5,28638,19.11, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,6,11322,17.46, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,7,42125,16.54, words related to actions and characteristics of items or entities,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/42125,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,8,30940,15.03, phrases related to excuses or justifications involving personal responsibility,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/30940,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,9,49087,14.53, programming-related syntax and variable assignments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49087,Identity-Focused Life Narrative
+43 (rel: -3),-3, overcame,578,10,43106,14.52, themes of overcoming challenges or obstacles,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43106,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,1,28471,108.21,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,2,39353,22.44, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,3,58815,18.20,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,4,31041,16.31,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,5,25355,15.53,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,6,11924,15.22,technical specifications or identifiers in document formats,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11924,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,7,16550,15.13, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,8,28638,13.83, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,9,19985,13.79,keywords related to medical and scientific terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19985,Identity-Focused Life Narrative
+44 (rel: -2),-2, hardship,610,10,43065,13.76, programming concepts and error handling terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43065,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,1,28471,114.63,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,2,22827,27.85,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,3,52891,21.39, elements related to mathematical formatting or structure,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52891,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,4,52245,21.35, phrases indicating age and its impact on abilities or perceptions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52245,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,5,27326,20.20,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,6,28638,18.77, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,7,31041,18.61,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,8,45866,17.50,questions or expressions of uncertainty,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45866,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,9,39353,17.20, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Identity-Focused Life Narrative
+45 (rel: -1),-1,?,744,10,52254,16.29,the presence of a specific starting token or phrase that indicates the beginning of a new section or entry in a document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52254,Identity-Focused Life Narrative

@@ -1,0 +1,1243 @@
+{
+  "analysis_metadata": {
+    "pattern_name": "Conflict-Focused Self-Reflection",
+    "analysis_type": "cluster_filtered_sae",
+    "layer": 17,
+    "all_tokens": true,
+    "timestamp": "20250902_232707",
+    "cluster_filter_info": {
+      "Negative": {
+        "activation_count": 117,
+        "unique_samples": 40
+      },
+      "Positive": {
+        "activation_count": 114,
+        "unique_samples": 40
+      },
+      "Transition": {
+        "activation_count": 111,
+        "unique_samples": 40
+      }
+    }
+  },
+  "cluster_info": {
+    "top_clusters_per_state": {
+      "Negative": [
+        {
+          "cluster_id": 4,
+          "size": 40,
+          "activation_magnitude": 3502.016845703125
+        },
+        {
+          "cluster_id": 3,
+          "size": 40,
+          "activation_magnitude": 569.345458984375
+        },
+        {
+          "cluster_id": 0,
+          "size": 37,
+          "activation_magnitude": 268.0915222167969
+        }
+      ],
+      "Positive": [
+        {
+          "cluster_id": 11,
+          "size": 40,
+          "activation_magnitude": 3502.017333984375
+        },
+        {
+          "cluster_id": 9,
+          "size": 40,
+          "activation_magnitude": 637.4155883789062
+        },
+        {
+          "cluster_id": 1,
+          "size": 34,
+          "activation_magnitude": 342.3916015625
+        }
+      ],
+      "Transition": [
+        {
+          "cluster_id": 1,
+          "size": 40,
+          "activation_magnitude": 3502.017578125
+        },
+        {
+          "cluster_id": 0,
+          "size": 40,
+          "activation_magnitude": 629.2989501953125
+        },
+        {
+          "cluster_id": 3,
+          "size": 31,
+          "activation_magnitude": 214.53424072265625
+        }
+      ]
+    }
+  },
+  "sae_results": {
+    "negative": {
+      "l0_sparsity": 8714.4873046875,
+      "reconstruction_mse": 156046.703125,
+      "num_filtered_activations": 117,
+      "top_features": [
+        {
+          "rank": 1,
+          "feature_idx": 61312,
+          "activation_value": 1066.5523681640625,
+          "description": "the beginning of new sections or documents",
+          "autointerp_explanation": "the beginning of new sections or documents",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61312"
+        },
+        {
+          "rank": 2,
+          "feature_idx": 31041,
+          "activation_value": 279.2291259765625,
+          "description": "words and phrases related to technology and web applications",
+          "autointerp_explanation": "words and phrases related to technology and web applications",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041"
+        },
+        {
+          "rank": 3,
+          "feature_idx": 28412,
+          "activation_value": 245.7605743408203,
+          "description": "the beginning of new sections or paragraphs in the text",
+          "autointerp_explanation": "the beginning of new sections or paragraphs in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28412"
+        },
+        {
+          "rank": 4,
+          "feature_idx": 59707,
+          "activation_value": 163.78298950195312,
+          "description": "function words that serve as connectors in sentences",
+          "autointerp_explanation": "function words that serve as connectors in sentences",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59707"
+        },
+        {
+          "rank": 5,
+          "feature_idx": 64315,
+          "activation_value": 158.72402954101562,
+          "description": "elements related to digital privacy and tracking",
+          "autointerp_explanation": "elements related to digital privacy and tracking",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64315"
+        },
+        {
+          "rank": 6,
+          "feature_idx": 62834,
+          "activation_value": 141.90394592285156,
+          "description": "elements of historical or biographical content, particularly involving individuals and their contributions",
+          "autointerp_explanation": "elements of historical or biographical content, particularly involving individuals and their contributions",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62834"
+        },
+        {
+          "rank": 7,
+          "feature_idx": 20826,
+          "activation_value": 118.83235168457031,
+          "description": "instances of the beginning of sections or paragraphs in a document",
+          "autointerp_explanation": "instances of the beginning of sections or paragraphs in a document",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20826"
+        },
+        {
+          "rank": 8,
+          "feature_idx": 12010,
+          "activation_value": 110.81703186035156,
+          "description": "the beginning of a new paragraph or section in the text",
+          "autointerp_explanation": "the beginning of a new paragraph or section in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12010"
+        },
+        {
+          "rank": 9,
+          "feature_idx": 28309,
+          "activation_value": 102.09312438964844,
+          "description": " the beginning of a new section or topic",
+          "autointerp_explanation": " the beginning of a new section or topic",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28309"
+        },
+        {
+          "rank": 10,
+          "feature_idx": 36700,
+          "activation_value": 93.12789154052734,
+          "description": "the presence of the beginning of sentences or paragraphs",
+          "autointerp_explanation": "the presence of the beginning of sentences or paragraphs",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36700"
+        },
+        {
+          "rank": 11,
+          "feature_idx": 36516,
+          "activation_value": 90.2008056640625,
+          "description": " the presence of structured legal or technical content",
+          "autointerp_explanation": " the presence of structured legal or technical content",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36516"
+        },
+        {
+          "rank": 12,
+          "feature_idx": 543,
+          "activation_value": 88.80265808105469,
+          "description": " the beginning tags of different sections or paragraphs in the text",
+          "autointerp_explanation": " the beginning tags of different sections or paragraphs in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/543"
+        },
+        {
+          "rank": 13,
+          "feature_idx": 25725,
+          "activation_value": 88.7939224243164,
+          "description": " instances of text that denote the beginning of segments or sections in written documents",
+          "autointerp_explanation": " instances of text that denote the beginning of segments or sections in written documents",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25725"
+        },
+        {
+          "rank": 14,
+          "feature_idx": 47183,
+          "activation_value": 87.38134765625,
+          "description": " the presence of the beginning-of-sequence token",
+          "autointerp_explanation": " the presence of the beginning-of-sequence token",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47183"
+        },
+        {
+          "rank": 15,
+          "feature_idx": 57656,
+          "activation_value": 86.9738540649414,
+          "description": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+          "autointerp_explanation": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57656"
+        },
+        {
+          "rank": 16,
+          "feature_idx": 64737,
+          "activation_value": 83.53553009033203,
+          "description": " the beginning of paragraphs or sections",
+          "autointerp_explanation": " the beginning of paragraphs or sections",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64737"
+        },
+        {
+          "rank": 17,
+          "feature_idx": 55084,
+          "activation_value": 80.56523895263672,
+          "description": "the beginning of text segments or paragraphs indicated by specific tokens",
+          "autointerp_explanation": "the beginning of text segments or paragraphs indicated by specific tokens",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55084"
+        },
+        {
+          "rank": 18,
+          "feature_idx": 49507,
+          "activation_value": 79.36161804199219,
+          "description": " the start of new sections or paragraphs in text",
+          "autointerp_explanation": " the start of new sections or paragraphs in text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49507"
+        },
+        {
+          "rank": 19,
+          "feature_idx": 28697,
+          "activation_value": 78.1972885131836,
+          "description": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+          "autointerp_explanation": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28697"
+        },
+        {
+          "rank": 20,
+          "feature_idx": 32234,
+          "activation_value": 78.0616226196289,
+          "description": " instances of the beginning of a sentence or paragraph",
+          "autointerp_explanation": " instances of the beginning of a sentence or paragraph",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32234"
+        }
+      ]
+    },
+    "positive": {
+      "l0_sparsity": 9057.24609375,
+      "reconstruction_mse": 160168.796875,
+      "num_filtered_activations": 114,
+      "top_features": [
+        {
+          "rank": 1,
+          "feature_idx": 61312,
+          "activation_value": 1124.0816650390625,
+          "description": "the beginning of new sections or documents",
+          "autointerp_explanation": "the beginning of new sections or documents",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61312"
+        },
+        {
+          "rank": 2,
+          "feature_idx": 31041,
+          "activation_value": 287.9064025878906,
+          "description": "words and phrases related to technology and web applications",
+          "autointerp_explanation": "words and phrases related to technology and web applications",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041"
+        },
+        {
+          "rank": 3,
+          "feature_idx": 28412,
+          "activation_value": 253.67654418945312,
+          "description": "the beginning of new sections or paragraphs in the text",
+          "autointerp_explanation": "the beginning of new sections or paragraphs in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28412"
+        },
+        {
+          "rank": 4,
+          "feature_idx": 59707,
+          "activation_value": 173.8613739013672,
+          "description": "function words that serve as connectors in sentences",
+          "autointerp_explanation": "function words that serve as connectors in sentences",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59707"
+        },
+        {
+          "rank": 5,
+          "feature_idx": 64315,
+          "activation_value": 156.32110595703125,
+          "description": "elements related to digital privacy and tracking",
+          "autointerp_explanation": "elements related to digital privacy and tracking",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64315"
+        },
+        {
+          "rank": 6,
+          "feature_idx": 62834,
+          "activation_value": 153.34359741210938,
+          "description": "elements of historical or biographical content, particularly involving individuals and their contributions",
+          "autointerp_explanation": "elements of historical or biographical content, particularly involving individuals and their contributions",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62834"
+        },
+        {
+          "rank": 7,
+          "feature_idx": 20826,
+          "activation_value": 121.95989227294922,
+          "description": "instances of the beginning of sections or paragraphs in a document",
+          "autointerp_explanation": "instances of the beginning of sections or paragraphs in a document",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20826"
+        },
+        {
+          "rank": 8,
+          "feature_idx": 12010,
+          "activation_value": 115.76529693603516,
+          "description": "the beginning of a new paragraph or section in the text",
+          "autointerp_explanation": "the beginning of a new paragraph or section in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12010"
+        },
+        {
+          "rank": 9,
+          "feature_idx": 28309,
+          "activation_value": 105.38363647460938,
+          "description": " the beginning of a new section or topic",
+          "autointerp_explanation": " the beginning of a new section or topic",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28309"
+        },
+        {
+          "rank": 10,
+          "feature_idx": 36700,
+          "activation_value": 96.7411117553711,
+          "description": "the presence of the beginning of sentences or paragraphs",
+          "autointerp_explanation": "the presence of the beginning of sentences or paragraphs",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36700"
+        },
+        {
+          "rank": 11,
+          "feature_idx": 36516,
+          "activation_value": 92.57315826416016,
+          "description": " the presence of structured legal or technical content",
+          "autointerp_explanation": " the presence of structured legal or technical content",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36516"
+        },
+        {
+          "rank": 12,
+          "feature_idx": 543,
+          "activation_value": 91.32946014404297,
+          "description": " the beginning tags of different sections or paragraphs in the text",
+          "autointerp_explanation": " the beginning tags of different sections or paragraphs in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/543"
+        },
+        {
+          "rank": 13,
+          "feature_idx": 25725,
+          "activation_value": 91.13176727294922,
+          "description": " instances of text that denote the beginning of segments or sections in written documents",
+          "autointerp_explanation": " instances of text that denote the beginning of segments or sections in written documents",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25725"
+        },
+        {
+          "rank": 14,
+          "feature_idx": 47183,
+          "activation_value": 89.68016815185547,
+          "description": " the presence of the beginning-of-sequence token",
+          "autointerp_explanation": " the presence of the beginning-of-sequence token",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47183"
+        },
+        {
+          "rank": 15,
+          "feature_idx": 57656,
+          "activation_value": 89.26189422607422,
+          "description": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+          "autointerp_explanation": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57656"
+        },
+        {
+          "rank": 16,
+          "feature_idx": 64737,
+          "activation_value": 85.8387680053711,
+          "description": " the beginning of paragraphs or sections",
+          "autointerp_explanation": " the beginning of paragraphs or sections",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64737"
+        },
+        {
+          "rank": 17,
+          "feature_idx": 55084,
+          "activation_value": 84.79981994628906,
+          "description": "the beginning of text segments or paragraphs indicated by specific tokens",
+          "autointerp_explanation": "the beginning of text segments or paragraphs indicated by specific tokens",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55084"
+        },
+        {
+          "rank": 18,
+          "feature_idx": 32234,
+          "activation_value": 81.67736053466797,
+          "description": " instances of the beginning of a sentence or paragraph",
+          "autointerp_explanation": " instances of the beginning of a sentence or paragraph",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32234"
+        },
+        {
+          "rank": 19,
+          "feature_idx": 49507,
+          "activation_value": 81.450439453125,
+          "description": " the start of new sections or paragraphs in text",
+          "autointerp_explanation": " the start of new sections or paragraphs in text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49507"
+        },
+        {
+          "rank": 20,
+          "feature_idx": 28697,
+          "activation_value": 80.25587463378906,
+          "description": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+          "autointerp_explanation": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28697"
+        }
+      ]
+    },
+    "transition": {
+      "l0_sparsity": 9261.5771484375,
+      "reconstruction_mse": 164502.046875,
+      "num_filtered_activations": 111,
+      "top_features": [
+        {
+          "rank": 1,
+          "feature_idx": 61312,
+          "activation_value": 1130.6824951171875,
+          "description": "the beginning of new sections or documents",
+          "autointerp_explanation": "the beginning of new sections or documents",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61312"
+        },
+        {
+          "rank": 2,
+          "feature_idx": 31041,
+          "activation_value": 304.7970275878906,
+          "description": "words and phrases related to technology and web applications",
+          "autointerp_explanation": "words and phrases related to technology and web applications",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041"
+        },
+        {
+          "rank": 3,
+          "feature_idx": 28412,
+          "activation_value": 260.2966613769531,
+          "description": "the beginning of new sections or paragraphs in the text",
+          "autointerp_explanation": "the beginning of new sections or paragraphs in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28412"
+        },
+        {
+          "rank": 4,
+          "feature_idx": 59707,
+          "activation_value": 177.7691650390625,
+          "description": "function words that serve as connectors in sentences",
+          "autointerp_explanation": "function words that serve as connectors in sentences",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59707"
+        },
+        {
+          "rank": 5,
+          "feature_idx": 64315,
+          "activation_value": 162.60243225097656,
+          "description": "elements related to digital privacy and tracking",
+          "autointerp_explanation": "elements related to digital privacy and tracking",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64315"
+        },
+        {
+          "rank": 6,
+          "feature_idx": 62834,
+          "activation_value": 154.5726776123047,
+          "description": "elements of historical or biographical content, particularly involving individuals and their contributions",
+          "autointerp_explanation": "elements of historical or biographical content, particularly involving individuals and their contributions",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62834"
+        },
+        {
+          "rank": 7,
+          "feature_idx": 20826,
+          "activation_value": 125.2560043334961,
+          "description": "instances of the beginning of sections or paragraphs in a document",
+          "autointerp_explanation": "instances of the beginning of sections or paragraphs in a document",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20826"
+        },
+        {
+          "rank": 8,
+          "feature_idx": 12010,
+          "activation_value": 118.64085388183594,
+          "description": "the beginning of a new paragraph or section in the text",
+          "autointerp_explanation": "the beginning of a new paragraph or section in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12010"
+        },
+        {
+          "rank": 9,
+          "feature_idx": 28309,
+          "activation_value": 108.26830291748047,
+          "description": " the beginning of a new section or topic",
+          "autointerp_explanation": " the beginning of a new section or topic",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28309"
+        },
+        {
+          "rank": 10,
+          "feature_idx": 36700,
+          "activation_value": 98.16268920898438,
+          "description": "the presence of the beginning of sentences or paragraphs",
+          "autointerp_explanation": "the presence of the beginning of sentences or paragraphs",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36700"
+        },
+        {
+          "rank": 11,
+          "feature_idx": 36516,
+          "activation_value": 95.07617950439453,
+          "description": " the presence of structured legal or technical content",
+          "autointerp_explanation": " the presence of structured legal or technical content",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36516"
+        },
+        {
+          "rank": 12,
+          "feature_idx": 25725,
+          "activation_value": 93.59498596191406,
+          "description": " instances of text that denote the beginning of segments or sections in written documents",
+          "autointerp_explanation": " instances of text that denote the beginning of segments or sections in written documents",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25725"
+        },
+        {
+          "rank": 13,
+          "feature_idx": 543,
+          "activation_value": 93.57613372802734,
+          "description": " the beginning tags of different sections or paragraphs in the text",
+          "autointerp_explanation": " the beginning tags of different sections or paragraphs in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/543"
+        },
+        {
+          "rank": 14,
+          "feature_idx": 47183,
+          "activation_value": 92.10408020019531,
+          "description": " the presence of the beginning-of-sequence token",
+          "autointerp_explanation": " the presence of the beginning-of-sequence token",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47183"
+        },
+        {
+          "rank": 15,
+          "feature_idx": 57656,
+          "activation_value": 91.67604064941406,
+          "description": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+          "autointerp_explanation": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57656"
+        },
+        {
+          "rank": 16,
+          "feature_idx": 64737,
+          "activation_value": 90.761474609375,
+          "description": " the beginning of paragraphs or sections",
+          "autointerp_explanation": " the beginning of paragraphs or sections",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64737"
+        },
+        {
+          "rank": 17,
+          "feature_idx": 55084,
+          "activation_value": 86.91200256347656,
+          "description": "the beginning of text segments or paragraphs indicated by specific tokens",
+          "autointerp_explanation": "the beginning of text segments or paragraphs indicated by specific tokens",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55084"
+        },
+        {
+          "rank": 18,
+          "feature_idx": 49507,
+          "activation_value": 83.6521224975586,
+          "description": " the start of new sections or paragraphs in text",
+          "autointerp_explanation": " the start of new sections or paragraphs in text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49507"
+        },
+        {
+          "rank": 19,
+          "feature_idx": 28697,
+          "activation_value": 82.42503356933594,
+          "description": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+          "autointerp_explanation": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28697"
+        },
+        {
+          "rank": 20,
+          "feature_idx": 32234,
+          "activation_value": 82.28165435791016,
+          "description": " instances of the beginning of a sentence or paragraph",
+          "autointerp_explanation": " instances of the beginning of a sentence or paragraph",
+          "autointerp_score": 0.0,
+          "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32234"
+        }
+      ]
+    }
+  },
+  "feature_descriptions": {
+    "61312": {
+      "description": "the beginning of new sections or documents",
+      "autointerp_explanation": "the beginning of new sections or documents",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61312",
+      "pos_tokens": [
+        "^(@)",
+        "drawal",
+        "tershire",
+        "ficulty",
+        "%\\]",
+        "\u2581[],\r",
+        "]--;",
+        "%\";",
+        "^(@",
+        "encils"
+      ],
+      "neg_tokens": [
+        "<bos>",
+        "\u2581estadounid",
+        "</tr>",
+        "\u03c1\u03c5",
+        "\u0441\u0441",
+        "enumi",
+        "\u2581ind\u00edgen",
+        "\u5b58\u4e8e\u4e92\u8054\u7f51\u6863\u6848\u9986",
+        "MathML",
+        "\u0436\u0434\u0435"
+      ]
+    },
+    "28309": {
+      "description": " the beginning of a new section or topic",
+      "autointerp_explanation": " the beginning of a new section or topic",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28309",
+      "pos_tokens": [
+        "\u2581\u0645\u0631\u0626\u064a\u0647",
+        "jfree",
+        "\u2581Verw",
+        "InSection",
+        "ResumeLayout",
+        "\u2581configureStore",
+        "\u2581Di\u017f",
+        "rungsseite",
+        "onOptions",
+        "\u2581An\u017f"
+      ],
+      "neg_tokens": [
+        "ellschaft",
+        "fromnode",
+        "cemment",
+        "iglie",
+        "\u2581merci",
+        "~*~",
+        "\u2581m\u1ea1ng",
+        "itects",
+        "\u2581Gamer",
+        "uatu"
+      ]
+    },
+    "28697": {
+      "description": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+      "autointerp_explanation": "instances of the \"<bos>\" token, which likely indicates the beginning of a new segment or statement in the text",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28697",
+      "pos_tokens": [
+        "tagHelperRunner",
+        "LookAnd",
+        "\u2581autorytatywna",
+        "=\").",
+        "oredCriteria",
+        "'},\r",
+        "'))\r",
+        "IndentedString",
+        "::::::::",
+        ")\"."
+      ],
+      "neg_tokens": [
+        "\u2581this",
+        "\u2581\u2581",
+        "\u2581accordingly",
+        "\u2581again",
+        "AsUp",
+        "\u2581it",
+        "\u2581before",
+        "\u2581furthest",
+        "\u2581no",
+        "\u2581corresponding"
+      ]
+    },
+    "543": {
+      "description": " the beginning tags of different sections or paragraphs in the text",
+      "autointerp_explanation": " the beginning tags of different sections or paragraphs in the text",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/543",
+      "pos_tokens": [
+        "\u2581hou\u017fe",
+        "\u2581Hou\u017fe",
+        "\u2581\u017feveral",
+        "\u2581The\u017fe",
+        "\u2581Di\u017f",
+        "\u2581\u017ftate",
+        "\u2581lea\u017ft",
+        "\u2581purpo\u017fe",
+        "\u2581Con\u017f",
+        "\u2581Chri\u017ft"
+      ],
+      "neg_tokens": [
+        "<bos>",
+        "Vidite",
+        "\u2581\u0418\u0442\u0430\u043b\u0438\u0458\u0430\u043d\u0438",
+        "\u2581Italijanski",
+        "chartInstance",
+        "\u2581CWE",
+        "\u2581\u0633\u0643\u0627\u0646\u064a\u0629",
+        "Diwedd",
+        "\u2581Vikipedi",
+        "\u2581Administrativna"
+      ]
+    },
+    "36516": {
+      "description": " the presence of structured legal or technical content",
+      "autointerp_explanation": " the presence of structured legal or technical content",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36516",
+      "pos_tokens": [
+        "-",
+        "_",
+        "--",
+        "\u2013",
+        "-(",
+        "\u2011",
+        "\u2014",
+        "-[",
+        "-'",
+        "-/"
+      ],
+      "neg_tokens": [
+        "abestanden",
+        "\u2581Wikispecies",
+        "']\")",
+        "ItemBackground",
+        "UrlResolution",
+        "IUrlHelper",
+        "\u2581\u0421\u0430\u0432\u0435\u0437\u043d\u0435",
+        "*/;",
+        "()\");",
+        "########."
+      ]
+    },
+    "55084": {
+      "description": "the beginning of text segments or paragraphs indicated by specific tokens",
+      "autointerp_explanation": "the beginning of text segments or paragraphs indicated by specific tokens",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55084",
+      "pos_tokens": [
+        "SourceChecksum",
+        "findpost",
+        "<bos>",
+        "\u2581Wicidata",
+        "yntaxException",
+        "expandindo",
+        "\u2581estekak",
+        "\u2581kasarigan",
+        "complexContent",
+        "\u2581beginnetje"
+      ],
+      "neg_tokens": [
+        "\u2581Th",
+        "\u093f\u0916",
+        "outen",
+        "gef\u00fchrten",
+        "\u00e9ges",
+        "ta\u00e7\u00e3o",
+        "\u2581en",
+        "\u2581process",
+        "\u2581parap",
+        "\u2581envie"
+      ]
+    },
+    "57656": {
+      "description": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+      "autointerp_explanation": " occurrences of the token \"<bos>\", which represents the beginning of a sequence or document",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57656",
+      "pos_tokens": [
+        "\u017felves",
+        "\u017felf",
+        "\u2581\u017fmall",
+        "\u2581Jefus",
+        "\u2581plea\u017fure",
+        "\u2581my\u017felf",
+        "\u2581it\u017felf",
+        "\u2581\u017feveral",
+        "\u2581Majefty",
+        "\u2581Di\u017f"
+      ],
+      "neg_tokens": [
+        "\u2581in",
+        "\u2581to",
+        ",",
+        "\u2581is",
+        "\u2581de",
+        "\u2581=",
+        "\u2581from",
+        "\u2581as",
+        "\u2581on",
+        "\u2581del"
+      ]
+    },
+    "64315": {
+      "description": "elements related to digital privacy and tracking",
+      "autointerp_explanation": "elements related to digital privacy and tracking",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64315",
+      "pos_tokens": [
+        "\u2581\u0627\u0644\u0645\u0639\u064a\u0627\u0631\u0649",
+        "\u2581\u0f0b\u0f0b",
+        "\u2581\u0641\u0631\u064a\u0628\u064a\u0633",
+        "\u2581it\u017felf",
+        "\u2581doubtnut",
+        "\u2581estekak",
+        "\u2581\u2015\u2015\u2015\u2015\u2015",
+        "\u2581cdti",
+        "\u2581Hou\u017fe",
+        "\u2581photolibrary"
+      ],
+      "neg_tokens": [
+        "\u2581",
+        "\u2581(",
+        ":",
+        ",",
+        "\u2581I",
+        "\u2581\"",
+        "\u2581the",
+        "\u2581a",
+        "())));",
+        "\n\n"
+      ]
+    },
+    "59707": {
+      "description": "function words that serve as connectors in sentences",
+      "autointerp_explanation": "function words that serve as connectors in sentences",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59707",
+      "pos_tokens": [
+        "<bos>",
+        "'",
+        "\u2019",
+        "\u2581surla",
+        "\u2581nakalista",
+        "documentclass",
+        "IsContent",
+        "abestanden",
+        "/*++",
+        "\u2581\u0434\u043e\u043f\u0438\u0441\u0430\u0432\u0448\u0438"
+      ],
+      "neg_tokens": [
+        "\u2014\u200a",
+        "\u2581s\u00e6rlig",
+        "\u2581Am\u00e9rique",
+        "\u2581Infatti",
+        "\u2581hunne",
+        "\u2581gesloten",
+        "\u2581espagne",
+        "reorder",
+        "\u0131\u015f\u0131k",
+        "\u2581specialmente"
+      ]
+    },
+    "31041": {
+      "description": "words and phrases related to technology and web applications",
+      "autointerp_explanation": "words and phrases related to technology and web applications",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041",
+      "pos_tokens": [
+        "\u2581\u017fche",
+        "\u2581feroit",
+        "\u2581Chriftian",
+        "\u2581Majefty",
+        "\u2581auroit",
+        "\u2581avoient",
+        "\u2581an\u00fan",
+        "\u2581my\u017felf",
+        "\u2581\u00e9toit",
+        "\u2581betweenstory"
+      ],
+      "neg_tokens": [
+        "\u2014\u200a",
+        "\u2581the",
+        "\u2581a",
+        "\u2581an",
+        "\u2581BoxFit",
+        "uests",
+        "\u2581BoxDecoration",
+        "NOPQRST",
+        "\u2581in",
+        "pecially"
+      ]
+    },
+    "47183": {
+      "description": " the presence of the beginning-of-sequence token",
+      "autointerp_explanation": " the presence of the beginning-of-sequence token",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47183",
+      "pos_tokens": [
+        "<h3>",
+        "\n\n\n",
+        "<h1>",
+        ".",
+        "\n\n",
+        "<table>",
+        "<unused60>",
+        "\u2581\u8df3\u8f6c\u81f3",
+        "<unused63>",
+        "\n\n\n\n\n\n"
+      ],
+      "neg_tokens": [
+        "AsUp",
+        "\u4e0b\u8f7d\u9644\u4ef6",
+        "principalColumn",
+        "IsMutable",
+        "FunctionFlags",
+        "%\";",
+        "IndentedString",
+        "MethodManager",
+        "TintMode",
+        "spender"
+      ]
+    },
+    "20826": {
+      "description": "instances of the beginning of sections or paragraphs in a document",
+      "autointerp_explanation": "instances of the beginning of sections or paragraphs in a document",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20826",
+      "pos_tokens": [
+        "<bos>",
+        "\ufeff//",
+        "<eos>",
+        "v\u0173",
+        "DECREF",
+        "\u2581\u0645\u064f\u0639\u0631\u0650\u0651\u0641",
+        "jmniej",
+        "\u3002",
+        "\u2581Arquivado",
+        "\u4ee5\u4e0a\u306b"
+      ],
+      "neg_tokens": [
+        "\u2581autorytatywna",
+        "\u2581\u0645\u0634\u064a\u0646",
+        "\u2581surla",
+        "\u2581\u0645\u0631\u0626\u064a\u0647",
+        "rungsseite",
+        "\u0902\u0926\u0940\u0916\u0930\u0940\u0926\u093e\u0930\u0940",
+        "tvguidetime",
+        "\u2581AssemblyCulture",
+        "adaptiveStyles",
+        "\u2581disambiguazione"
+      ]
+    },
+    "36700": {
+      "description": "the presence of the beginning of sentences or paragraphs",
+      "autointerp_explanation": "the presence of the beginning of sentences or paragraphs",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36700",
+      "pos_tokens": [
+        "InitStruct",
+        "])).",
+        "RegressionTest",
+        "})).",
+        "UnsafeEnabled",
+        "ThroughAttribute",
+        ".\"],",
+        "TypedDataSet",
+        "])){",
+        "\u2581\u0633\u0643\u0627\u0646\u064a\u0629"
+      ],
+      "neg_tokens": [
+        "\u2581BoxFit",
+        "CrossRef",
+        "\u2581entanto",
+        "BeginInit",
+        "\u2581requestCode",
+        "\u65e5\u95b2\u89a7",
+        "\u2581utafitiHapana",
+        "\u2581CanadaChoose",
+        "\u041f\u0440\u0435\u043c\u0430",
+        "\u304b\u308f\u3089\u305a"
+      ]
+    },
+    "64737": {
+      "description": " the beginning of paragraphs or sections",
+      "autointerp_explanation": " the beginning of paragraphs or sections",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64737",
+      "pos_tokens": [
+        "<eos>",
+        "The",
+        "A",
+        "\u2581The",
+        "I",
+        "\u2581A",
+        "\u2581",
+        "K",
+        "P",
+        "L"
+      ],
+      "neg_tokens": [
+        "rawDesc",
+        "\u2581MessageBoxIcon",
+        "\u2581typelib",
+        "\u811a\u6ce8\u306e\u4f7f\u3044\u65b9",
+        "\u2581Normdatei",
+        "\u2581'\\\\;'",
+        "WriteBarrier",
+        "\u2581kaarangay",
+        "LookAnd",
+        "!*\\"
+      ]
+    },
+    "49507": {
+      "description": " the start of new sections or paragraphs in text",
+      "autointerp_explanation": " the start of new sections or paragraphs in text",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49507",
+      "pos_tokens": [
+        "\u2581it\u017felf",
+        "Personendaten",
+        "\u2581EconPapers",
+        "OGND",
+        "expandindo",
+        "\u2581Paglinawan",
+        "Personensuche",
+        "\u2581rai\u017f",
+        "\u2581my\u017felf",
+        "\u2581\u0648\u06cc\u06a9\u06cc\u200c\u067e\u062f\u06cc"
+      ],
+      "neg_tokens": [
+        "\u2581to",
+        "\u2581in",
+        "',",
+        "'",
+        ",",
+        "\u2581sa",
+        "\u2581on",
+        "\u2581om",
+        "\u2581,",
+        "\u201d,"
+      ]
+    },
+    "12010": {
+      "description": "the beginning of a new paragraph or section in the text",
+      "autointerp_explanation": "the beginning of a new paragraph or section in the text",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/12010",
+      "pos_tokens": [
+        "\u2581my\u017felf",
+        "\u2581them\u017felves",
+        "\u2581it\u017felf",
+        "\u2581him\u017felf",
+        "\u2581Jefus",
+        "\u2581qu\u00e6",
+        "\u2581becau\u017fe",
+        "\u2581Efq",
+        "ama\u00f1o",
+        "\u2581poffible"
+      ],
+      "neg_tokens": [
+        "\u2581_",
+        "\u0448\u0435\u043d\u043a\u043e",
+        "\u2581\u2581",
+        "sem",
+        "\u2581rok",
+        "ital",
+        "\u2581\u2581\u2581\u2581\u2581",
+        "\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581\u2581",
+        "ger",
+        "\u2581chu"
+      ]
+    },
+    "32234": {
+      "description": " instances of the beginning of a sentence or paragraph",
+      "autointerp_explanation": " instances of the beginning of a sentence or paragraph",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32234",
+      "pos_tokens": [
+        "classnames",
+        "\u2581sicherzustellen",
+        "apimachinery",
+        "requireNonNull",
+        "\u2581Bioaccumulative",
+        "mergeFrom",
+        "StoreMessageInfo",
+        "toMatchSnapshot",
+        "\u2581A",
+        "irmingham"
+      ],
+      "neg_tokens": [
+        "LookAnd",
+        "\u0627\u0644\u0625\u0646\u062c\u0644\u064a\u0632\u064a\u0629",
+        "Personensuche",
+        "\u2581pinulongan",
+        "\u2581CreateTagHelper",
+        "\u2581Wikimedijinoj",
+        "ladesh",
+        "\".\r",
+        "})->",
+        "\u043a\u043b\u043e\u043f\u0435"
+      ]
+    },
+    "62834": {
+      "description": "elements of historical or biographical content, particularly involving individuals and their contributions",
+      "autointerp_explanation": "elements of historical or biographical content, particularly involving individuals and their contributions",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62834",
+      "pos_tokens": [
+        "ValueStyle",
+        "InputBorder",
+        "\u5b58\u4e8e\u4e92\u8054\u7f51\u6863\u6848\u9986",
+        "\u2581NSCoder",
+        "AnchorStyles",
+        "extAlignment",
+        "DockStyle",
+        "\u2581\u0f0b\u0f0b",
+        "\u2581BoxDecoration",
+        "ScopeManager"
+      ],
+      "neg_tokens": [
+        "\u2581",
+        "\u2581a",
+        "\u2581\"",
+        "\u2581\u201c",
+        "\u2581(",
+        "\u2581in",
+        "\u2581\u00ab",
+        "\u2581the",
+        "\u2581an",
+        ","
+      ]
+    },
+    "28412": {
+      "description": "the beginning of new sections or paragraphs in the text",
+      "autointerp_explanation": "the beginning of new sections or paragraphs in the text",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28412",
+      "pos_tokens": [
+        "rungsseite",
+        "setVerticalGroup",
+        "\u062f\u0627\u0646\u0634\u0646\u0627\u0645\u0647\u0654",
+        "\u2581\u0434\u043e\u043f\u0438\u0441\u0430\u0432\u0448\u0438",
+        "WebVitals",
+        "Hozz\u00e1f\u00e9r\u00e9s",
+        "\")),",
+        "queryInterface",
+        "])),",
+        "))))))))"
+      ],
+      "neg_tokens": [
+        "<bos>",
+        "[toxicity=0]",
+        "\r",
+        "\n",
+        "\u2581",
+        "\u2581[",
+        "nisses",
+        "\u2581(",
+        "multirow",
+        "\u2581\u2581"
+      ]
+    },
+    "25725": {
+      "description": " instances of text that denote the beginning of segments or sections in written documents",
+      "autointerp_explanation": " instances of text that denote the beginning of segments or sections in written documents",
+      "autointerp_score": 0.0,
+      "neuronpedia_url": "https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25725",
+      "pos_tokens": [
+        "GEBURTSDATUM",
+        "MigrationBuilder",
+        "\u2581autorytatywna",
+        "LookAnd",
+        "webElementXpaths",
+        "\u2581ModelExpression",
+        "\u2581ProtoMessage",
+        "aarrggbb",
+        "\u2581resourceCulture",
+        "NameInMap"
+      ],
+      "neg_tokens": [
+        ".",
+        "\u2581(",
+        "\u2581even",
+        "-",
+        "\u2581",
+        "\u2581for",
+        ",",
+        "\n\n",
+        "my",
+        "1"
+      ]
+    }
+  }
+}

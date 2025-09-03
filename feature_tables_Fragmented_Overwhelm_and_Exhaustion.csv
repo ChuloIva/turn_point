@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,628,1,28471,110.45,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,2,53792,25.81, expressions of sensory perception and emotion,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/53792,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,3,39353,24.07, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,4,54972,20.10,"instances of the word ""ignorance"" and variations or related forms of the verb ""ignore.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54972,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,5,7746,19.86,terms related to medical procedures and assessments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7746,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,6,58815,18.58,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,7,28638,17.09, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,8,3665,16.97, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,9,199,16.08, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Fragmented Overwhelm & Exhaustion
+0,-10,<bos>,628,10,31041,15.77,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,1,28471,108.59,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,2,39353,23.43, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,3,28638,20.21, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,4,22827,19.87,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,5,58815,19.15,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,6,60993,19.06," occurrences of the word ""like"" in various contexts, including its different forms and usages",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60993,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,7,34368,14.79,"the repeated use of the word ""like.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/34368,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,8,61825,14.13, expressions indicating insufficiency or limitations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/61825,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,9,16550,14.07, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Fragmented Overwhelm & Exhaustion
+1,-9,Ugh,649,10,53095,13.93,discounts or promotions related to products,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/53095,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,1,28471,73.16,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,2,16550,22.96, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,3,31041,22.32,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,4,39353,22.08, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,5,35187,21.41,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,6,58815,20.02,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,7,59226,18.98,phrases and terms indicating complexity and uncertainty in situations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59226,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,8,59698,17.78,references to song lyrics and performances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59698,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,9,44626,17.36, baseball-related statistics and events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/44626,Fragmented Overwhelm & Exhaustion
+2,-8,",",826,10,11322,15.83, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,1,28471,103.42,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,2,22827,24.43,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,3,35187,20.05,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,4,39353,19.69, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,5,31041,17.81,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,6,47975,17.33, mathematical notations and expressions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/47975,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,7,33303,16.91,terms indicating repetition or distinctions among categories,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33303,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,8,24386,16.62," punctuation marks, particularly apostrophes",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24386,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,9,59798,16.40, punctuation related to quotes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59798,Fragmented Overwhelm & Exhaustion
+3,-7, okay,801,10,28638,16.16, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,1,28471,94.54,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,2,39353,24.55, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,3,35187,24.09,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,4,59698,21.31,references to song lyrics and performances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59698,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,5,31041,21.22,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,6,22827,19.43,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,7,27530,17.94, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,8,6674,16.77, instances of author names and scientific notation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6674,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,9,33303,15.78,terms indicating repetition or distinctions among categories,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33303,Fragmented Overwhelm & Exhaustion
+4,-6,",",697,10,28638,15.70, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,1,28471,114.90,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,2,39353,30.93, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,3,278,27.35,references to specific teams or players in game summaries,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/278,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,4,58815,22.38,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,5,22827,18.24,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,6,2163,17.86, terms related to genetic analysis and studies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2163,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,7,21040,17.50, elements related to software functionality and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21040,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,8,27530,17.48, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,9,64050,17.13,phrases related to happiness and positive emotions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/64050,Fragmented Overwhelm & Exhaustion
+5,-5, so,909,10,28638,17.11, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,1,28471,109.95,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,2,60277,28.84," occurrences of the word ""for.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60277,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,3,58815,22.91,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,4,39353,22.87, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,5,27530,21.61, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,6,28638,19.34, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,7,26527,18.03,prominent calls to action related to purchasing decisions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/26527,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,8,38842,17.02,elements related to software or web service configuration,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38842,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,9,54966,16.89, references to news reports or statements made by individuals,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54966,Fragmented Overwhelm & Exhaustion
+6,-4, I,632,10,48697,16.23, references to structured governmental or organizational hierarchies,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48697,Fragmented Overwhelm & Exhaustion
+7,-3,',478,1,28471,102.09,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+7,-3,',478,2,58815,32.22,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Fragmented Overwhelm & Exhaustion
+7,-3,',478,3,63048,27.70,"references to ""my"" followed by various medical conditions or related terms",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63048,Fragmented Overwhelm & Exhaustion
+7,-3,',478,4,39353,26.44, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+7,-3,',478,5,22827,18.62,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+7,-3,',478,6,16550,18.53, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Fragmented Overwhelm & Exhaustion
+7,-3,',478,7,6674,18.08, instances of author names and scientific notation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6674,Fragmented Overwhelm & Exhaustion
+7,-3,',478,8,35513,17.90,terms related to political representation or references to representatives,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35513,Fragmented Overwhelm & Exhaustion
+7,-3,',478,9,15530,16.68,references to explosive devices or bombs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15530,Fragmented Overwhelm & Exhaustion
+7,-3,',478,10,25843,16.64, references to specific proteins and their interactions in biological processes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25843,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,1,28471,86.02,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,2,39353,23.57, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,3,22827,22.58,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,4,35187,21.33,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,5,27530,21.29, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,6,25227,20.16, terms related to mathematical concepts and operations involving vectors and linear functions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25227,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,7,31041,19.28,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,8,20785,18.49,the closing brace character used in programming or markup syntax,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20785,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,9,17075,18.12,numerical data and mathematical expressions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/17075,Fragmented Overwhelm & Exhaustion
+8,-2,m,905,10,38842,17.02,elements related to software or web service configuration,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38842,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,1,28471,109.80,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,2,39353,24.11, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,3,35187,23.40,"terms related to the category of ""hobby machines"" and adverse events in medical contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35187,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,4,31041,22.84,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,5,20165,21.86, mathematical expressions and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20165,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,6,45866,20.02,questions or expressions of uncertainty,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45866,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,7,22827,19.98,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,8,52254,19.43,the presence of a specific starting token or phrase that indicates the beginning of a new section or entry in a document,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52254,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,9,27530,19.27, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Fragmented Overwhelm & Exhaustion
+9,-1, trying,944,10,33303,16.46,terms indicating repetition or distinctions among categories,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33303,Fragmented Overwhelm & Exhaustion

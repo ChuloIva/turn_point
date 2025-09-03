@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,795,1,28471,101.62,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,2,618,27.86," the repetition of the word ""always"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/618,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,3,39353,21.30, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,4,29168,20.59, indicators of secure online practices,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/29168,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,5,16428,19.79,"references to ""American"" organizations and affiliations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16428,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,6,2363,18.64," instances of the word ""always"" and its variations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2363,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,7,36327,17.64," terms and concepts related to diagrams, specifically regarding directionality and positioning",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36327,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,8,59919,16.20," mentions of the name ""Mark.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59919,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,9,58815,15.93,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+0,-10,<bos>,795,10,50579,15.60,ingredients and their quantities used in cooking,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50579,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,1,28471,139.25,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,2,58815,29.60,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,3,39353,25.22, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,4,6824,19.03, references to data structures and their properties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6824,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,5,24612,18.54,references to measurements or conditions related to diarrhea,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24612,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,6,16550,17.04, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,7,45660,16.75,references to specific individuals or organizations involved in cultural or social commentary,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45660,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,8,62163,16.61, expressions related to food delivery and cuisine experiences,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/62163,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,9,7819,16.33,references to death and loss,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7819,Hopelessness-Driven Cognitive Exhaustion
+1,-9,What,667,10,11322,15.94, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,1,28471,99.82,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,2,18612,33.87," instances of the word ""up"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/18612,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,3,20591,23.87," terms related to increases and decreases, particularly in value or performance",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20591,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,4,39353,22.42, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,5,27530,20.98, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,6,31041,19.01,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,7,59777,18.69, content related to warnings or disclaimers regarding sexual and potentially violent themes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59777,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,8,28080,18.55, phrases related to areas of focus and categorization,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28080,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,9,58815,18.49,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+2,-8,',431,10,28638,16.97, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,1,28471,95.09,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,2,31041,24.91,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,3,199,22.26, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,4,39353,21.88, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,5,16550,17.89, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,6,38838,17.65, phrases concerning conditional statements related to evidence and evaluation processes in legal contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/38838,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,7,2203,16.33,technical instructions and references to system security implications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2203,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,8,28638,15.78, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,9,11924,15.28,technical specifications or identifiers in document formats,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11924,Hopelessness-Driven Cognitive Exhaustion
+3,-7,s,561,10,6824,15.18, references to data structures and their properties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6824,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,1,28471,81.02,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,2,39353,23.08, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,3,199,22.08, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,4,31041,20.69,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,5,23642,19.59, phrases indicating temporal references or time-related events,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23642,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,6,23136,18.59, mentions of Vice Presidents in political contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/23136,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,7,13257,17.56, references to animals and agriculture on a homestead,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13257,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,8,28638,17.50, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,9,36822,15.44, templated class definitions in code,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/36822,Hopelessness-Driven Cognitive Exhaustion
+4,-6, the,436,10,60993,14.49," occurrences of the word ""like"" in various contexts, including its different forms and usages",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60993,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,1,28471,85.09,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,2,39353,24.49, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,3,199,22.61, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,4,20663,21.63, biological markers and abbreviations related to medical research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20663,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,5,54262,19.34,"references to the concept of ""white"" and its various associations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/54262,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,6,27838,19.31, numerical values and mathematical expressions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27838,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,7,9938,18.72, mathematical expressions and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9938,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,8,46331,18.71,formal academic references and publications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/46331,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,9,49087,18.68, programming-related syntax and variable assignments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/49087,Hopelessness-Driven Cognitive Exhaustion
+5,-5, point,1001,10,25692,18.28, programming-related keywords and syntax components,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25692,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,1,28471,91.95,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,2,39353,24.18, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,3,8418,18.80,"the presence of the word ""sub"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8418,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,4,33303,18.12,terms indicating repetition or distinctions among categories,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/33303,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,5,11322,17.29, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,6,31041,16.86,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,7,58815,16.61,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,8,1571,16.53, references to legal and financial obligations or judgments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/1571,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,9,25725,16.27, instances of text that denote the beginning of segments or sections in written documents,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25725,Hopelessness-Driven Cognitive Exhaustion
+6,-4, of,590,10,199,15.47, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,1,28471,112.56,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,2,28638,27.54, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,3,39353,27.02, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,4,58815,23.11,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,5,25355,22.67,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,6,7236,20.24, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,7,55263,19.35, conversational quotes and humorous responses,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/55263,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,8,27530,19.07, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,9,27326,18.94,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Hopelessness-Driven Cognitive Exhaustion
+7,-3, even,829,10,11322,15.71, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,1,28471,99.70,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,2,199,24.13, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,3,58815,21.72,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,4,63573,17.31, mathematical expressions and calculations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63573,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,5,39353,16.97, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,6,8931,16.72,phrases related to accuracy and discrepancies in representation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/8931,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,7,11322,16.54, mentions of items related to sewing and fabric,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11322,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,8,31739,15.59, conjunctions used to connect phrases or ideas,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31739,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,9,24652,14.72,phrases related to authorship and authority in writing,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24652,Hopelessness-Driven Cognitive Exhaustion
+8,-2, trying,764,10,32829,14.38, statistical data related to geographical areas and their characteristics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32829,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,1,28471,94.66,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,2,58815,24.57,references to health-related terminology and conditions,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/58815,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,3,31041,23.18,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,4,39353,20.86, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,5,199,19.30, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,6,27530,16.46, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,7,7236,15.32, elements related to project management and design expertise,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/7236,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,8,63358,14.45, negative assessments and emotional expressions related to the worse aspects of a situation,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/63358,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,9,31548,14.05,export statements in code,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31548,Hopelessness-Driven Cognitive Exhaustion
+9,-1,?,711,10,35828,13.99, programming constructs related to user interface components and session management,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35828,Hopelessness-Driven Cognitive Exhaustion

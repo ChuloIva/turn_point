@@ -1,0 +1,101 @@
+Token_Position,Relative_Position,Token_Text,L0_Norm,Feature_Rank,Feature_Index,Activation,Feature_Description,Neuronpedia_URL,Pattern_Name
+0,-10,<bos>,966,1,28471,80.33,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+0,-10,<bos>,966,2,31041,31.84,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Suicidal Planning & Rationalization
+0,-10,<bos>,966,3,43398,23.65, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Suicidal Planning & Rationalization
+0,-10,<bos>,966,4,31718,18.88, numerical data and statistical representations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31718,Suicidal Planning & Rationalization
+0,-10,<bos>,966,5,22827,18.54,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+0,-10,<bos>,966,6,39353,18.29, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+0,-10,<bos>,966,7,19011,17.09,the start or beginning of sections or topics in documents,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19011,Suicidal Planning & Rationalization
+0,-10,<bos>,966,8,27326,16.84,negations and words that express contradiction or denial,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27326,Suicidal Planning & Rationalization
+0,-10,<bos>,966,9,9858,16.72,references to solid and liquid states or phases in scientific contexts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9858,Suicidal Planning & Rationalization
+0,-10,<bos>,966,10,6721,16.49, references to books and literary works,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6721,Suicidal Planning & Rationalization
+1,-9,I,670,1,28471,118.66,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+1,-9,I,670,2,52907,33.00," gerunds and present participles, particularly those related to naming, linking, and activities",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/52907,Suicidal Planning & Rationalization
+1,-9,I,670,3,39353,28.44, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+1,-9,I,670,4,24593,21.56, phrases that indicate change or transition in status or relationships,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24593,Suicidal Planning & Rationalization
+1,-9,I,670,5,28638,21.30, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Suicidal Planning & Rationalization
+1,-9,I,670,6,2203,20.02,technical instructions and references to system security implications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2203,Suicidal Planning & Rationalization
+1,-9,I,670,7,48548,19.65, specific technical terms and components related to mechanics and physics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48548,Suicidal Planning & Rationalization
+1,-9,I,670,8,167,18.17, functions related to XML file handling and operations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/167,Suicidal Planning & Rationalization
+1,-9,I,670,9,48711,17.90," terms related to scientific or technical concepts, especially those involving measurements or expressions",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48711,Suicidal Planning & Rationalization
+1,-9,I,670,10,43398,17.24, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Suicidal Planning & Rationalization
+2,-8,',712,1,28471,79.83,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+2,-8,',712,2,39353,22.08, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+2,-8,',712,3,27530,21.32, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Suicidal Planning & Rationalization
+2,-8,',712,4,56394,21.19," instances of the word ""when.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/56394,Suicidal Planning & Rationalization
+2,-8,',712,5,28638,20.01, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Suicidal Planning & Rationalization
+2,-8,',712,6,40537,19.51," proper nouns, particularly names and titles related to individuals and their affiliations",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/40537,Suicidal Planning & Rationalization
+2,-8,',712,7,199,19.27, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Suicidal Planning & Rationalization
+2,-8,',712,8,43398,16.83, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Suicidal Planning & Rationalization
+2,-8,',712,9,22827,16.63,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+2,-8,',712,10,48548,16.14, specific technical terms and components related to mechanics and physics,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48548,Suicidal Planning & Rationalization
+3,-7,m,688,1,28471,93.88,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+3,-7,m,688,2,39353,23.88, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+3,-7,m,688,3,31041,20.34,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Suicidal Planning & Rationalization
+3,-7,m,688,4,20663,19.43, biological markers and abbreviations related to medical research,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20663,Suicidal Planning & Rationalization
+3,-7,m,688,5,28638,18.86, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Suicidal Planning & Rationalization
+3,-7,m,688,6,4598,18.39, terms related to online advertising and subscription services,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/4598,Suicidal Planning & Rationalization
+3,-7,m,688,7,21766,17.90,"repeated uses of the word ""It"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/21766,Suicidal Planning & Rationalization
+3,-7,m,688,8,27530,17.28, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Suicidal Planning & Rationalization
+3,-7,m,688,9,22827,17.17,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+3,-7,m,688,10,25355,17.12,keywords related to displacement and immigration history,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/25355,Suicidal Planning & Rationalization
+4,-6, not,702,1,28471,100.06,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+4,-6, not,702,2,39353,23.63, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+4,-6, not,702,3,31041,21.97,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Suicidal Planning & Rationalization
+4,-6, not,702,4,43398,21.63, temporal and geographical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43398,Suicidal Planning & Rationalization
+4,-6, not,702,5,20410,20.17, references to individual creativity and contributions to the arts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20410,Suicidal Planning & Rationalization
+4,-6, not,702,6,53792,19.91, expressions of sensory perception and emotion,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/53792,Suicidal Planning & Rationalization
+4,-6, not,702,7,22827,19.16,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+4,-6, not,702,8,35975,18.82," various uses and references to the concept of ""form.""",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35975,Suicidal Planning & Rationalization
+4,-6, not,702,9,16550,17.22, technical terms related to genetics and statistical analysis,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/16550,Suicidal Planning & Rationalization
+4,-6, not,702,10,199,17.15, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Suicidal Planning & Rationalization
+5,-5, being,648,1,28471,92.65,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+5,-5, being,648,2,39353,21.33, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+5,-5, being,648,3,60993,19.80," occurrences of the word ""like"" in various contexts, including its different forms and usages",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/60993,Suicidal Planning & Rationalization
+5,-5, being,648,4,22827,19.62,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+5,-5, being,648,5,5949,19.08, numerical values and quantities related to time or dates,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/5949,Suicidal Planning & Rationalization
+5,-5, being,648,6,59698,19.05,references to song lyrics and performances,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/59698,Suicidal Planning & Rationalization
+5,-5, being,648,7,28638,16.66, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Suicidal Planning & Rationalization
+5,-5, being,648,8,535,16.64,"references to countries, particularly the UK, EU, and US, often in the context of numerical data or comparisons",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/535,Suicidal Planning & Rationalization
+5,-5, being,648,9,199,16.30, technical terms and code snippets related to programming in PHP and MySQL,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/199,Suicidal Planning & Rationalization
+5,-5, being,648,10,19497,15.87,concepts related to radicalism and its effects,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19497,Suicidal Planning & Rationalization
+6,-4, selfish,1091,1,28471,89.22,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+6,-4, selfish,1091,2,11926,23.90,keywords associated with programming constructs and declarations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11926,Suicidal Planning & Rationalization
+6,-4, selfish,1091,3,19083,23.75,phrases that emphasize the significance of food in daily life,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/19083,Suicidal Planning & Rationalization
+6,-4, selfish,1091,4,31041,22.03,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Suicidal Planning & Rationalization
+6,-4, selfish,1091,5,39353,21.87, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+6,-4, selfish,1091,6,22827,21.75,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+6,-4, selfish,1091,7,57250,21.44, negations or terms related to the absence of something,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/57250,Suicidal Planning & Rationalization
+6,-4, selfish,1091,8,28638,21.32, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Suicidal Planning & Rationalization
+6,-4, selfish,1091,9,48573,19.43, HTML tags and class/interface declarations in code snippets,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/48573,Suicidal Planning & Rationalization
+6,-4, selfish,1091,10,50437,18.97, elements related to coding and programming errors,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50437,Suicidal Planning & Rationalization
+7,-3,;,498,1,28471,86.37,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+7,-3,;,498,2,2129,34.02,"the word ""one"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/2129,Suicidal Planning & Rationalization
+7,-3,;,498,3,278,22.69,references to specific teams or players in game summaries,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/278,Suicidal Planning & Rationalization
+7,-3,;,498,4,764,21.48," phrases related to cause and effect, particularly implying relationships or outcomes",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/764,Suicidal Planning & Rationalization
+7,-3,;,498,5,39353,20.59, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+7,-3,;,498,6,45465,19.00,"instances of the word ""one"" in various contexts",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45465,Suicidal Planning & Rationalization
+7,-3,;,498,7,22827,16.74,complex mathematical or scientific expressions and symbols,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/22827,Suicidal Planning & Rationalization
+7,-3,;,498,8,50437,16.61, elements related to coding and programming errors,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50437,Suicidal Planning & Rationalization
+7,-3,;,498,9,13839,15.10, references to coding and programming concepts,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/13839,Suicidal Planning & Rationalization
+7,-3,;,498,10,37720,14.11, numerical and statistical data related to health or medical treatments,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/37720,Suicidal Planning & Rationalization
+8,-2, I,1269,1,28471,79.39,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+8,-2, I,1269,2,39353,34.72, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+8,-2, I,1269,3,24797,23.24, instances of names and references to people and organizations,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/24797,Suicidal Planning & Rationalization
+8,-2, I,1269,4,45624,21.85,"document structure markers, specifically the beginning of sections or paragraphs",https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45624,Suicidal Planning & Rationalization
+8,-2, I,1269,5,32197,20.55, keywords and phrases related to legal documentation and terminology,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/32197,Suicidal Planning & Rationalization
+8,-2, I,1269,6,35813,20.44, phrases related to regulatory actions and compliance procedures,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/35813,Suicidal Planning & Rationalization
+8,-2, I,1269,7,3665,19.96, phrases related to authorship and disclosure of competing interests,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/3665,Suicidal Planning & Rationalization
+8,-2, I,1269,8,50437,18.77, elements related to coding and programming errors,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/50437,Suicidal Planning & Rationalization
+8,-2, I,1269,9,11147,18.25, numerical data and statistical references,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/11147,Suicidal Planning & Rationalization
+8,-2, I,1269,10,6600,17.97,keywords related to metabolic diseases and insulin signaling,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/6600,Suicidal Planning & Rationalization
+9,-1, just,835,1,28471,90.74,license and copyright text from open-source software headers.,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28471,Suicidal Planning & Rationalization
+9,-1, just,835,2,39353,25.20, sentences or fragments that indicate the start of a new topic or section,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/39353,Suicidal Planning & Rationalization
+9,-1, just,835,3,31041,25.13,words and phrases related to technology and web applications,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/31041,Suicidal Planning & Rationalization
+9,-1, just,835,4,45866,24.34,questions or expressions of uncertainty,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/45866,Suicidal Planning & Rationalization
+9,-1, just,835,5,15640,17.43,references to physical inscriptions or markings and their effects,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/15640,Suicidal Planning & Rationalization
+9,-1, just,835,6,27530,17.40, phrases related to software licensing and warranties,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/27530,Suicidal Planning & Rationalization
+9,-1, just,835,7,28638,16.95, inquiries about gameplay experiences and technical issues related to video games,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/28638,Suicidal Planning & Rationalization
+9,-1, just,835,8,9661,15.21,references to cooking and food preparation methods,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/9661,Suicidal Planning & Rationalization
+9,-1, just,835,9,43898,15.20, sequences related to conditional actions or timing in processes,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/43898,Suicidal Planning & Rationalization
+9,-1, just,835,10,20165,14.69, mathematical expressions and programming constructs,https://neuronpedia.org/gemma-2-2b/17-gemmascope-res-65k/20165,Suicidal Planning & Rationalization

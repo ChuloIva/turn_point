@@ -5,3 +5,4 @@ SAE_mistral
 activations
 transformation_outputs
 sae_test_outputs
+generated_activations/
