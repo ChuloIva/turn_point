@@ -4,7 +4,7 @@ from functools import partial
 import sys
 import os
 
-sys.path.append('/home/koalacrown/Desktop/Code/Projects/turnaround/turn_point/third_party/TransformerLens')
+sys.path.append('/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens')
 
 from transformer_lens import HookedTransformer
 import transformer_lens.utils as utils
@@ -52,8 +52,20 @@ class ActivationPatcher:
             print(f"Warning: {model_name} not in supported models list. Attempting to load anyway.")
             print(f"Supported models: {list(self.SUPPORTED_MODELS.keys())}")
         
+        # Handle device selection
+        if device == "auto":
+            if torch.backends.mps.is_available():
+                device = "mps"
+                print("Using Apple Silicon GPU (MPS)")
+            elif torch.cuda.is_available():
+                device = "cuda"
+                print("Using CUDA GPU")
+            else:
+                device = "cpu"
+                print("Using CPU")
+        
         try:
-            print(f"Loading model: {model_name}")
+            print(f"Loading model: {model_name} on device: {device}")
             self.model = HookedTransformer.from_pretrained(model_name, device=device)
             self.model.eval()
             self.model_name = model_name
@@ -82,12 +94,65 @@ class ActivationPatcher:
                 patterns.append(json.loads(line.strip()))
         return patterns
     
-    def prepare_texts(self, clean_text, corrupted_text, num_placeholder_tokens=5):
+    def get_bos_token(self):
+        """Get the BOS token for the current model."""
+        if hasattr(self.model, 'tokenizer') and hasattr(self.model.tokenizer, 'bos_token'):
+            bos_token = self.model.tokenizer.bos_token
+            if bos_token:
+                return bos_token
+        
+        # Fallback based on model family
+        model_family = self.model_config.get('family', '').lower()
+        if any(family in model_family for family in ['gpt2', 'gpt-neo', 'gpt-j']):
+            return "<|endoftext|>"
+        elif 'opt' in model_family:
+            return "</s>"
+        else:
+            # Default fallback to <bos>
+            return "<bos>"
+    
+    def reset_hooks(self):
+        """Reset all hooks on the model to clean state.
+        
+        This method should be called between experiments to ensure no residual
+        hooks interfere with subsequent runs.
+        """
+        self.model.reset_hooks()
+        print("✅ Model hooks reset to clean state")
+    
+    def _process_layer_specification(self, layer_spec):
+        """Process layer specification and return list of layer indices.
+        
+        Args:
+            layer_spec: Can be int, list of ints, 'all', or range object
+            
+        Returns:
+            List of layer indices
+        """
+        if isinstance(layer_spec, int):
+            # Single layer
+            return [layer_spec if layer_spec >= 0 else self.model.cfg.n_layers + layer_spec]
+        elif isinstance(layer_spec, (list, tuple)):
+            # List of layers
+            return [idx if idx >= 0 else self.model.cfg.n_layers + idx for idx in layer_spec]
+        elif layer_spec == 'all':
+            # All layers
+            return list(range(self.model.cfg.n_layers))
+        elif hasattr(layer_spec, '__iter__'):
+            # Range or other iterable
+            return [idx if idx >= 0 else self.model.cfg.n_layers + idx for idx in layer_spec]
+        else:
+            raise ValueError(f"Invalid layer specification: {layer_spec}")
+    
+    def prepare_texts(self, clean_text, corrupted_text, num_placeholder_tokens=5, bos_token="<bos>"):
         """Prepare clean and corrupted texts for patching."""
         placeholder = "<|endoftext|>"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
         
-        full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
+        if bos_token:
+            full_corrupted_text = f"{bos_token}{placeholder_sequence} {corrupted_text}"
+        else:
+            full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
         
         clean_tokens = self.model.to_tokens(clean_text)
         corrupted_tokens = self.model.to_tokens(full_corrupted_text)
@@ -208,18 +273,27 @@ class ActivationPatcher:
         
         return aggregated_activation, all_positions, activation_name
     
-    def batch_patch_and_generate(self, clean_texts, corrupted_text, layer_idx=-1, 
-                                aggregation="mean", target_words=None, 
-                                num_placeholder_tokens=5, max_new_tokens=50):
-        """Patch activations from multiple texts and generate."""
+    def batch_patch_and_generate(self, clean_texts, corrupted_text, capture_layer_idx=-1, 
+                                patch_layer_idx=None, aggregation="mean", target_words=None, 
+                                num_placeholder_tokens=5, max_new_tokens=50, bos_token="<bos>"):
+        """Patch activations from multiple texts and generate with multi-layer support."""
         
+        # Default patch_layer_idx to capture_layer_idx if not specified
+        if patch_layer_idx is None:
+            patch_layer_idx = capture_layer_idx
+            
+        # Reset hooks to ensure clean state
+        self.reset_hooks()
+            
         print(f"Batch patching with {len(clean_texts)} clean texts")
         print(f"Aggregation method: {aggregation}")
         print(f"Target words: {target_words}")
+        print(f"Capture layer: {capture_layer_idx}")
+        print(f"Patch layer: {patch_layer_idx}")
         
         # Extract and aggregate activations from batch
-        aggregated_activation, positions_info, activation_name = self.extract_batch_activations(
-            clean_texts, layer_idx, aggregation, target_words
+        aggregated_activation, positions_info, capture_activation_name = self.extract_batch_activations(
+            clean_texts, capture_layer_idx, aggregation, target_words
         )
         
         if aggregated_activation is None:
@@ -229,10 +303,23 @@ class ActivationPatcher:
         # Prepare corrupted tokens
         placeholder = "<|endoftext|>"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
-        full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
+        full_corrupted_text = f"{bos_token}{placeholder_sequence} {corrupted_text}"
         corrupted_tokens = self.model.to_tokens(full_corrupted_text)
         
         print(f"Corrupted text: {full_corrupted_text}")
+        
+        # Create patch activation name for the layer we want to patch into
+        # For now, support single layer patching in batch mode (can be extended later)
+        if isinstance(patch_layer_idx, (list, tuple)) and len(patch_layer_idx) > 1:
+            print("Warning: Batch patching currently supports single patch layer. Using first layer from list.")
+            patch_layer_idx = patch_layer_idx[0]
+        elif patch_layer_idx == 'all':
+            patch_layer_idx = -1  # Default to last layer for 'all'
+        elif isinstance(patch_layer_idx, (list, tuple)):
+            patch_layer_idx = patch_layer_idx[0]
+            
+        patch_activation_name = utils.get_act_name("resid_post", 
+                                                  patch_layer_idx if patch_layer_idx >= 0 else self.model.cfg.n_layers + patch_layer_idx)
         
         # Create hook function using the aggregated activation
         def batch_patching_hook(corrupted_activation, hook, agg_activation=aggregated_activation):
@@ -246,7 +333,7 @@ class ActivationPatcher:
         try:
             patched_logits = self.model.run_with_hooks(
                 corrupted_tokens,
-                fwd_hooks=[(activation_name, batch_patching_hook)]
+                fwd_hooks=[(patch_activation_name, batch_patching_hook)]
             )
             
             last_token_logits = patched_logits[0, -1, :]
@@ -258,7 +345,7 @@ class ActivationPatcher:
             generated_tokens = self.model.generate(
                 corrupted_tokens,
                 max_new_tokens=max_new_tokens,
-                fwd_hooks=[(activation_name, batch_patching_hook)],
+                fwd_hooks=[(patch_activation_name, batch_patching_hook)],
                 temperature=0.7,
                 do_sample=True
             )
@@ -271,11 +358,30 @@ class ActivationPatcher:
             return None, None
     
     def patch_and_generate(self, clean_text, corrupted_text, target_words, 
-                          num_placeholder_tokens=5, layer_idx=-1, max_new_tokens=50):
-        """Main method to perform activation patching and generate text."""
+                          num_placeholder_tokens=5, capture_layer_idx=-1, patch_layer_idx=None, 
+                          max_new_tokens=50, bos_token="<bos>"):
+        """Main method to perform activation patching and generate text.
+        
+        Args:
+            capture_layer_idx: Layer(s) to capture clean activations from. 
+                              Can be: int, list of ints, 'all', or range(start, end)
+            patch_layer_idx: Layer(s) to patch activations into. 
+                            Can be: int, list of ints, 'all', or range(start, end)
+                            Defaults to capture_layer_idx if None
+        """
+        # Reset hooks to ensure clean state
+        self.reset_hooks()
+        
+        # Process layer specifications
+        capture_layers = self._process_layer_specification(capture_layer_idx)
+        
+        # Default patch_layer_idx to capture_layer_idx if not specified
+        if patch_layer_idx is None:
+            patch_layer_idx = capture_layer_idx
+        patch_layers = self._process_layer_specification(patch_layer_idx)
         
         clean_tokens, corrupted_tokens, num_placeholders = self.prepare_texts(
-            clean_text, corrupted_text, num_placeholder_tokens
+            clean_text, corrupted_text, num_placeholder_tokens, bos_token
         )
         
         print(f"Clean text: {clean_text}")
@@ -283,27 +389,47 @@ class ActivationPatcher:
         
         clean_cache = self.get_clean_cache(clean_tokens)
         
-        activation_vectors, positions_found, activation_name = self.extract_activations_for_patching(
-            clean_cache, clean_tokens, target_words, layer_idx
-        )
+        # Collect activations from all specified capture layers
+        all_activation_vectors = []
+        all_patch_hooks = []
         
-        if not activation_vectors:
-            print("No activations found for patching!")
+        print(f"Capture layers: {capture_layers}")
+        print(f"Patch layers: {patch_layers}")
+        
+        # For each capture-patch layer pair
+        for capture_layer in capture_layers:
+            activation_vectors, positions_found, _ = self.extract_activations_for_patching(
+                clean_cache, clean_tokens, target_words, capture_layer
+            )
+            
+            if not activation_vectors:
+                print(f"No activations found for capture layer {capture_layer}")
+                continue
+                
+            all_activation_vectors.extend(activation_vectors)
+            
+            # Create hooks for each patch layer using activations from this capture layer
+            for patch_layer in patch_layers:
+                patch_activation_name = utils.get_act_name("resid_post", patch_layer)
+                
+                patch_positions = list(range(num_placeholders))
+                num_patches = min(len(activation_vectors), len(patch_positions))
+                patch_positions = patch_positions[:num_patches]
+                current_vectors = activation_vectors[:num_patches]
+                
+                hook_fn = self.create_patching_hook(current_vectors, patch_positions, patch_activation_name)
+                all_patch_hooks.append((patch_activation_name, hook_fn))
+        
+        if not all_activation_vectors:
+            print("No activations found for patching from any layer!")
             return None, None
         
-        patch_positions = list(range(num_placeholders))
-        
-        num_patches = min(len(activation_vectors), len(patch_positions))
-        patch_positions = patch_positions[:num_patches]
-        activation_vectors = activation_vectors[:num_patches]
-        
-        hook_fn = self.create_patching_hook(activation_vectors, patch_positions, activation_name)
-        
-        print(f"\nPatching {num_patches} positions with activations from: {target_words[:num_patches]}")
+        print(f"\nPatching with {len(all_activation_vectors)} total activation vectors")
+        print(f"Using {len(all_patch_hooks)} hooks across layers: {capture_layers} -> {patch_layers}")
         
         patched_logits = self.model.run_with_hooks(
             corrupted_tokens,
-            fwd_hooks=[(activation_name, hook_fn)]
+            fwd_hooks=all_patch_hooks
         )
         
         last_token_logits = patched_logits[0, -1, :]
@@ -315,7 +441,7 @@ class ActivationPatcher:
         generated_tokens = self.model.generate(
             corrupted_tokens,
             max_new_tokens=max_new_tokens,
-            fwd_hooks=[(activation_name, hook_fn)],
+            fwd_hooks=all_patch_hooks,
             temperature=0.7,
             do_sample=True
         )
@@ -421,6 +547,6 @@ class ActivationPatcher:
 if __name__ == "__main__":
     patcher = ActivationPatcher("gpt2-small")
     
-    dataset_path = "/home/koalacrown/Desktop/Code/Projects/turnaround/turn_point/data/final/positive_patterns.jsonl"
+    dataset_path = "/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl"
     
     patcher.experiment_with_dataset(dataset_path, num_samples=3, max_new_tokens=60)
