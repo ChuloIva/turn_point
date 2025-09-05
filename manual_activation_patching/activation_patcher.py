@@ -79,7 +79,7 @@ class ActivationPatcher:
         
         try:
             print(f"Loading model: {model_name} on device: {device}")
-            self.model = HookedTransformer.from_pretrained(model_name, device=device)
+            self.model = HookedTransformer.from_pretrained_no_processing(model_name, device=device, dtype="float16", torch_dtype=torch.float16)
             self.model.eval()
             self.model_name = model_name
             self.model_config = self.SUPPORTED_MODELS.get(model_name, {"family": "unknown", "size": "unknown"})
@@ -162,10 +162,8 @@ class ActivationPatcher:
         placeholder = "<eos>"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
         
-        if bos_token:
-            full_corrupted_text = f"{bos_token}{placeholder_sequence} {corrupted_text}"
-        else:
-            full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
+        # Don't manually add BOS token - to_tokens() adds it automatically
+        full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
         
         clean_tokens = self.model.to_tokens(clean_text)
         corrupted_tokens = self.model.to_tokens(full_corrupted_text)
@@ -199,15 +197,13 @@ class ActivationPatcher:
         """Render a prompt string from a template tuple where integer 0 marks patch points.
 
         The expected template format is ("<bos>", 0, 0, ..., "continuation text").
-        We ignore the first element and use the provided bos_token.
+        We ignore the first element since to_tokens() will add BOS automatically.
         """
         if not isinstance(template_obj, (list, tuple)):
             raise ValueError("Template object must be a list/tuple for zero-placeholder rendering.")
 
         parts = []
-        # Start with BOS (no trailing space to keep parity with original prepare_texts)
-        if bos_token:
-            parts.append(bos_token)
+        # Don't manually add BOS token - to_tokens() adds it automatically
 
         # Render rest: replace int 0 with placeholder string
         for elem in template_obj[1:]:
@@ -223,17 +219,17 @@ class ActivationPatcher:
                 # Unknown type, convert to string conservatively
                 parts.append(f" {str(elem)}")
 
-        return "".join(parts)
+        return "".join(parts).strip()
 
     def _render_zero_prompt_from_string(self, text_with_zeros, bos_token, placeholder_token_string):
         """Render a prompt string from a manual string where '0' marks patch points.
 
-        We replace standalone '0' with the placeholder token string and prefix BOS.
+        We replace standalone '0' with the placeholder token string. Don't add BOS manually.
         """
         if text_with_zeros is None:
             text_with_zeros = ""
 
-        # Remove any literal "<bos>"-like markers at the start; we'll inject our BOS correctly
+        # Remove any literal "<bos>"-like markers at the start; to_tokens() will add BOS automatically
         cleaned = text_with_zeros.strip()
         cleaned = re.sub(r"^(<\|endoftext\|>|</s>|<bos>|<eos>)", "", cleaned).lstrip()
 
@@ -244,8 +240,7 @@ class ActivationPatcher:
         # Collapse multiple spaces
         replaced = re.sub(r"\s+", " ", replaced).strip()
 
-        if bos_token:
-            return f"{bos_token} {replaced}" if len(replaced) > 0 else f"{bos_token}"
+        # Don't manually add BOS token - to_tokens() adds it automatically
         return replaced
 
     def _find_placeholder_token_positions(self, tokens_tensor, placeholder_token_string):
@@ -282,14 +277,51 @@ class ActivationPatcher:
         _, clean_cache = self.model.run_with_cache(clean_tokens)
         return clean_cache
     
-    def create_patching_hook(self, clean_activation_vectors, patch_positions, activation_name):
-        """Create a hook function for patching activations."""
+    def create_patching_hook(self, clean_activation_vectors, patch_positions, activation_name, 
+                            overlay_strength=1.0, replacing_mode='normalized', normalize_magnitudes=True):
+        """Create a hook function for patching activations with SelfIE-style blending.
+        
+        Args:
+            clean_activation_vectors: List of activation tensors to patch in
+            patch_positions: List of token positions to patch
+            activation_name: Name of the activation layer
+            overlay_strength: Strength of the overlay (0.0 = no effect, 1.0 = full effect)
+            replacing_mode: 'normalized' (weighted blend) or 'addition' (additive) or 'direct' (full replacement)
+            normalize_magnitudes: Whether to normalize activation magnitudes to match original scale
+        """
         def patching_hook(corrupted_activation, hook, clean_vectors=clean_activation_vectors, positions=patch_positions):
-            print(f"Patching at hook: {hook.name} for positions: {positions}")
+            # SelfIE's critical constraint: only patch during multi-token forward pass, not single-token generation
+            if corrupted_activation.shape[1] <= 1:
+                return corrupted_activation
+                
+            print(f"Patching at hook: {hook.name} for positions: {positions} (mode: {replacing_mode}, strength: {overlay_strength})")
             
             for i, pos in enumerate(positions):
                 if i < len(clean_vectors) and pos < corrupted_activation.shape[1]:
-                    corrupted_activation[0, pos, :] = clean_vectors[i]
+                    clean_vector = clean_vectors[i].to(corrupted_activation.device)
+                    original_vector = corrupted_activation[0, pos, :].clone()
+                    
+                    # Apply magnitude normalization if requested (SelfIE-style)
+                    if normalize_magnitudes and replacing_mode in ['normalized', 'addition']:
+                        # Scale clean vector to match original magnitude
+                        original_norm = torch.norm(original_vector)
+                        clean_norm = torch.norm(clean_vector)
+                        if clean_norm > 1e-8:  # Avoid division by zero
+                            clean_vector = clean_vector * (original_norm / clean_norm)
+                    
+                    # Apply blending based on mode (matching SelfIE's approach)
+                    if replacing_mode == 'normalized':
+                        # SelfIE's normalized blending: overlay_strength * clean + (1-overlay_strength) * original
+                        corrupted_activation[0, pos, :] = (overlay_strength * clean_vector + 
+                                                          (1 - overlay_strength) * original_vector)
+                    elif replacing_mode == 'addition':
+                        # SelfIE's addition mode: original + overlay_strength * clean
+                        corrupted_activation[0, pos, :] = original_vector + overlay_strength * clean_vector
+                    elif replacing_mode == 'direct':
+                        # Your original direct replacement mode
+                        corrupted_activation[0, pos, :] = clean_vector
+                    else:
+                        raise ValueError(f"Unknown replacing_mode: {replacing_mode}")
             
             return corrupted_activation
         
@@ -498,7 +530,8 @@ class ActivationPatcher:
     
     def batch_patch_and_generate(self, clean_texts, corrupted_text, capture_layer_idx=-1, 
                                 patch_layer_idx=None, aggregation="mean", target_words=None, 
-                                num_placeholder_tokens=5, max_new_tokens=50, bos_token="<bos>"):
+                                num_placeholder_tokens=5, max_new_tokens=50, bos_token="<bos>",
+                                overlay_strength=1.0, replacing_mode='normalized', normalize_magnitudes=True):
         """Patch activations from multiple texts and generate with multi-layer support."""
         
         # Default patch_layer_idx to capture_layer_idx if not specified
@@ -525,9 +558,9 @@ class ActivationPatcher:
         
         # Prepare corrupted tokens
         placeholder = "<eos>"
-        placeholder = "<eos>"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
-        full_corrupted_text = f"{bos_token}{placeholder_sequence} {corrupted_text}"
+        # Don't manually add BOS token - to_tokens() adds it automatically
+        full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
         corrupted_tokens = self.model.to_tokens(full_corrupted_text)
         
         print(f"Corrupted text: {full_corrupted_text}")
@@ -545,12 +578,39 @@ class ActivationPatcher:
         patch_activation_name = utils.get_act_name("resid_post", 
                                                   patch_layer_idx if patch_layer_idx >= 0 else self.model.cfg.n_layers + patch_layer_idx)
         
-        # Create hook function using the aggregated activation
+        # Create hook function using the aggregated activation with SelfIE-style blending
         def batch_patching_hook(corrupted_activation, hook, agg_activation=aggregated_activation):
-            print(f"Batch patching at hook: {hook.name}")
+            # SelfIE's critical constraint: only patch during multi-token forward pass, not single-token generation
+            if corrupted_activation.shape[1] <= 1:
+                return corrupted_activation
+                
+            print(f"Batch patching at hook: {hook.name} (mode: {replacing_mode}, strength: {overlay_strength})")
             # Patch all placeholder positions with the same aggregated activation
             for pos in range(min(num_placeholder_tokens, corrupted_activation.shape[1])):
-                corrupted_activation[0, pos, :] = agg_activation
+                clean_vector = agg_activation.to(corrupted_activation.device)
+                original_vector = corrupted_activation[0, pos, :].clone()
+                
+                # Apply magnitude normalization if requested (SelfIE-style)
+                if normalize_magnitudes and replacing_mode in ['normalized', 'addition']:
+                    # Scale clean vector to match original magnitude
+                    original_norm = torch.norm(original_vector)
+                    clean_norm = torch.norm(clean_vector)
+                    if clean_norm > 1e-8:  # Avoid division by zero
+                        clean_vector = clean_vector * (original_norm / clean_norm)
+                
+                # Apply blending based on mode (matching SelfIE's approach)
+                if replacing_mode == 'normalized':
+                    # SelfIE's normalized blending: overlay_strength * clean + (1-overlay_strength) * original
+                    corrupted_activation[0, pos, :] = (overlay_strength * clean_vector + 
+                                                      (1 - overlay_strength) * original_vector)
+                elif replacing_mode == 'addition':
+                    # SelfIE's addition mode: original + overlay_strength * clean
+                    corrupted_activation[0, pos, :] = original_vector + overlay_strength * clean_vector
+                elif replacing_mode == 'direct':
+                    # Your original direct replacement mode
+                    corrupted_activation[0, pos, :] = clean_vector
+                else:
+                    raise ValueError(f"Unknown replacing_mode: {replacing_mode}")
             return corrupted_activation
         
         # Generate text with patched activations
@@ -599,7 +659,10 @@ class ActivationPatcher:
                           zero_placeholder_mode=False,
                           prompt_input=None,
                           template_name=None,
-                          placeholder_token_string="<eos>"):
+                          placeholder_token_string="<eos>",
+                          overlay_strength=1.0,
+                          replacing_mode='normalized',
+                          normalize_magnitudes=True):
         """Main method to perform activation patching and generate text.
         
         Args:
@@ -620,6 +683,9 @@ class ActivationPatcher:
             prompt_input: If string, treat as manual prompt with '0' markers; if tuple/list, treat as template-like object
             template_name: If provided, load template by name from interpretation_templates.py
             placeholder_token_string: Unique string used to mark placeholder positions after rendering (default '<eos>')
+            overlay_strength: Strength of activation overlay (0.0 = no effect, 1.0 = full effect)
+            replacing_mode: 'normalized' (weighted blend), 'addition' (additive), or 'direct' (full replacement)
+            normalize_magnitudes: Whether to normalize activation magnitudes to match original scale (SelfIE-style)
         """
         # Reset hooks to ensure clean state
         self.reset_hooks()
@@ -710,7 +776,10 @@ class ActivationPatcher:
                 local_patch_positions = local_patch_positions[:num_patches]
                 current_vectors = activation_vectors[:num_patches]
                 
-                hook_fn = self.create_patching_hook(current_vectors, local_patch_positions, patch_activation_name)
+                hook_fn = self.create_patching_hook(current_vectors, local_patch_positions, patch_activation_name,
+                                                   overlay_strength=overlay_strength, 
+                                                   replacing_mode=replacing_mode,
+                                                   normalize_magnitudes=normalize_magnitudes)
                 all_patch_hooks.append((patch_activation_name, hook_fn))
         
         if not all_activation_vectors:

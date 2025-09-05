@@ -6,3 +6,4 @@ activations
 transformation_outputs
 sae_test_outputs
 generated_activations/
+__pycache__/
