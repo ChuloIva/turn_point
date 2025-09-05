@@ -6,6 +6,7 @@ import os
 from enum import Enum
 import re
 import importlib.util
+import random
 
 sys.path.append('/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens')
 
@@ -158,7 +159,7 @@ class ActivationPatcher:
     
     def prepare_texts(self, clean_text, corrupted_text, num_placeholder_tokens=5, bos_token="<bos>"):
         """Prepare clean and corrupted texts for patching."""
-        placeholder = "<|endoftext|>"
+        placeholder = "<eos>"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
         
         if bos_token:
@@ -234,7 +235,7 @@ class ActivationPatcher:
 
         # Remove any literal "<bos>"-like markers at the start; we'll inject our BOS correctly
         cleaned = text_with_zeros.strip()
-        cleaned = re.sub(r"^(<\|endoftext\|>|</s>|<bos>)", "", cleaned).lstrip()
+        cleaned = re.sub(r"^(<\|endoftext\|>|</s>|<bos>|<eos>)", "", cleaned).lstrip()
 
         # Replace standalone 0s (not part of larger numbers) with placeholder marker
         # Surround with spaces to encourage token separation
@@ -516,7 +517,8 @@ class ActivationPatcher:
             return None, None
         
         # Prepare corrupted tokens
-        placeholder = "<|endoftext|>"
+        placeholder = "<eos>"
+        placeholder = "<eos>"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
         full_corrupted_text = f"{bos_token}{placeholder_sequence} {corrupted_text}"
         corrupted_tokens = self.model.to_tokens(full_corrupted_text)
@@ -580,11 +582,11 @@ class ActivationPatcher:
                           max_new_tokens=50,
                           bos_token="<bos>",
                           token_selection_strategy=TokenSelectionStrategy.KEYWORDS,
-                          num_strategy_tokens=3,
+                          num_strategy_tokens=5,
                           zero_placeholder_mode=False,
                           prompt_input=None,
                           template_name=None,
-                          placeholder_token_string="[[PATCH]]"):
+                          placeholder_token_string="<eos>"):
         """Main method to perform activation patching and generate text.
         
         Args:
@@ -604,7 +606,7 @@ class ActivationPatcher:
             zero_placeholder_mode: If True, detect '0' placeholders (manual) or template zeros and patch at those positions
             prompt_input: If string, treat as manual prompt with '0' markers; if tuple/list, treat as template-like object
             template_name: If provided, load template by name from interpretation_templates.py
-            placeholder_token_string: Unique string used to mark placeholder positions after rendering
+            placeholder_token_string: Unique string used to mark placeholder positions after rendering (default '<eos>')
         """
         # Reset hooks to ensure clean state
         self.reset_hooks()
@@ -820,6 +822,155 @@ class ActivationPatcher:
             'd_head': getattr(self.model.cfg, 'd_head', 'N/A'),
             'device': str(next(self.model.parameters()).device)
         }
+
+    # Data loading and pattern utilities
+    @staticmethod
+    def load_cognitive_patterns(dataset_path="/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl"):
+        """Load the cognitive patterns dataset with all text variants (positive, negative, transition)."""
+        patterns = []
+        pattern_types = {}
+        
+        with open(dataset_path, 'r') as f:
+            for line in f:
+                pattern = json.loads(line.strip())
+                patterns.append(pattern)
+                
+                # Group by cognitive pattern type
+                pattern_type = pattern['cognitive_pattern_type']
+                if pattern_type not in pattern_types:
+                    pattern_types[pattern_type] = []
+                pattern_types[pattern_type].append(pattern)
+        
+        return patterns, pattern_types
+
+    @staticmethod
+    def get_pattern_by_index(patterns, index):
+        """Get a pattern by index with bounds checking."""
+        if 0 <= index < len(patterns):
+            return patterns[index]
+        else:
+            raise IndexError(f"Index {index} out of range. Dataset has {len(patterns)} patterns.")
+
+    @staticmethod
+    def get_pattern_by_type(pattern_types, pattern_type, index=0):
+        """
+        Get a pattern by cognitive pattern type and optionally by index within that type.
+        
+        Args:
+            pattern_types: The pattern_types dictionary from load_cognitive_patterns()
+            pattern_type: The cognitive pattern type string
+            index: Index within the pattern type (default: 0 for first example)
+        """
+        if pattern_type in pattern_types:
+            patterns_of_type = pattern_types[pattern_type]
+            if 0 <= index < len(patterns_of_type):
+                return patterns_of_type[index]
+            else:
+                raise IndexError(f"Index {index} out of range. Pattern type '{pattern_type}' has {len(patterns_of_type)} examples.")
+        else:
+            available_types = list(pattern_types.keys())
+            raise KeyError(f"Pattern type '{pattern_type}' not found. Available types: {available_types}")
+
+    @staticmethod
+    def get_random_pattern_by_type(pattern_types, pattern_type):
+        """Get a random pattern from a specific cognitive pattern type."""
+        patterns_of_type = ActivationPatcher.get_patterns_by_type(pattern_types, pattern_type)
+        return random.choice(patterns_of_type)
+
+    @staticmethod
+    def get_patterns_by_type(pattern_types, pattern_type):
+        """Get all patterns for a specific cognitive pattern type."""
+        if pattern_type in pattern_types:
+            return pattern_types[pattern_type]
+        else:
+            available_types = list(pattern_types.keys())
+            raise KeyError(f"Pattern type '{pattern_type}' not found. Available types: {available_types}")
+
+    @staticmethod
+    def list_available_pattern_types(pattern_types):
+        """List all available pattern types with counts."""
+        print("Available cognitive pattern types:")
+        for i, (pattern_type, examples) in enumerate(pattern_types.items(), 1):
+            print(f"{i:2d}. {pattern_type} ({len(examples)} examples)")
+
+    @staticmethod
+    def get_pattern_text(pattern, text_type="positive"):
+        """
+        Get specific text variant from a pattern.
+        
+        Args:
+            pattern: The pattern dictionary
+            text_type: "positive", "negative", or "transition"
+        
+        Returns:
+            The requested text string
+        """
+        text_map = {
+            "positive": "positive_thought_pattern",
+            "negative": "reference_negative_example", 
+            "transition": "reference_transformed_example"
+        }
+        
+        if text_type not in text_map:
+            raise ValueError(f"text_type must be one of: {list(text_map.keys())}")
+        
+        field_name = text_map[text_type]
+        if field_name not in pattern:
+            raise KeyError(f"Pattern missing field: {field_name}")
+        
+        return pattern[field_name]
+
+    @staticmethod
+    def get_template(template_name):
+        """Get an interpretation template by name."""
+        # Load templates dynamically
+        try:
+            templates_path = "/Users/ivanculo/Desktop/Projects/turn_point/manual_activation_patching/interpretation_templates.py"
+            spec = importlib.util.spec_from_file_location("interpretation_templates", templates_path)
+            module = importlib.util.module_from_spec(spec)
+            assert spec and spec.loader is not None
+            spec.loader.exec_module(module)
+            templates = getattr(module, "INTERPRETATION_TEMPLATES", {})
+            
+            if template_name in templates:
+                return templates[template_name]
+            else:
+                available_templates = list(templates.keys())
+                raise KeyError(f"Template '{template_name}' not found. Available templates: {available_templates}")
+        except Exception as e:
+            print(f"Could not load interpretation templates: {e}")
+            raise
+
+    @staticmethod
+    def show_pattern_info(pattern):
+        """Display detailed information about a pattern."""
+        print(f"🧠 Pattern: {pattern['cognitive_pattern_name']}")
+        print(f"🔄 Type: {pattern['cognitive_pattern_type']}")
+        print(f"📝 Description: {pattern['pattern_description']}")
+        print(f"❓ Source Question: {pattern['source_question']}")
+        print(f"\n✅ Positive Text: {pattern['positive_thought_pattern']}")
+        print(f"\n❌ Negative Text: {pattern['reference_negative_example']}")
+        print(f"\n🔄 Transition Text: {pattern['reference_transformed_example']}")
+
+    def check_model_info(self):
+        """Check and display model status information."""
+        print("📊 MODEL STATUS:")
+        print(f"  Model: {self.model_name}")
+        print(f"  Device: {next(self.model.parameters()).device}")
+        print(f"  Layers: {self.model.cfg.n_layers}")
+        print(f"  D_model: {self.model.cfg.d_model}")
+        print(f"  Vocab size: {self.model.cfg.d_vocab}")
+    
+    @staticmethod
+    def clear_memory():
+        """Clear GPU/system memory."""
+        import gc
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        if torch.backends.mps.is_available():
+            torch.mps.empty_cache()
+        gc.collect()
+        print("🧹 Memory cleared!")
 
 
 if __name__ == "__main__":
