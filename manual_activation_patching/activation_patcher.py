@@ -4,6 +4,8 @@ from functools import partial
 import sys
 import os
 from enum import Enum
+import re
+import importlib.util
 
 sys.path.append('/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens')
 
@@ -168,6 +170,104 @@ class ActivationPatcher:
         corrupted_tokens = self.model.to_tokens(full_corrupted_text)
         
         return clean_tokens, corrupted_tokens, num_placeholder_tokens
+
+    # -------------------------
+    # Zero-placeholder utilities
+    # -------------------------
+    def _load_interpretation_templates(self):
+        """Load INTERPRETATION_TEMPLATES from interpretation_templates.py regardless of package state."""
+        templates_path = "/Users/ivanculo/Desktop/Projects/turn_point/manual_activation_patching/interpretation_templates.py"
+        try:
+            spec = importlib.util.spec_from_file_location("interpretation_templates", templates_path)
+            module = importlib.util.module_from_spec(spec)
+            assert spec and spec.loader is not None
+            spec.loader.exec_module(module)
+            return getattr(module, "INTERPRETATION_TEMPLATES", {})
+        except Exception as e:
+            print(f"Could not load interpretation templates: {e}")
+            return {}
+
+    def get_interpretation_template(self, template_name):
+        """Public helper to fetch a template tuple by name."""
+        templates = self._load_interpretation_templates()
+        if template_name not in templates:
+            raise ValueError(f"Template '{template_name}' not found. Available: {list(templates.keys())}")
+        return templates[template_name]
+
+    def _render_zero_prompt_from_template(self, template_obj, bos_token, placeholder_token_string):
+        """Render a prompt string from a template tuple where integer 0 marks patch points.
+
+        The expected template format is ("<bos>", 0, 0, ..., "continuation text").
+        We ignore the first element and use the provided bos_token.
+        """
+        if not isinstance(template_obj, (list, tuple)):
+            raise ValueError("Template object must be a list/tuple for zero-placeholder rendering.")
+
+        parts = []
+        # Start with BOS (no trailing space to keep parity with original prepare_texts)
+        if bos_token:
+            parts.append(bos_token)
+
+        # Render rest: replace int 0 with placeholder string
+        for elem in template_obj[1:]:
+            if isinstance(elem, int) and elem == 0:
+                parts.append(f" {placeholder_token_string}")
+            elif isinstance(elem, str):
+                # Ensure a space before normal text if not already present
+                if len(parts) == 0:
+                    parts.append(elem)
+                else:
+                    parts.append(f" {elem}")
+            else:
+                # Unknown type, convert to string conservatively
+                parts.append(f" {str(elem)}")
+
+        return "".join(parts)
+
+    def _render_zero_prompt_from_string(self, text_with_zeros, bos_token, placeholder_token_string):
+        """Render a prompt string from a manual string where '0' marks patch points.
+
+        We replace standalone '0' with the placeholder token string and prefix BOS.
+        """
+        if text_with_zeros is None:
+            text_with_zeros = ""
+
+        # Remove any literal "<bos>"-like markers at the start; we'll inject our BOS correctly
+        cleaned = text_with_zeros.strip()
+        cleaned = re.sub(r"^(<\|endoftext\|>|</s>|<bos>)", "", cleaned).lstrip()
+
+        # Replace standalone 0s (not part of larger numbers) with placeholder marker
+        # Surround with spaces to encourage token separation
+        replaced = re.sub(r"(?<!\d)0(?!\d)", f" {placeholder_token_string} ", cleaned)
+
+        # Collapse multiple spaces
+        replaced = re.sub(r"\s+", " ", replaced).strip()
+
+        if bos_token:
+            return f"{bos_token} {replaced}" if len(replaced) > 0 else f"{bos_token}"
+        return replaced
+
+    def _find_placeholder_token_positions(self, tokens_tensor, placeholder_token_string):
+        """Find starting token indices where the placeholder string occurs as a subsequence.
+
+        Works even if the placeholder string tokenizes into multiple tokens.
+        """
+        # Tokenize placeholder the same way we rendered it (without forcing leading space)
+        placeholder_tokens = self.model.to_tokens(placeholder_token_string)[0]
+        token_ids = tokens_tensor[0].tolist()
+        needle = placeholder_tokens.tolist()
+
+        positions = []
+        if not needle:
+            return positions
+
+        n = len(token_ids)
+        m = len(needle)
+        # Sliding window subsequence match
+        for i in range(0, n - m + 1):
+            if token_ids[i:i + m] == needle:
+                positions.append(i)
+        return positions
     
     def get_clean_cache(self, clean_tokens):
         """Run model on clean tokens and return cache."""
@@ -472,16 +572,24 @@ class ActivationPatcher:
             print(f"Error during generation: {e}")
             return None, None
     
-    def patch_and_generate(self, clean_text, corrupted_text, target_words=None, 
-                          num_placeholder_tokens=5, capture_layer_idx=-1, patch_layer_idx=None, 
-                          max_new_tokens=50, bos_token="<bos>", 
+    def patch_and_generate(self, clean_text, corrupted_text,
+                          target_words=None,
+                          num_placeholder_tokens=5,
+                          capture_layer_idx=-1,
+                          patch_layer_idx=None,
+                          max_new_tokens=50,
+                          bos_token="<bos>",
                           token_selection_strategy=TokenSelectionStrategy.KEYWORDS,
-                          num_strategy_tokens=3):
+                          num_strategy_tokens=3,
+                          zero_placeholder_mode=False,
+                          prompt_input=None,
+                          template_name=None,
+                          placeholder_token_string="[[PATCH]]"):
         """Main method to perform activation patching and generate text.
         
         Args:
             clean_text: Clean text to extract activations from
-            corrupted_text: Corrupted text to patch activations into
+            corrupted_text: Corrupted text to patch activations into. Ignored if zero_placeholder_mode and prompt_input/template_name are provided.
             target_words: List of words for KEYWORDS strategy (auto-extracted if None)
             num_placeholder_tokens: Number of placeholder tokens in corrupted text
             capture_layer_idx: Layer(s) to capture clean activations from. 
@@ -493,6 +601,10 @@ class ActivationPatcher:
             bos_token: Beginning of sequence token
             token_selection_strategy: TokenSelectionStrategy enum for how to select tokens
             num_strategy_tokens: Number of tokens for LAST_COUPLE and MID_TOKENS strategies
+            zero_placeholder_mode: If True, detect '0' placeholders (manual) or template zeros and patch at those positions
+            prompt_input: If string, treat as manual prompt with '0' markers; if tuple/list, treat as template-like object
+            template_name: If provided, load template by name from interpretation_templates.py
+            placeholder_token_string: Unique string used to mark placeholder positions after rendering
         """
         # Reset hooks to ensure clean state
         self.reset_hooks()
@@ -504,10 +616,50 @@ class ActivationPatcher:
         if patch_layer_idx is None:
             patch_layer_idx = capture_layer_idx
         patch_layers = self._process_layer_specification(patch_layer_idx)
-        
-        clean_tokens, corrupted_tokens, num_placeholders = self.prepare_texts(
-            clean_text, corrupted_text, num_placeholder_tokens, bos_token
-        )
+
+        # Prepare tokens and patch positions depending on mode
+        if zero_placeholder_mode:
+            # Determine prompt source
+            effective_prompt = None
+            if template_name is not None:
+                try:
+                    tmpl = self.get_interpretation_template(template_name)
+                    effective_prompt = tmpl
+                except Exception as e:
+                    print(f"Failed to load template '{template_name}': {e}")
+            if prompt_input is not None:
+                effective_prompt = prompt_input
+            if effective_prompt is None:
+                # Fallback to corrupted_text if provided
+                effective_prompt = corrupted_text if corrupted_text is not None else ""
+
+            # Render final text with placeholder markers
+            if isinstance(effective_prompt, (list, tuple)):
+                full_corrupted_text = self._render_zero_prompt_from_template(
+                    effective_prompt, bos_token, placeholder_token_string
+                )
+            elif isinstance(effective_prompt, str):
+                full_corrupted_text = self._render_zero_prompt_from_string(
+                    effective_prompt, bos_token, placeholder_token_string
+                )
+            else:
+                raise ValueError("Unsupported prompt_input type for zero_placeholder_mode. Use str or tuple/list.")
+
+            clean_tokens = self.model.to_tokens(clean_text)
+            corrupted_tokens = self.model.to_tokens(full_corrupted_text)
+
+            # Find placeholder token positions
+            patch_positions = self._find_placeholder_token_positions(
+                corrupted_tokens, placeholder_token_string
+            )
+
+            if not patch_positions:
+                print("Warning: No placeholder positions found in the rendered prompt. Nothing to patch.")
+        else:
+            clean_tokens, corrupted_tokens, num_placeholders = self.prepare_texts(
+                clean_text, corrupted_text, num_placeholder_tokens, bos_token
+            )
+            patch_positions = list(range(num_placeholders))
         
         print(f"Clean text: {clean_text}")
         print(f"Corrupted text: {self.model.to_string(corrupted_tokens[0])}")
@@ -538,12 +690,12 @@ class ActivationPatcher:
             for patch_layer in patch_layers:
                 patch_activation_name = utils.get_act_name("resid_post", patch_layer)
                 
-                patch_positions = list(range(num_placeholders))
-                num_patches = min(len(activation_vectors), len(patch_positions))
-                patch_positions = patch_positions[:num_patches]
+                local_patch_positions = patch_positions
+                num_patches = min(len(activation_vectors), len(local_patch_positions))
+                local_patch_positions = local_patch_positions[:num_patches]
                 current_vectors = activation_vectors[:num_patches]
                 
-                hook_fn = self.create_patching_hook(current_vectors, patch_positions, patch_activation_name)
+                hook_fn = self.create_patching_hook(current_vectors, local_patch_positions, patch_activation_name)
                 all_patch_hooks.append((patch_activation_name, hook_fn))
         
         if not all_activation_vectors:
