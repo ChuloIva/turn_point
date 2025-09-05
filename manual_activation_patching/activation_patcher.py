@@ -3,11 +3,21 @@ import json
 from functools import partial
 import sys
 import os
+from enum import Enum
 
 sys.path.append('/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens')
 
 from transformer_lens import HookedTransformer
 import transformer_lens.utils as utils
+
+
+class TokenSelectionStrategy(Enum):
+    """Token selection strategies for activation extraction."""
+    KEYWORDS = "keywords"  # Original: extract from specific meaningful words
+    MID_TOKENS = "mid_tokens"  # Extract from middle portion of the sequence
+    LAST_COUPLE = "last_couple"  # Extract and average from last few tokens
+    LAST_TOKEN = "last_token"  # Extract only from the very last token
+    ALL_TOKENS = "all_tokens"  # Extract and average from all tokens
 
 
 class ActivationPatcher:
@@ -177,31 +187,136 @@ class ActivationPatcher:
         
         return patching_hook
     
-    def extract_activations_for_patching(self, clean_cache, clean_tokens, target_words, layer_idx=-1):
-        """Extract activations from specific words/tokens for patching."""
+    def extract_activations_by_strategy(self, clean_cache, clean_tokens, layer_idx=-1, 
+                                        strategy=TokenSelectionStrategy.KEYWORDS, 
+                                        target_words=None, num_tokens=3):
+        """Extract activations using different token selection strategies.
+        
+        Args:
+            clean_cache: Model cache from clean text
+            clean_tokens: Tokenized clean text
+            layer_idx: Layer index to extract from
+            strategy: TokenSelectionStrategy enum value
+            target_words: List of words for KEYWORDS strategy
+            num_tokens: Number of tokens for LAST_COUPLE and MID_TOKENS strategies
+        
+        Returns:
+            activation_vectors: List of activation tensors
+            positions_found: List of token positions used
+            activation_name: Name of the activation layer
+        """
         activation_name = utils.get_act_name("resid_post", 
                                            layer_idx if layer_idx >= 0 else self.model.cfg.n_layers + layer_idx)
         
         activation_vectors = []
         positions_found = []
+        seq_len = clean_tokens.shape[1]
         
-        for word in target_words:
-            try:
-                word_token = self.model.to_single_token(f" {word}")
-                positions = torch.where(clean_tokens[0] == word_token)[0]
-                
-                if len(positions) > 0:
-                    pos = positions[0]
-                    activation_vector = clean_cache[activation_name][0, pos, :]
-                    activation_vectors.append(activation_vector)
-                    positions_found.append(pos.item())
-                    print(f"Found '{word}' at position {pos.item()}")
-                else:
-                    print(f"Word '{word}' not found in clean tokens")
-            except ValueError:
-                print(f"Could not tokenize word '{word}'")
+        print(f"Using token selection strategy: {strategy.value}")
+        print(f"Sequence length: {seq_len}")
+        
+        if strategy == TokenSelectionStrategy.KEYWORDS:
+            # Original behavior: extract from specific meaningful words
+            if target_words is None:
+                target_words = self._extract_key_words(self.model.to_string(clean_tokens[0]))
+            
+            for word in target_words:
+                try:
+                    word_token = self.model.to_single_token(f" {word}")
+                    positions = torch.where(clean_tokens[0] == word_token)[0]
+                    
+                    if len(positions) > 0:
+                        pos = positions[0]
+                        activation_vector = clean_cache[activation_name][0, pos, :]
+                        activation_vectors.append(activation_vector)
+                        positions_found.append(pos.item())
+                        print(f"Found keyword '{word}' at position {pos.item()}")
+                    else:
+                        print(f"Keyword '{word}' not found in clean tokens")
+                except ValueError:
+                    print(f"Could not tokenize word '{word}'")
+        
+        elif strategy == TokenSelectionStrategy.MID_TOKENS:
+            # Extract from middle portion of sequence
+            start_idx = max(1, seq_len // 3)  # Skip BOS token, start at 1/3
+            end_idx = min(seq_len - 1, (2 * seq_len) // 3)  # End at 2/3
+            
+            # Take num_tokens from the middle range
+            mid_positions = list(range(start_idx, end_idx))
+            if len(mid_positions) > num_tokens:
+                # Sample evenly spaced positions
+                step = len(mid_positions) // num_tokens
+                mid_positions = mid_positions[::step][:num_tokens]
+            
+            for pos in mid_positions:
+                activation_vector = clean_cache[activation_name][0, pos, :]
+                activation_vectors.append(activation_vector)
+                positions_found.append(pos)
+            
+            print(f"Selected {len(mid_positions)} mid tokens from positions: {mid_positions}")
+        
+        elif strategy == TokenSelectionStrategy.LAST_COUPLE:
+            # Extract and average from last few tokens
+            start_pos = max(1, seq_len - num_tokens)  # Don't include position 0 (BOS)
+            last_positions = list(range(start_pos, seq_len))
+            
+            # Extract all last tokens
+            last_activations = []
+            for pos in last_positions:
+                activation_vector = clean_cache[activation_name][0, pos, :]
+                last_activations.append(activation_vector)
+                positions_found.append(pos)
+            
+            # Average them into a single vector
+            if last_activations:
+                averaged_activation = torch.mean(torch.stack(last_activations), dim=0)
+                activation_vectors.append(averaged_activation)
+            
+            print(f"Averaged last {len(last_positions)} tokens from positions: {last_positions}")
+        
+        elif strategy == TokenSelectionStrategy.LAST_TOKEN:
+            # Extract only from the very last token
+            last_pos = seq_len - 1
+            activation_vector = clean_cache[activation_name][0, last_pos, :]
+            activation_vectors.append(activation_vector)
+            positions_found.append(last_pos)
+            
+            print(f"Selected last token at position: {last_pos}")
+        
+        elif strategy == TokenSelectionStrategy.ALL_TOKENS:
+            # Extract and average from all tokens (excluding BOS if present)
+            start_pos = 1 if seq_len > 1 else 0  # Skip BOS token
+            all_positions = list(range(start_pos, seq_len))
+            
+            # Extract all token activations
+            all_activations = []
+            for pos in all_positions:
+                activation_vector = clean_cache[activation_name][0, pos, :]
+                all_activations.append(activation_vector)
+                positions_found.append(pos)
+            
+            # Average them into a single vector
+            if all_activations:
+                averaged_activation = torch.mean(torch.stack(all_activations), dim=0)
+                activation_vectors.append(averaged_activation)
+            
+            print(f"Averaged all {len(all_positions)} tokens from positions: {all_positions}")
+        
+        else:
+            raise ValueError(f"Unknown token selection strategy: {strategy}")
         
         return activation_vectors, positions_found, activation_name
+
+    def extract_activations_for_patching(self, clean_cache, clean_tokens, target_words, layer_idx=-1):
+        """Extract activations from specific words/tokens for patching.
+        
+        This method maintains backward compatibility with existing code.
+        For new code, consider using extract_activations_by_strategy() instead.
+        """
+        return self.extract_activations_by_strategy(
+            clean_cache, clean_tokens, layer_idx, 
+            TokenSelectionStrategy.KEYWORDS, target_words
+        )
     
     def extract_batch_activations(self, texts, layer_idx=-1, aggregation="mean", target_words=None):
         """Extract activations from a batch of texts and aggregate them."""
@@ -357,17 +472,27 @@ class ActivationPatcher:
             print(f"Error during generation: {e}")
             return None, None
     
-    def patch_and_generate(self, clean_text, corrupted_text, target_words, 
+    def patch_and_generate(self, clean_text, corrupted_text, target_words=None, 
                           num_placeholder_tokens=5, capture_layer_idx=-1, patch_layer_idx=None, 
-                          max_new_tokens=50, bos_token="<bos>"):
+                          max_new_tokens=50, bos_token="<bos>", 
+                          token_selection_strategy=TokenSelectionStrategy.KEYWORDS,
+                          num_strategy_tokens=3):
         """Main method to perform activation patching and generate text.
         
         Args:
+            clean_text: Clean text to extract activations from
+            corrupted_text: Corrupted text to patch activations into
+            target_words: List of words for KEYWORDS strategy (auto-extracted if None)
+            num_placeholder_tokens: Number of placeholder tokens in corrupted text
             capture_layer_idx: Layer(s) to capture clean activations from. 
                               Can be: int, list of ints, 'all', or range(start, end)
             patch_layer_idx: Layer(s) to patch activations into. 
                             Can be: int, list of ints, 'all', or range(start, end)
                             Defaults to capture_layer_idx if None
+            max_new_tokens: Maximum number of tokens to generate
+            bos_token: Beginning of sequence token
+            token_selection_strategy: TokenSelectionStrategy enum for how to select tokens
+            num_strategy_tokens: Number of tokens for LAST_COUPLE and MID_TOKENS strategies
         """
         # Reset hooks to ensure clean state
         self.reset_hooks()
@@ -398,8 +523,9 @@ class ActivationPatcher:
         
         # For each capture-patch layer pair
         for capture_layer in capture_layers:
-            activation_vectors, positions_found, _ = self.extract_activations_for_patching(
-                clean_cache, clean_tokens, target_words, capture_layer
+            activation_vectors, positions_found, _ = self.extract_activations_by_strategy(
+                clean_cache, clean_tokens, capture_layer, 
+                token_selection_strategy, target_words, num_strategy_tokens
             )
             
             if not activation_vectors:
