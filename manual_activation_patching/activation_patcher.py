@@ -825,23 +825,51 @@ class ActivationPatcher:
 
     # Data loading and pattern utilities
     @staticmethod
-    def load_cognitive_patterns(dataset_path="/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl"):
-        """Load the cognitive patterns dataset with all text variants (positive, negative, transition)."""
-        patterns = []
-        pattern_types = {}
+    def load_cognitive_patterns(dataset_path="/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl", 
+                               max_examples_per_type=None):
+        """Load the cognitive patterns dataset with all text variants (positive, negative, transition).
         
+        Args:
+            dataset_path: Path to the JSONL dataset file
+            max_examples_per_type: Maximum number of examples to load per cognitive pattern type (None = load all)
+        
+        Returns:
+            patterns: List of all patterns
+            pattern_types: Dictionary grouping patterns by type
+        """
+        all_patterns = []
+        all_pattern_types = {}
+        
+        # First pass: load all patterns and group by type
         with open(dataset_path, 'r') as f:
             for line in f:
                 pattern = json.loads(line.strip())
-                patterns.append(pattern)
+                all_patterns.append(pattern)
                 
                 # Group by cognitive pattern type
                 pattern_type = pattern['cognitive_pattern_type']
-                if pattern_type not in pattern_types:
-                    pattern_types[pattern_type] = []
-                pattern_types[pattern_type].append(pattern)
+                if pattern_type not in all_pattern_types:
+                    all_pattern_types[pattern_type] = []
+                all_pattern_types[pattern_type].append(pattern)
         
-        return patterns, pattern_types
+        # If no limit specified, return all patterns
+        if max_examples_per_type is None:
+            return all_patterns, all_pattern_types
+        
+        # Second pass: limit examples per type
+        limited_patterns = []
+        limited_pattern_types = {}
+        
+        for pattern_type, type_patterns in all_pattern_types.items():
+            # Take only the first max_examples_per_type examples
+            limited_type_patterns = type_patterns[:max_examples_per_type]
+            limited_pattern_types[pattern_type] = limited_type_patterns
+            limited_patterns.extend(limited_type_patterns)
+        
+        print(f"📊 Limited dataset: {max_examples_per_type} examples per type")
+        print(f"📈 Total patterns: {len(limited_patterns)} (was {len(all_patterns)})")
+        
+        return limited_patterns, limited_pattern_types
 
     @staticmethod
     def get_pattern_by_index(patterns, index):
@@ -960,6 +988,55 @@ class ActivationPatcher:
         print(f"  Layers: {self.model.cfg.n_layers}")
         print(f"  D_model: {self.model.cfg.d_model}")
         print(f"  Vocab size: {self.model.cfg.d_vocab}")
+    
+    @staticmethod
+    def filter_patterns_by_count(pattern_types, num_examples_per_type):
+        """Filter patterns at experiment time to use only specified number of examples per type.
+        
+        Args:
+            pattern_types: The full pattern_types dictionary
+            num_examples_per_type: Number of examples to use per type (1-40)
+            
+        Returns:
+            filtered_patterns: List of filtered patterns
+            filtered_pattern_types: Filtered pattern_types dict
+        """
+        if num_examples_per_type < 1 or num_examples_per_type > 40:
+            print(f"⚠️  Warning: num_examples_per_type should be between 1-40. Using 40 (all examples).")
+            num_examples_per_type = 40
+        
+        filtered_patterns = []
+        filtered_pattern_types = {}
+        
+        for pattern_type, type_patterns in pattern_types.items():
+            # Take only the first num_examples_per_type examples
+            filtered_type_patterns = type_patterns[:num_examples_per_type]
+            filtered_pattern_types[pattern_type] = filtered_type_patterns
+            filtered_patterns.extend(filtered_type_patterns)
+        
+        return filtered_patterns, filtered_pattern_types
+    
+    @staticmethod
+    def get_filtered_patterns_by_type(pattern_types, pattern_type, num_examples):
+        """Get filtered patterns for a specific cognitive pattern type.
+        
+        Args:
+            pattern_types: The full pattern_types dictionary
+            pattern_type: The cognitive pattern type string
+            num_examples: Number of examples to return (1-40)
+            
+        Returns:
+            List of patterns for the specified type, limited to num_examples
+        """
+        if pattern_type not in pattern_types:
+            available_types = list(pattern_types.keys())
+            raise KeyError(f"Pattern type '{pattern_type}' not found. Available types: {available_types}")
+        
+        if num_examples < 1 or num_examples > 40:
+            print(f"⚠️  Warning: num_examples should be between 1-40. Using all available examples.")
+            num_examples = len(pattern_types[pattern_type])
+        
+        return pattern_types[pattern_type][:num_examples]
     
     @staticmethod
     def clear_memory():
