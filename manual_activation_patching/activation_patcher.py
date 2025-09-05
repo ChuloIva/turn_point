@@ -253,8 +253,15 @@ class ActivationPatcher:
 
         Works even if the placeholder string tokenizes into multiple tokens.
         """
-        # Tokenize placeholder the same way we rendered it (without forcing leading space)
-        placeholder_tokens = self.model.to_tokens(placeholder_token_string)[0]
+        # Tokenize placeholder the same way we rendered it (with leading space, but skip BOS token)
+        # The rendered placeholder appears as " <eos>" which tokenizes to [BOS, space_token, eos_token]
+        # We want just [space_token, eos_token]
+        full_tokenized = self.model.to_tokens(f" {placeholder_token_string}")[0]
+        # Skip the first token if it's BOS (which to_tokens always adds)
+        if len(full_tokenized) > 1 and full_tokenized[0] == self.model.tokenizer.bos_token_id:
+            placeholder_tokens = full_tokenized[1:]
+        else:
+            placeholder_tokens = full_tokenized
         token_ids = tokens_tensor[0].tolist()
         needle = placeholder_tokens.tolist()
 
@@ -559,13 +566,19 @@ class ActivationPatcher:
             
             print(f"Next token prediction: '{predicted_token_str}'")
             
-            generated_tokens = self.model.generate(
-                corrupted_tokens,
-                max_new_tokens=max_new_tokens,
-                fwd_hooks=[(patch_activation_name, batch_patching_hook)],
-                temperature=0.7,
-                do_sample=True
-            )
+            # Add hook and then generate (TransformerLens approach)
+            self.model.add_hook(patch_activation_name, batch_patching_hook)
+            
+            try:
+                generated_tokens = self.model.generate(
+                    corrupted_tokens,
+                    max_new_tokens=max_new_tokens,
+                    temperature=0.7,
+                    do_sample=True
+                )
+            finally:
+                # Always reset hooks after generation
+                self.model.reset_hooks()
             generated_text = self.model.to_string(generated_tokens[0])
             
             return predicted_token_str, generated_text
@@ -718,13 +731,20 @@ class ActivationPatcher:
         
         print(f"\nNext token prediction after patching: '{predicted_token_str}'")
         
-        generated_tokens = self.model.generate(
-            corrupted_tokens,
-            max_new_tokens=max_new_tokens,
-            fwd_hooks=all_patch_hooks,
-            temperature=0.7,
-            do_sample=True
-        )
+        # Add hooks and then generate (TransformerLens approach)
+        for hook_name, hook_fn in all_patch_hooks:
+            self.model.add_hook(hook_name, hook_fn)
+        
+        try:
+            generated_tokens = self.model.generate(
+                corrupted_tokens,
+                max_new_tokens=max_new_tokens,
+                temperature=0.7,
+                do_sample=True
+            )
+        finally:
+            # Always reset hooks after generation
+            self.model.reset_hooks()
         generated_text = self.model.to_string(generated_tokens[0])
         
         return predicted_token_str, generated_text
