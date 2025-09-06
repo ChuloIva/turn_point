@@ -7,6 +7,7 @@ from enum import Enum
 import re
 import importlib.util
 import random
+from tqdm import tqdm
 
 sys.path.append('/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens')
 
@@ -159,14 +160,14 @@ class ActivationPatcher:
     
     def prepare_texts(self, clean_text, corrupted_text, num_placeholder_tokens=5, bos_token="<bos>"):
         """Prepare clean and corrupted texts for patching."""
-        placeholder = "<eos>"
+        placeholder = "0"
         placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
         
         # Don't manually add BOS token - to_tokens() adds it automatically
         full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
         
-        clean_tokens = self.model.to_tokens(clean_text)
-        corrupted_tokens = self.model.to_tokens(full_corrupted_text)
+        clean_tokens = self.model.to_tokens(clean_text, prepend_bos=False)
+        corrupted_tokens = self.model.to_tokens(full_corrupted_text, prepend_bos=False)
         
         return clean_tokens, corrupted_tokens, num_placeholder_tokens
 
@@ -251,7 +252,7 @@ class ActivationPatcher:
         # Tokenize placeholder the same way we rendered it (with leading space, but skip BOS token)
         # The rendered placeholder appears as " <eos>" which tokenizes to [BOS, space_token, eos_token]
         # We want just [space_token, eos_token]
-        full_tokenized = self.model.to_tokens(f" {placeholder_token_string}")[0]
+        full_tokenized = self.model.to_tokens(f" {placeholder_token_string}", prepend_bos=False)[0]
         # Skip the first token if it's BOS (which to_tokens always adds)
         if len(full_tokenized) > 1 and full_tokenized[0] == self.model.tokenizer.bos_token_id:
             placeholder_tokens = full_tokenized[1:]
@@ -271,6 +272,42 @@ class ActivationPatcher:
             if token_ids[i:i + m] == needle:
                 positions.append(i)
         return positions
+
+    # -------------------------
+    # Chat template utilities
+    # -------------------------
+    def _should_use_chat_template(self):
+        """Heuristically decide whether to use a chat template for the current model.
+        Returns True if the tokenizer exposes a chat template or the model family is a known instruct family.
+        """
+        tokenizer = getattr(self.model, 'tokenizer', None)
+        has_apply = hasattr(tokenizer, 'apply_chat_template')
+        family = self.model_config.get('family', '').lower()
+        is_instruct_family = any(name in family for name in ['gemma', 'llama', 'mistral'])
+        return bool(has_apply or is_instruct_family)
+
+    def _apply_chat_template_text(self, user_text, add_generation_prompt=True):
+        """Format a single-turn chat with the given user text using the model's chat template if available.
+        Falls back to a simple "User: ...\nAssistant:" preamble if no template is exposed.
+        """
+        tokenizer = getattr(self.model, 'tokenizer', None)
+        if tokenizer is not None and hasattr(tokenizer, 'apply_chat_template') and callable(tokenizer.apply_chat_template):
+            try:
+                messages = [{"role": "user", "content": user_text}]
+                return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=add_generation_prompt)
+            except Exception:
+                # Fall through to simple formatting on any failure
+                pass
+        # Simple generic chat-style fallback (no special tokens)
+        if add_generation_prompt:
+            return f"User: {user_text}\nAssistant:"
+        else:
+            return f"User: {user_text}"
+
+    def _remove_placeholder_markers(self, text, placeholder_token_string):
+        """Remove standalone placeholder markers from text (used when overlay_strength == 0)."""
+        # Remove standalone occurrences surrounded by non-digits or boundaries
+        return re.sub(rf"(?<!\\d){re.escape(placeholder_token_string)}(?!\\d)", "", text)
     
     def get_clean_cache(self, clean_tokens):
         """Run model on clean tokens and return cache."""
@@ -466,11 +503,10 @@ class ActivationPatcher:
         all_activations = []
         all_positions = []
         
-        print(f"Processing {len(texts)} texts for batch activation extraction...")
         
-        for i, text in enumerate(texts):
+        for i, text in enumerate(tqdm(texts, desc="Processing texts for batch activation extraction")):
             try:
-                tokens = self.model.to_tokens(text)
+                tokens = self.model.to_tokens(text, prepend_bos=False)
                 _, cache = self.model.run_with_cache(tokens)
                 
                 # If specific words are provided, extract from those positions
@@ -493,12 +529,9 @@ class ActivationPatcher:
                         activation = cache[activation_name][0, pos, :]
                         all_activations.append(activation)
                         all_positions.append((i, pos, "position"))
-                
-                if (i + 1) % 10 == 0:
-                    print(f"Processed {i + 1}/{len(texts)} texts")
                     
             except Exception as e:
-                print(f"Error processing text {i}: {e}")
+                tqdm.write(f"Error processing text {i}: {e}")
                 continue
         
         if not all_activations:
@@ -531,7 +564,8 @@ class ActivationPatcher:
     def batch_patch_and_generate(self, clean_texts, corrupted_text, capture_layer_idx=-1, 
                                 patch_layer_idx=None, aggregation="mean", target_words=None, 
                                 num_placeholder_tokens=5, max_new_tokens=50, bos_token="<bos>",
-                                overlay_strength=1.0, replacing_mode='normalized', normalize_magnitudes=True):
+                                overlay_strength=1.0, replacing_mode='normalized', normalize_magnitudes=True,
+                                use_chat_template=True, placeholder_token_string="0", **generate_kwargs):
         """Patch activations from multiple texts and generate with multi-layer support."""
         
         # Default patch_layer_idx to capture_layer_idx if not specified
@@ -556,14 +590,39 @@ class ActivationPatcher:
             print("Failed to extract activations from batch")
             return None, None
         
-        # Prepare corrupted tokens
-        placeholder = "<eos>"
-        placeholder_sequence = " ".join([placeholder] * num_placeholder_tokens)
-        # Don't manually add BOS token - to_tokens() adds it automatically
-        full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
-        corrupted_tokens = self.model.to_tokens(full_corrupted_text)
+        # Prepare corrupted tokens (respect chat template and placeholder changes)
+        # If overlay_strength == 0, short-circuit to baseline generation (no placeholders/hooks)
+        if overlay_strength == 0.0:
+            user_text = corrupted_text if corrupted_text is not None else ""
+            final_text = self._apply_chat_template_text(user_text, add_generation_prompt=True) if (use_chat_template and self._should_use_chat_template()) else user_text
+            corrupted_tokens = self.model.to_tokens(final_text, prepend_bos=False)
+            try:
+                default_generate_kwargs = {"temperature": 0.7, "do_sample": True, "freq_penalty": 1.1}
+                merged_generate_kwargs = {**default_generate_kwargs, **generate_kwargs}
+                generated_tokens = self.model.generate(
+                    corrupted_tokens,
+                    max_new_tokens=max_new_tokens,
+                    **merged_generate_kwargs
+                )
+                generated_text = self.model.to_string(generated_tokens[0])
+                # Predict next token from logits for consistency
+                patched_logits = self.model(corrupted_tokens)
+                last_token_logits = patched_logits[0, -1, :]
+                predicted_token_id = torch.argmax(last_token_logits).item()
+                predicted_token_str = self.model.to_string([predicted_token_id])
+                return predicted_token_str, generated_text
+            finally:
+                self.model.reset_hooks()
+
+        placeholder_sequence = " ".join([placeholder_token_string] * num_placeholder_tokens)
+        user_text = f"{placeholder_sequence} {corrupted_text}"
+        final_text = self._apply_chat_template_text(user_text, add_generation_prompt=True) if (use_chat_template and self._should_use_chat_template()) else user_text
+        corrupted_tokens = self.model.to_tokens(final_text, prepend_bos=False)
         
-        print(f"Corrupted text: {full_corrupted_text}")
+        # Detect placeholder positions after tokenization
+        placeholder_positions = self._find_placeholder_token_positions(corrupted_tokens, placeholder_token_string)
+        
+        print(f"Corrupted text: {final_text}")
         
         # Create patch activation name for the layer we want to patch into
         # For now, support single layer patching in batch mode (can be extended later)
@@ -579,14 +638,14 @@ class ActivationPatcher:
                                                   patch_layer_idx if patch_layer_idx >= 0 else self.model.cfg.n_layers + patch_layer_idx)
         
         # Create hook function using the aggregated activation with SelfIE-style blending
-        def batch_patching_hook(corrupted_activation, hook, agg_activation=aggregated_activation):
+        def batch_patching_hook(corrupted_activation, hook, agg_activation=aggregated_activation, positions=placeholder_positions):
             # SelfIE's critical constraint: only patch during multi-token forward pass, not single-token generation
             if corrupted_activation.shape[1] <= 1:
                 return corrupted_activation
                 
             print(f"Batch patching at hook: {hook.name} (mode: {replacing_mode}, strength: {overlay_strength})")
-            # Patch all placeholder positions with the same aggregated activation
-            for pos in range(min(num_placeholder_tokens, corrupted_activation.shape[1])):
+            # Patch all detected placeholder positions with the same aggregated activation
+            for pos in positions:
                 clean_vector = agg_activation.to(corrupted_activation.device)
                 original_vector = corrupted_activation[0, pos, :].clone()
                 
@@ -630,11 +689,12 @@ class ActivationPatcher:
             self.model.add_hook(patch_activation_name, batch_patching_hook)
             
             try:
+                default_generate_kwargs = {"temperature": 0.7, "do_sample": True, "freq_penalty": 1.1}
+                merged_generate_kwargs = {**default_generate_kwargs, **generate_kwargs}
                 generated_tokens = self.model.generate(
                     corrupted_tokens,
                     max_new_tokens=max_new_tokens,
-                    temperature=0.7,
-                    do_sample=True
+                    **merged_generate_kwargs
                 )
             finally:
                 # Always reset hooks after generation
@@ -659,10 +719,12 @@ class ActivationPatcher:
                           zero_placeholder_mode=False,
                           prompt_input=None,
                           template_name=None,
-                          placeholder_token_string="<eos>",
+                          placeholder_token_string="0",
                           overlay_strength=1.0,
                           replacing_mode='normalized',
-                          normalize_magnitudes=True):
+                          normalize_magnitudes=True,
+                          use_chat_template=True,
+                          **generate_kwargs):
         """Main method to perform activation patching and generate text.
         
         Args:
@@ -682,7 +744,7 @@ class ActivationPatcher:
             zero_placeholder_mode: If True, detect '0' placeholders (manual) or template zeros and patch at those positions
             prompt_input: If string, treat as manual prompt with '0' markers; if tuple/list, treat as template-like object
             template_name: If provided, load template by name from interpretation_templates.py
-            placeholder_token_string: Unique string used to mark placeholder positions after rendering (default '<eos>')
+            placeholder_token_string: Unique string used to mark placeholder positions after rendering (default '0')
             overlay_strength: Strength of activation overlay (0.0 = no effect, 1.0 = full effect)
             replacing_mode: 'normalized' (weighted blend), 'addition' (additive), or 'direct' (full replacement)
             normalize_magnitudes: Whether to normalize activation magnitudes to match original scale (SelfIE-style)
@@ -726,10 +788,34 @@ class ActivationPatcher:
             else:
                 raise ValueError("Unsupported prompt_input type for zero_placeholder_mode. Use str or tuple/list.")
 
-            clean_tokens = self.model.to_tokens(clean_text)
-            corrupted_tokens = self.model.to_tokens(full_corrupted_text)
+            # If overlay is 0, generate baseline without placeholders & without hooks
+            if overlay_strength == 0.0:
+                baseline_text = self._remove_placeholder_markers(full_corrupted_text, placeholder_token_string)
+                formatted_corrupted = self._apply_chat_template_text(baseline_text, add_generation_prompt=True) if (use_chat_template and self._should_use_chat_template()) else baseline_text
+                corrupted_tokens = self.model.to_tokens(formatted_corrupted, prepend_bos=False)
+                try:
+                    generated_tokens = self.model.generate(
+                        corrupted_tokens,
+                        max_new_tokens=max_new_tokens,
+                        **{"temperature": 0.7, "do_sample": True, **generate_kwargs}
+                    )
+                    generated_text = self.model.to_string(generated_tokens[0])
+                    logits = self.model(corrupted_tokens)
+                    last_token_logits = logits[0, -1, :]
+                    predicted_token_id = torch.argmax(last_token_logits).item()
+                    predicted_token_str = self.model.to_string([predicted_token_id])
+                    return predicted_token_str, generated_text
+                finally:
+                    self.model.reset_hooks()
 
-            # Find placeholder token positions
+            # Apply chat template formatting before tokenization
+            formatted_clean = self._apply_chat_template_text(clean_text, add_generation_prompt=False) if (use_chat_template and self._should_use_chat_template()) else clean_text
+            formatted_corrupted = self._apply_chat_template_text(full_corrupted_text, add_generation_prompt=True) if (use_chat_template and self._should_use_chat_template()) else full_corrupted_text
+
+            clean_tokens = self.model.to_tokens(formatted_clean, prepend_bos=False)
+            corrupted_tokens = self.model.to_tokens(formatted_corrupted, prepend_bos=False)
+
+            # Find placeholder token positions after chat formatting
             patch_positions = self._find_placeholder_token_positions(
                 corrupted_tokens, placeholder_token_string
             )
@@ -737,10 +823,36 @@ class ActivationPatcher:
             if not patch_positions:
                 print("Warning: No placeholder positions found in the rendered prompt. Nothing to patch.")
         else:
-            clean_tokens, corrupted_tokens, num_placeholders = self.prepare_texts(
-                clean_text, corrupted_text, num_placeholder_tokens, bos_token
-            )
-            patch_positions = list(range(num_placeholders))
+            # Build corrupted prompt with explicit placeholder sequence in the user content
+            placeholder_sequence = " ".join([placeholder_token_string] * num_placeholder_tokens)
+            full_corrupted_text = f"{placeholder_sequence} {corrupted_text}"
+
+            # If overlay is 0, generate baseline without placeholders & without hooks
+            if overlay_strength == 0.0:
+                formatted_corrupted = self._apply_chat_template_text(corrupted_text, add_generation_prompt=True) if (use_chat_template and self._should_use_chat_template()) else corrupted_text
+                corrupted_tokens = self.model.to_tokens(formatted_corrupted, prepend_bos=False)
+                try:
+                    generated_tokens = self.model.generate(
+                        corrupted_tokens,
+                        max_new_tokens=max_new_tokens,
+                        **{"temperature": 0.7, "do_sample": True, **generate_kwargs}
+                    )
+                    generated_text = self.model.to_string(generated_tokens[0])
+                    logits = self.model(corrupted_tokens)
+                    last_token_logits = logits[0, -1, :]
+                    predicted_token_id = torch.argmax(last_token_logits).item()
+                    predicted_token_str = self.model.to_string([predicted_token_id])
+                    return predicted_token_str, generated_text
+                finally:
+                    self.model.reset_hooks()
+
+            formatted_clean = self._apply_chat_template_text(clean_text, add_generation_prompt=False) if (use_chat_template and self._should_use_chat_template()) else clean_text
+            formatted_corrupted = self._apply_chat_template_text(full_corrupted_text, add_generation_prompt=True) if (use_chat_template and self._should_use_chat_template()) else full_corrupted_text
+
+            clean_tokens = self.model.to_tokens(formatted_clean, prepend_bos=False)
+            corrupted_tokens = self.model.to_tokens(formatted_corrupted, prepend_bos=False)
+            # Detect placeholder positions after tokenization
+            patch_positions = self._find_placeholder_token_positions(corrupted_tokens, placeholder_token_string)
         
         print(f"Clean text: {clean_text}")
         print(f"Corrupted text: {self.model.to_string(corrupted_tokens[0])}")
@@ -755,7 +867,7 @@ class ActivationPatcher:
         print(f"Patch layers: {patch_layers}")
         
         # For each capture-patch layer pair
-        for capture_layer in capture_layers:
+        for capture_layer in tqdm(capture_layers, desc="Processing capture layers", leave=False):
             activation_vectors, positions_found, _ = self.extract_activations_by_strategy(
                 clean_cache, clean_tokens, capture_layer, 
                 token_selection_strategy, target_words, num_strategy_tokens
@@ -768,7 +880,7 @@ class ActivationPatcher:
             all_activation_vectors.extend(activation_vectors)
             
             # Create hooks for each patch layer using activations from this capture layer
-            for patch_layer in patch_layers:
+            for patch_layer in tqdm(patch_layers, desc="Creating hooks for patch layers", leave=False):
                 patch_activation_name = utils.get_act_name("resid_post", patch_layer)
                 
                 local_patch_positions = patch_positions
@@ -805,11 +917,12 @@ class ActivationPatcher:
             self.model.add_hook(hook_name, hook_fn)
         
         try:
+            default_generate_kwargs = {"temperature": 0.7, "do_sample": True, "freq_penalty": 1.1}
+            merged_generate_kwargs = {**default_generate_kwargs, **generate_kwargs}
             generated_tokens = self.model.generate(
                 corrupted_tokens,
                 max_new_tokens=max_new_tokens,
-                temperature=0.7,
-                do_sample=True
+                **merged_generate_kwargs
             )
         finally:
             # Always reset hooks after generation
@@ -825,11 +938,11 @@ class ActivationPatcher:
         print(f"Loaded {len(patterns)} patterns from dataset")
         print("="*80)
         
-        for i in range(min(num_samples, len(patterns))):
+        for i in tqdm(range(min(num_samples, len(patterns))), desc="Running experiments"):
             pattern = patterns[i]
             
-            print(f"\n--- Experiment {i+1}/{num_samples} ---")
-            print(f"Pattern: {pattern['cognitive_pattern_name']}")
+            tqdm.write(f"\n--- Experiment {i+1}/{num_samples} ---")
+            tqdm.write(f"Pattern: {pattern['cognitive_pattern_name']}")
             
             clean_text = pattern['positive_thought_pattern']
             
@@ -843,9 +956,9 @@ class ActivationPatcher:
             
             target_words = self._extract_key_words(clean_text)
             
-            print(f"Clean text (truncated): {clean_text[:100]}...")
-            print(f"Corrupted prompt: {corrupted_text}")
-            print(f"Target words for patching: {target_words}")
+            tqdm.write(f"Clean text (truncated): {clean_text[:100]}...")
+            tqdm.write(f"Corrupted prompt: {corrupted_text}")
+            tqdm.write(f"Target words for patching: {target_words}")
             
             try:
                 predicted_token, generated_text = self.patch_and_generate(
@@ -854,14 +967,14 @@ class ActivationPatcher:
                 )
                 
                 if generated_text:
-                    print(f"\n--- Generated Text ---")
-                    print(generated_text)
-                    print("="*80)
+                    tqdm.write(f"\n--- Generated Text ---")
+                    tqdm.write(generated_text)
+                    tqdm.write("="*80)
                 else:
-                    print("Failed to generate text for this sample")
+                    tqdm.write("Failed to generate text for this sample")
                     
             except Exception as e:
-                print(f"Error in experiment {i+1}: {e}")
+                tqdm.write(f"Error in experiment {i+1}: {e}")
                 continue
     
     def _extract_key_words(self, text):
