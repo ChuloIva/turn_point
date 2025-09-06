@@ -80,7 +80,18 @@ class ActivationPatcher:
         
         try:
             print(f"Loading model: {model_name} on device: {device}")
-            self.model = HookedTransformer.from_pretrained_no_processing(model_name, device=device, dtype="float16", torch_dtype=torch.float16)
+            self.model = HookedTransformer.from_pretrained_no_processing(
+                model_name,
+                device=device,
+                dtype="float16",
+                torch_dtype=torch.float16,
+                center_writing_weights=False,
+                fold_value_biases=False,
+                fold_ln=False,
+                center_unembed=False,
+                default_padding_side="left",
+                default_prepend_bos=False,
+            )
             self.model.eval()
             self.model_name = model_name
             self.model_config = self.SUPPORTED_MODELS.get(model_name, {"family": "unknown", "size": "unknown"})

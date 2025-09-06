@@ -1,8 +1,8 @@
 # Interpretation Templates for Llama Format
 INTERPRETATION_TEMPLATES = {
     "cognitive_pattern": (
-        0, 0, 0,
-        "The following is a summary of the cognitive pattern:"
+        0, 0, 0, 0, 0,
+        "The following is a summary of the previous:"
     ),
     "emotional_state": (
         0, 0, 0, 0, 0,
