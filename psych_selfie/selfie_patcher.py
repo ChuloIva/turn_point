@@ -18,6 +18,9 @@ from enum import Enum
 import warnings
 import importlib.util
 
+# Import multi-text aggregation functionality
+from multi_text_aggregation import MultiTextActivationExtractor, AggregationStrategy
+
 # Add the selfie library to path
 selfie_path = os.path.join(os.path.dirname(__file__), '..', 'third_party', 'selfie')
 sys.path.insert(0, selfie_path)
@@ -77,6 +80,7 @@ class SelfIEPatcher:
         self.model = None
         self.tokenizer = None
         self.model_config = {}
+        self.multi_text_extractor = None  # Initialize after model loading
         
         # Default interpretation templates
         self.interpretation_templates = {
@@ -132,6 +136,11 @@ class SelfIEPatcher:
             print(f"  - Layers: {self.model_config['layers']}")
             print(f"  - Device: {next(self.model.parameters()).device}")
             print(f"  - Vocab size: {len(self.tokenizer)}")
+            
+            # Initialize multi-text extractor
+            self.multi_text_extractor = MultiTextActivationExtractor(
+                self.model, self.tokenizer, self.device
+            )
             
         except Exception as e:
             raise RuntimeError(f"Failed to load model {self.model_name}: {e}")
@@ -300,13 +309,161 @@ class SelfIEPatcher:
         """
         raise NotImplementedError("Reinforcement control not yet implemented")
     
-    def batch_interpret_patterns(self, patterns: List[Dict], batch_size: int = 4):
+    def batch_interpret_patterns(
+        self, 
+        patterns: List[Dict], 
+        text_type: str = "negative",
+        aggregation_strategy: AggregationStrategy = AggregationStrategy.ATTENTION_WEIGHTED,
+        layers_to_interpret: List[int] = None,
+        interpretation_template: str = 'cognitive_pattern',
+        max_new_tokens: int = 30,
+        batch_size: int = 2,
+        k: int = 1
+    ) -> pd.DataFrame:
         """
-        Placeholder for batch processing of cognitive patterns.
+        Process multiple cognitive patterns and aggregate their activations for interpretation.
         
-        TODO: Implement efficient batch processing of multiple cognitive patterns
+        This method extracts activations from multiple text examples, aggregates them using 
+        advanced semantic preservation techniques, then generates interpretations.
+        
+        Args:
+            patterns: List of cognitive pattern dictionaries
+            text_type: Which text variant to use ("positive", "negative", "transition")
+            aggregation_strategy: How to aggregate activations across patterns
+            layers_to_interpret: Which layers to extract from
+            interpretation_template: Template for interpretation prompt
+            max_new_tokens: Maximum tokens for interpretation
+            batch_size: Batch size for processing interpretations
+            k: Layer to insert aggregated activations into
+            
+        Returns:
+            DataFrame with aggregated interpretation results
         """
-        raise NotImplementedError("Batch pattern interpretation not yet implemented")
+        if layers_to_interpret is None:
+            layers_to_interpret = [-1]  # Default to last layer
+            
+        # Import text extraction utility
+        try:
+            from activation_patcher import ActivationPatcher
+            get_pattern_text = ActivationPatcher.get_pattern_text
+        except ImportError:
+            raise ImportError("Could not import pattern text utilities")
+        
+        # Extract texts from patterns
+        texts = []
+        pattern_names = []
+        for pattern in patterns:
+            try:
+                text = get_pattern_text(pattern, text_type)
+                texts.append(text)
+                pattern_names.append(pattern.get('cognitive_pattern_name', 'Unknown'))
+            except Exception as e:
+                print(f"Warning: Could not extract text from pattern: {e}")
+                continue
+        
+        if not texts:
+            raise ValueError("No valid texts could be extracted from patterns")
+            
+        print(f"🔄 Processing {len(texts)} patterns with {aggregation_strategy.value} aggregation")
+        print(f"📝 Text type: {text_type}")
+        print(f"🏗️ Layers: {layers_to_interpret}")
+        print(f"🎯 Aggregation: {aggregation_strategy.value}")
+        
+        # Extract and aggregate activations across all texts
+        aggregated_activations = self.multi_text_extractor.extract_multi_text_activations(
+            texts=texts,
+            layers_to_extract=layers_to_interpret,
+            token_positions=None,  # Use default (last few tokens)
+            aggregation_strategy=aggregation_strategy
+        )
+        
+        print(f"✓ Extracted and aggregated {len(aggregated_activations)} activation combinations")
+        
+        # Create interpretation prompt
+        if interpretation_template in self.interpretation_templates:
+            template_tuple = self.interpretation_templates[interpretation_template]
+        else:
+            template_tuple = ("[INST]", 0, 0, 0, 0, 0, f"[/INST] {interpretation_template}")
+            
+        from selfie.interpret import InterpretationPrompt, generate_interpret
+        interpretation_prompt = InterpretationPrompt(self.tokenizer, template_tuple)
+        
+        # Prepare interpretation tasks using aggregated activations
+        all_insert_infos = []
+        interpretation_df = {
+            'prompt': [],
+            'interpretation': [],
+            'layer': [],
+            'token': [],
+            'token_decoded': [],
+            'aggregation_strategy': [],
+            'num_patterns': [],
+            'pattern_names': []
+        }
+        
+        for (retrieve_layer, retrieve_token), aggregated_activation in aggregated_activations.items():
+            insert_info = {}
+            insert_info['replacing_mode'] = 'normalized'
+            insert_info['overlay_strength'] = 1
+            insert_info['retrieve_layer'] = retrieve_layer
+            insert_info['retrieve_token'] = retrieve_token
+            
+            # Insert aggregated activation at specified layer k
+            for layer_idx, layer in enumerate(self.model.model.layers):
+                if layer_idx == k:
+                    insert_locations = interpretation_prompt.insert_locations
+                    # Use aggregated activation instead of single text activation
+                    insert_info[layer_idx] = (
+                        insert_locations, 
+                        aggregated_activation.unsqueeze(0).repeat(1, len(insert_locations), 1)
+                    )
+            all_insert_infos.append(insert_info)
+        
+        # Generate interpretations in batches
+        from tqdm import tqdm
+        
+        for batch_start_idx in tqdm(range(0, len(all_insert_infos), batch_size), 
+                                  desc="Generating interpretations"):
+            with torch.no_grad():
+                batch_insert_infos = all_insert_infos[batch_start_idx:min(batch_start_idx+batch_size, len(all_insert_infos))]
+                
+                # Create batched interpretation prompts
+                batched_interpretation_prompt_model_inputs = self.tokenizer(
+                    [interpretation_prompt.interpretation_prompt] * len(batch_insert_infos), 
+                    return_tensors="pt"
+                ).to(self.device)
+                
+                repeat_prompt_n_tokens = interpretation_prompt.interpretation_prompt_model_inputs['input_ids'].shape[-1]
+                
+                # Generate interpretations with aggregated activations
+                output = generate_interpret(
+                    **batched_interpretation_prompt_model_inputs, 
+                    model=self.model, 
+                    max_new_tokens=max_new_tokens, 
+                    insert_info=batch_insert_infos, 
+                    pad_token_id=self.tokenizer.eos_token_id, 
+                    output_attentions=False
+                )
+                
+                # Decode interpretations
+                cropped_interpretation_tokens = output[:, repeat_prompt_n_tokens:]
+                cropped_interpretation = self.tokenizer.batch_decode(
+                    cropped_interpretation_tokens, skip_special_tokens=True
+                )
+                
+                # Store results
+                for i, interpretation in enumerate(cropped_interpretation):
+                    interpretation_df['prompt'].append(f"Aggregated from {len(texts)} patterns")
+                    interpretation_df['interpretation'].append(interpretation.strip())
+                    interpretation_df['layer'].append(batch_insert_infos[i]['retrieve_layer'])
+                    interpretation_df['token'].append(batch_insert_infos[i]['retrieve_token'])
+                    interpretation_df['token_decoded'].append(f"aggregated_token_{batch_insert_infos[i]['retrieve_token']}")
+                    interpretation_df['aggregation_strategy'].append(aggregation_strategy.value)
+                    interpretation_df['num_patterns'].append(len(texts))
+                    interpretation_df['pattern_names'].append("; ".join(pattern_names[:5]))  # First 5 names
+        
+        print(f"🎊 Generated {len(interpretation_df['interpretation'])} aggregated interpretations")
+        return pd.DataFrame(interpretation_df)
     
     def visualize_interpretations(self, results: pd.DataFrame):
         """
