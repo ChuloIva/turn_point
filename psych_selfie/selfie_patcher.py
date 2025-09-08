@@ -174,7 +174,7 @@ class SelfIEPatcher:
             layers_to_interpret = [-1]  # Default to last layer
             
         # Tokenize input to determine valid positions
-        inputs = self.tokenizer(text, return_tensors="pt")
+        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
         seq_len = inputs['input_ids'].shape[-1]
         
         if token_positions is None:
@@ -269,7 +269,7 @@ class SelfIEPatcher:
     
     def _get_token_positions(self, text: str, strategy: TokenSelectionStrategy) -> List[int]:
         """Get token positions based on selection strategy"""
-        inputs = self.tokenizer(text, return_tensors="pt")
+        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
         seq_len = inputs['input_ids'].shape[-1]
         
         if strategy == TokenSelectionStrategy.LAST_TOKEN:

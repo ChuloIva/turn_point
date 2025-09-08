@@ -79,7 +79,7 @@ def interpret(original_prompt = None,
 
             repeat_prompt_n_tokens = interpretation_prompt_model_inputs['input_ids'].shape[-1]
             
-            batched_interpretation_prompt_model_inputs = tokenizer([interpretation_prompt.interpretation_prompt] * len(batch_insert_infos), return_tensors="pt")
+            batched_interpretation_prompt_model_inputs = tokenizer([interpretation_prompt.interpretation_prompt] * len(batch_insert_infos), return_tensors="pt").to(model.device)
             output = generate_interpret(**batched_interpretation_prompt_model_inputs, model=model, max_new_tokens=max_new_tokens, insert_info=batch_insert_infos, pad_token_id=tokenizer.eos_token_id, output_attentions = False)
             
             cropped_interpretation_tokens = output[:,repeat_prompt_n_tokens:]
@@ -151,7 +151,7 @@ def interpret_vectors(vecs=None, model=None, interpretation_prompt=None, tokeniz
         batch_insert_infos.append(insert_info)
 
         if len(batch_insert_infos) == bs or vec_idx == len(vecs) - 1:
-            batched_interpretation_prompt_model_inputs = tokenizer([interpretation_prompt.interpretation_prompt] * len(batch_insert_infos), return_tensors="pt").to('cuda:0')
+            batched_interpretation_prompt_model_inputs = tokenizer([interpretation_prompt.interpretation_prompt] * len(batch_insert_infos), return_tensors="pt").to(model.device)
             repeat_prompt_n_tokens = interpretation_prompt_model_inputs['input_ids'].shape[-1]
             output = generate_interpret(**batched_interpretation_prompt_model_inputs, model=model, max_new_tokens=max_new_tokens, insert_info=batch_insert_infos, pad_token_id=tokenizer.eos_token_id, output_attentions = False)
             
