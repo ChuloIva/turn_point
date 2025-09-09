@@ -68,15 +68,16 @@ class InterpretationPrompt:
         return f"InterpretationPrompt('{self.interpretation_prompt}', insert_at={self.insert_locations})"
     
     @classmethod
-    def create_simple(cls, tokenizer, prefix: str = "", suffix: str = "", placeholder_token: str = "_"):
+    def create_simple(cls, tokenizer, prefix: str = "", suffix: str = "", placeholder_token: str = "_", num_placeholders: int = 5):
         """
-        Create a simple interpretation prompt with a single placeholder.
+        Create a simple interpretation prompt with multiple placeholders (default: 5).
         
         Args:
             tokenizer: Tokenizer to use
-            prefix: Text before the placeholder
-            suffix: Text after the placeholder  
-            placeholder_token: Token to use as placeholder
+            prefix: Text before the placeholders
+            suffix: Text after the placeholders  
+            placeholder_token: Token to use as placeholder (currently informational)
+            num_placeholders: Number of placeholders to insert (default 5)
             
         Returns:
             InterpretationPrompt instance
@@ -84,7 +85,8 @@ class InterpretationPrompt:
         sequence = []
         if prefix:
             sequence.append(prefix)
-        sequence.append(None)  # Placeholder
+        for _ in range(num_placeholders):
+            sequence.append(None)  # Placeholder(s)
         if suffix:
             sequence.append(suffix)
             
@@ -103,8 +105,8 @@ class InterpretationPrompt:
         """
         return cls.create_simple(
             tokenizer,
-            prefix="This represents the concept of ",
-            suffix=""
+            prefix="This ",
+            suffix="represents the concept of"
         )
     
     @classmethod  

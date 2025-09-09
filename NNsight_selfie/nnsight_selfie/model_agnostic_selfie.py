@@ -221,7 +221,7 @@ class ModelAgnosticSelfie:
         original_prompt: str,
         interpretation_prompt: InterpretationPrompt,
         tokens_to_interpret: List[Tuple[int, int]],  # [(layer, token), ...]
-        injection_layer: int = 1,
+        injection_layer: int = 3,
         batch_size: int = 8,
         max_new_tokens: int = 30,
         overlay_strength: float = 1.0,
@@ -312,7 +312,7 @@ class ModelAgnosticSelfie:
         self,
         vectors: List[torch.Tensor],
         interpretation_prompt: InterpretationPrompt,
-        injection_layer: int = 1,
+        injection_layer: int = 3,
         batch_size: int = 8,
         max_new_tokens: int = 30,
         overlay_strength: float = 1.0

@@ -111,7 +111,7 @@ def interpret_vectors(
     model,
     vectors: List[torch.Tensor],
     interpretation_prompt,
-    injection_layer: int = 1,
+    injection_layer: int = 3,
     batch_size: int = 8,
     max_new_tokens: int = 30,
     overlay_strength: float = 1.0
