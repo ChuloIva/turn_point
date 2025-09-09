@@ -9,7 +9,15 @@ import importlib.util
 import random
 from tqdm import tqdm
 
-sys.path.append('/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens')
+# Add TransformerLens path with fallback
+transformerlens_paths = [
+    '/Users/ivanculo/Desktop/Projects/turn_point/third_party/TransformerLens',  # macOS
+    '/home/koalacrown/Desktop/Code/Projects/turnaround/turn_point/third_party/TransformerLens'  # Linux
+]
+for path in transformerlens_paths:
+    if os.path.exists(path):
+        sys.path.append(path)
+        break
 
 from transformer_lens import HookedTransformer
 import transformer_lens.utils as utils
@@ -187,7 +195,19 @@ class ActivationPatcher:
     # -------------------------
     def _load_interpretation_templates(self):
         """Load INTERPRETATION_TEMPLATES from interpretation_templates.py regardless of package state."""
-        templates_path = "/Users/ivanculo/Desktop/Projects/turn_point/manual_activation_patching/interpretation_templates.py"
+        # Try multiple paths with fallback
+        templates_paths = [
+            "/Users/ivanculo/Desktop/Projects/turn_point/manual_activation_patching/interpretation_templates.py",  # macOS
+            "/home/koalacrown/Desktop/Code/Projects/turnaround/turn_point/manual_activation_patching/interpretation_templates.py"  # Linux
+        ]
+        templates_path = None
+        for path in templates_paths:
+            if os.path.exists(path):
+                templates_path = path
+                break
+        if templates_path is None:
+            print(f"Could not find interpretation templates in any of the expected paths: {templates_paths}")
+            return {}
         try:
             spec = importlib.util.spec_from_file_location("interpretation_templates", templates_path)
             module = importlib.util.module_from_spec(spec)
@@ -944,7 +964,11 @@ class ActivationPatcher:
     
     def experiment_with_dataset(self, dataset_path, num_samples=3, max_new_tokens=60):
         """Run experiments using samples from the dataset."""
-        patterns = self.load_dataset(dataset_path)
+        if dataset_path is None:
+            # Use load_cognitive_patterns with fallback logic
+            patterns, _ = self.load_cognitive_patterns()
+        else:
+            patterns = self.load_dataset(dataset_path)
         
         print(f"Loaded {len(patterns)} patterns from dataset")
         print("="*80)
@@ -1038,18 +1062,32 @@ class ActivationPatcher:
 
     # Data loading and pattern utilities
     @staticmethod
-    def load_cognitive_patterns(dataset_path="/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl", 
+    def load_cognitive_patterns(dataset_path=None, 
                                max_examples_per_type=None):
         """Load the cognitive patterns dataset with all text variants (positive, negative, transition).
         
         Args:
-            dataset_path: Path to the JSONL dataset file
+            dataset_path: Path to the JSONL dataset file (None = use default paths with fallback)
             max_examples_per_type: Maximum number of examples to load per cognitive pattern type (None = load all)
         
         Returns:
             patterns: List of all patterns
             pattern_types: Dictionary grouping patterns by type
         """
+        # Use fallback paths if dataset_path is None
+        if dataset_path is None:
+            default_paths = [
+                "/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl",  # macOS
+                "/home/koalacrown/Desktop/Code/Projects/turnaround/turn_point/data/final/positive_patterns.jsonl"  # Linux
+            ]
+            dataset_path = None
+            for path in default_paths:
+                if os.path.exists(path):
+                    dataset_path = path
+                    break
+            if dataset_path is None:
+                raise FileNotFoundError(f"Could not find dataset file in any of the expected paths: {default_paths}")
+        
         all_patterns = []
         all_pattern_types = {}
         
@@ -1164,9 +1202,19 @@ class ActivationPatcher:
     @staticmethod
     def get_template(template_name):
         """Get an interpretation template by name."""
-        # Load templates dynamically
+        # Load templates dynamically with fallback paths
         try:
-            templates_path = "/Users/ivanculo/Desktop/Projects/turn_point/manual_activation_patching/interpretation_templates.py"
+            templates_paths = [
+                "/Users/ivanculo/Desktop/Projects/turn_point/manual_activation_patching/interpretation_templates.py",  # macOS
+                "/home/koalacrown/Desktop/Code/Projects/turnaround/turn_point/manual_activation_patching/interpretation_templates.py"  # Linux
+            ]
+            templates_path = None
+            for path in templates_paths:
+                if os.path.exists(path):
+                    templates_path = path
+                    break
+            if templates_path is None:
+                raise FileNotFoundError(f"Could not find interpretation templates in any of the expected paths: {templates_paths}")
             spec = importlib.util.spec_from_file_location("interpretation_templates", templates_path)
             module = importlib.util.module_from_spec(spec)
             assert spec and spec.loader is not None
@@ -1266,6 +1314,7 @@ class ActivationPatcher:
 if __name__ == "__main__":
     patcher = ActivationPatcher("gpt2-small")
     
-    dataset_path = "/Users/ivanculo/Desktop/Projects/turn_point/data/final/positive_patterns.jsonl"
+    # Use default path with fallback (None will trigger the fallback logic)
+    dataset_path = None
     
     patcher.experiment_with_dataset(dataset_path, num_samples=3, max_new_tokens=60)

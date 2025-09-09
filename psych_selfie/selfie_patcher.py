@@ -34,7 +34,7 @@ try:
     import huggingface_hub
     if not hasattr(huggingface_hub, 'split_torch_state_dict_into_shards'):
         def split_torch_state_dict_into_shards(*args, **kwargs):
-            raise NotImplementedError('This function is not available in huggingface_hub 0.17.3')
+            raise NotImplementedError('This function is not available in older huggingface_hub versions')
         huggingface_hub.split_torch_state_dict_into_shards = split_torch_state_dict_into_shards
 except Exception:
     pass  # Ignore if patching fails
