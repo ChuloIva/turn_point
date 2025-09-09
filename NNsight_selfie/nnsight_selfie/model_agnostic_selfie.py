@@ -17,6 +17,11 @@ try:
 except ImportError:
     raise ImportError("NNsight is required. Install it with: pip install nnsight")
 
+try:
+    from transformers import BitsAndBytesConfig
+except ImportError:
+    BitsAndBytesConfig = None
+
 from .interpretation_prompt import InterpretationPrompt
 from .utils import get_model_layers, get_layer_by_path
 from .device_utils import get_optimal_device, get_device_map, ensure_device_compatibility
@@ -59,14 +64,24 @@ class ModelAgnosticSelfie:
         self.device = device
         self.model_name = model_name_or_path
         
-        # Initialize model with device-aware settings
+        # Initialize model with device-aware settings and quantization
         print(f"Initializing model on device: {device}")
+        
+        # Setup quantization config (only for CUDA devices)
+        quantization_config = None
+        if BitsAndBytesConfig is not None and device == "cuda":
+            quantization_config = BitsAndBytesConfig(
+                load_in_8bit=True,
+                bnb_8bit_compute_dtype=torch.bfloat16
+            )
         
         try:
             self.model = nnsight.LanguageModel(
                 model_name_or_path,
                 tokenizer=tokenizer,
                 device_map=device_map,
+                quantization_config=quantization_config,
+                torch_dtype=torch.bfloat16,
                 **kwargs
             )
             
@@ -91,8 +106,24 @@ class ModelAgnosticSelfie:
             else:
                 raise e
         
+        self.model.eval()
         self.layer_paths = get_model_layers(self.model)
+        
+        # Filter out vision components for Gemma 3 4B models
+        if self._is_gemma_3_4b():
+            self.layer_paths = self._filter_vision_components(self.layer_paths)
+            print(f"Filtered out vision components for Gemma 3 4B model.")
+        
         print(f"Model loaded successfully with {len(self.layer_paths)} layers detected.")
+    
+    def _is_gemma_3_4b(self) -> bool:
+        """Check if the loaded model is Gemma 3 4B."""
+        model_name_lower = self.model_name.lower()
+        return "gemma" in model_name_lower and "3" in model_name_lower and "4b" in model_name_lower
+    
+    def _filter_vision_components(self, layer_paths: List[str]) -> List[str]:
+        """Filter out vision components from layer paths."""
+        return [path for path in layer_paths if 'vision_tower' not in path and 'vision_model' not in path]
     
     def _apply_mps_optimizations(self):
         """Apply MPS-specific optimizations and workarounds."""
