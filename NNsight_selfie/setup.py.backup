@@ -13,7 +13,7 @@ with open(readme_path, 'r', encoding='utf-8') as f:
 # Read version from __init__.py
 version = {}
 with open(os.path.join('nnsight_selfie', '__init__.py')) as f:
-    exec(f.read(), version)
+    exec(f.read(), {'__name__': '__main__'}, version)
 
 setup(
     name="nnsight-selfie",
