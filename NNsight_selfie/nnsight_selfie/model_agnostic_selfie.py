@@ -38,24 +38,70 @@ class ModelAgnosticSelfie:
     4. Compute relevancy scores for interpretations
     
     Args:
-        model_name_or_path: HuggingFace model identifier or path to local model
+        model_name_or_path: HuggingFace model identifier or path to local model (optional if model_instance is provided)
         tokenizer: Optional tokenizer (will be auto-loaded if not provided)
         device_map: Device mapping for model loading (default: "auto")
+        model_instance: Optional existing nnsight.LanguageModel instance to reuse
         **kwargs: Additional arguments passed to nnsight.LanguageModel
     """
     
     def __init__(
         self,
-        model_name_or_path: str,
+        model_name_or_path: Optional[str] = None,
         tokenizer=None,
         device_map: Optional[str] = None,
         device: Optional[str] = None,
+        model_instance=None,
         **kwargs
     ):
-        # Determine optimal device if not specified
-        if device is None:
-            device = get_optimal_device()
+        # Use existing model instance if provided
+        if model_instance is not None:
+            print("Using existing model instance...")
+            self.model = model_instance
+            self.device = str(model_instance.device) if hasattr(model_instance, 'device') else device or get_optimal_device()
+            
+            # Set up tokenizer
+            if tokenizer is None:
+                self.tokenizer = self.model.tokenizer
+            else:
+                self.tokenizer = tokenizer
+                
+            # Set model name for potential Gemma filtering (try to get from model config)
+            if hasattr(model_instance, 'config') and hasattr(model_instance.config, '_name_or_path'):
+                self.model_name = model_instance.config._name_or_path
+            elif model_name_or_path:
+                self.model_name = model_name_or_path
+            else:
+                self.model_name = "unknown"
+                
+        else:
+            # Load new model instance
+            if model_name_or_path is None:
+                raise ValueError("Either model_name_or_path or model_instance must be provided")
+                
+            # Determine optimal device if not specified
+            if device is None:
+                device = get_optimal_device()
+            
+            self._load_new_model(model_name_or_path, tokenizer, device_map, device, **kwargs)
         
+        # Common post-processing for both new and existing models
+        self.model.eval()
+        self.layer_paths = get_model_layers(self.model)
+        
+        # Filter out vision components for Gemma 3 4B models
+        if hasattr(self, 'model_name') and self._is_gemma_3_4b():
+            self.layer_paths = self._filter_vision_components(self.layer_paths)
+            print(f"Filtered out vision components for Gemma 3 4B model.")
+        
+        print(f"Model loaded successfully with {len(self.layer_paths)} layers detected.")
+        
+        # Import DeviceManager here to avoid circular import issues
+        from .device_utils import DeviceManager
+        self.device_manager = DeviceManager()
+        
+    def _load_new_model(self, model_name_or_path, tokenizer, device_map, device, **kwargs):
+        """Load a new model instance."""
         # Get appropriate device mapping
         if device_map is None:
             device_map = get_device_map(device)
@@ -70,21 +116,27 @@ class ModelAgnosticSelfie:
         # Setup quantization config (only for CUDA devices)
         quantization_config = None
         # Check if quantization is explicitly disabled via kwargs
-        load_in_8bit = kwargs.pop('load_in_8bit', True)  # Default to True for backward compatibility
+        load_in_8bit = kwargs.pop('load_in_8bit', False)  # Default to False - no quantization
         if BitsAndBytesConfig is not None and device == "cuda" and load_in_8bit:
             quantization_config = BitsAndBytesConfig(
                 load_in_8bit=True,
                 bnb_8bit_compute_dtype=torch.bfloat16
             )
         
+        # Extract dtype from kwargs to avoid duplicate parameter
+        model_kwargs = kwargs.copy()
+        model_dtype = model_kwargs.pop('dtype', torch.bfloat16)
+        
         try:
+            
             self.model = nnsight.LanguageModel(
                 model_name_or_path,
                 tokenizer=tokenizer,
                 device_map=device_map,
                 quantization_config=quantization_config,
-                torch_dtype=torch.bfloat16,
-                **kwargs
+                dtype=model_dtype,
+                low_cpu_mem_usage=False,  # Avoid meta device issues
+                **model_kwargs
             )
             
             # Apply device-specific optimizations if needed
@@ -103,20 +155,12 @@ class ModelAgnosticSelfie:
                     model_name_or_path,
                     tokenizer=tokenizer,
                     device_map="cpu",
-                    **kwargs
+                    **model_kwargs
                 )
             else:
                 raise e
         
-        self.model.eval()
-        self.layer_paths = get_model_layers(self.model)
-        
-        # Filter out vision components for Gemma 3 4B models
-        if self._is_gemma_3_4b():
-            self.layer_paths = self._filter_vision_components(self.layer_paths)
-            print(f"Filtered out vision components for Gemma 3 4B model.")
-        
-        print(f"Model loaded successfully with {len(self.layer_paths)} layers detected.")
+        # Post-processing will be done in __init__
     
     def _is_gemma_3_4b(self) -> bool:
         """Check if the loaded model is Gemma 3 4B."""
