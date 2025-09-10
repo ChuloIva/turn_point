@@ -12,6 +12,14 @@ from .repeng import (
     RepengInterpretationAnalyzer, SteeringInterpretationResult,
     create_interpretation_comparison_plot, quick_steering_interpretation_analysis
 )
+from .repeng.pipeline import (
+    compute_pattern_steering_vectors,
+    inject_with_interpretation_prompt,
+)
+from .repeng.patterns_dataset import (
+    build_all_datasets,
+    list_patterns,
+)
 
 __version__ = "0.1.0"
 __all__ = [

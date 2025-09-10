@@ -104,11 +104,23 @@ class RepengActivationExtractor:
             for layer_idx in self.layer_indices:
                 all_activations[layer_idx].extend(batch_activations[layer_idx])
         
-        # Convert lists to tensors
+        # Convert lists to tensors, skipping empties to avoid RuntimeError
+        empty_layers = []
         for layer_idx in self.layer_indices:
+            if len(all_activations[layer_idx]) == 0:
+                empty_layers.append(layer_idx)
+                continue
             all_activations[layer_idx] = torch.stack(all_activations[layer_idx])
-        
-        print(f"Extracted activations for {len(inputs)} inputs across {len(self.layer_indices)} layers")
+
+        # Remove any layers that produced no activations
+        for layer_idx in empty_layers:
+            all_activations.pop(layer_idx, None)
+            print(f"Warning: No activations collected for layer {layer_idx}; skipping this layer.")
+
+        if not all_activations:
+            raise RuntimeError("No activations collected for any layer. Verify layer paths and tracing.")
+
+        print(f"Extracted activations for {len(inputs)} inputs across {len(all_activations)} layers")
         return all_activations
     
     def _extract_batch_activations(self, batch: List[str]) -> Dict[int, List[torch.Tensor]]:
@@ -128,18 +140,17 @@ class RepengActivationExtractor:
         # Initialize layer_outputs outside the context
         layer_outputs = {}
         
-        # Use NNsight's trace for forward pass (not generate)
-        with torch.no_grad():
-            with self.model.trace(batch) as tracer:
-                # Store layer outputs
-                for layer_idx in self.layer_indices:
-                    try:
-                        layer = get_layer_by_path(self.model, self.layer_paths[layer_idx])
-                        # Save the hidden states from this layer
-                        layer_outputs[layer_idx] = layer.output[0].save()
-                    except Exception as e:
-                        print(f"Warning: Could not access layer {layer_idx} ({self.layer_paths[layer_idx]}): {e}")
-                        continue
+        # Use generation context to ensure NNsight captures intermediate layer outputs
+        with self.model.generate(batch, max_new_tokens=1) as tracer:
+            # Store layer outputs
+            for layer_idx in self.layer_indices:
+                try:
+                    layer = get_layer_by_path(self.model, self.layer_paths[layer_idx])
+                    # Save the hidden states from this layer
+                    layer_outputs[layer_idx] = layer.output[0].save()
+                except Exception as e:
+                    print(f"Warning: Could not access layer {layer_idx} ({self.layer_paths[layer_idx]}): {e}")
+                    continue
         
         # Check if we got any layer outputs
         if not layer_outputs:

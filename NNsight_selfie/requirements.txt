@@ -4,3 +4,4 @@ nnsight>=0.3.0
 tqdm
 numpy
 pandas
+scikit-learn
