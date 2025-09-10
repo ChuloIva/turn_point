@@ -124,58 +124,70 @@ class RepengActivationExtractor:
         return all_activations
     
     def _extract_batch_activations(self, batch: List[str]) -> Dict[int, List[torch.Tensor]]:
-        """Extract activations for a single batch."""
+        """Extract activations for a single batch with memory optimization."""
         batch_activations = {layer_idx: [] for layer_idx in self.layer_indices}
         
-        # Get attention mask first for finding last non-padding tokens
-        encoded_batch = self.tokenizer(
-            batch,
-            padding=True,
-            return_tensors="pt",
-            truncation=True,
-            max_length=512
-        )
-        attention_mask = encoded_batch['attention_mask']
-        
-        # Initialize layer_outputs outside the context
-        layer_outputs = {}
-        
-        # Use generation context to ensure NNsight captures intermediate layer outputs
-        with self.model.generate(batch, max_new_tokens=1) as tracer:
-            # Store layer outputs
-            for layer_idx in self.layer_indices:
-                try:
-                    layer = get_layer_by_path(self.model, self.layer_paths[layer_idx])
-                    # Save the hidden states from this layer
-                    layer_outputs[layer_idx] = layer.output[0].save()
-                except Exception as e:
-                    print(f"Warning: Could not access layer {layer_idx} ({self.layer_paths[layer_idx]}): {e}")
-                    continue
+        # Process each input individually to minimize memory usage
+        for input_text in batch:
+            # Clear MPS cache before each input
+            if hasattr(torch.mps, 'empty_cache'):
+                torch.mps.empty_cache()
+                
+            # Initialize layer_outputs for this single input
+            layer_outputs = {}
+            
+            # Use forward pass context to extract activations without generation
+            encoded_inputs = self.tokenizer(
+                [input_text],  # Single input only
+                padding=True,
+                return_tensors="pt",
+                truncation=True,
+                max_length=512
+            )
+            attention_mask = encoded_inputs['attention_mask']
+            
+            with self.model.trace([input_text]) as tracer:
+                # Store layer outputs
+                for layer_idx in self.layer_indices:
+                    try:
+                        layer = get_layer_by_path(self.model, self.layer_paths[layer_idx])
+                        # Save the hidden states from this layer
+                        layer_outputs[layer_idx] = layer.output[0].save()
+                    except Exception as e:
+                        print(f"Warning: Could not access layer {layer_idx} ({self.layer_paths[layer_idx]}): {e}")
+                        continue
+            
+            # Process this single input's activations immediately
+            self._process_single_input_activations(layer_outputs, attention_mask, 0, batch_activations)
+            
+            # Clear layer outputs to free memory
+            del layer_outputs
+            
+        return batch_activations
+    
+    def _process_single_input_activations(self, layer_outputs, attention_mask, input_idx, batch_activations):
+        """Process activations for a single input immediately."""
         
         # Check if we got any layer outputs
         if not layer_outputs:
             raise RuntimeError("Failed to extract any layer outputs. Check layer paths and model compatibility.")
         
-        # Extract last non-padding token activations
-        for i in range(len(batch)):
-            # Find last non-padding token position
-            last_non_padding_idx = self._find_last_non_padding_token(attention_mask[i])
-            
-            for layer_idx in self.layer_indices:
-                if layer_idx not in layer_outputs:
-                    continue
-                    
-                # Extract activation at last token position
-                try:
-                    activation = layer_outputs[layer_idx][i, last_non_padding_idx, :]
-                    # Ensure proper device placement
-                    activation = ensure_device_compatibility(activation, self.model.device)
-                    batch_activations[layer_idx].append(activation)
-                except Exception as e:
-                    print(f"Warning: Could not extract activation for layer {layer_idx}, sample {i}: {e}")
-                    continue
+        # Find last non-padding token position for this single input
+        last_non_padding_idx = self._find_last_non_padding_token(attention_mask[input_idx])
         
-        return batch_activations
+        for layer_idx in self.layer_indices:
+            if layer_idx not in layer_outputs:
+                continue
+                
+            # Extract activation at last token position
+            try:
+                activation = layer_outputs[layer_idx][input_idx, last_non_padding_idx, :]
+                # Ensure proper device placement
+                activation = ensure_device_compatibility(activation, self.model.device)
+                batch_activations[layer_idx].append(activation)
+            except Exception as e:
+                print(f"Warning: Could not extract activation for layer {layer_idx}, sample {input_idx}: {e}")
+                continue
     
     def _find_last_non_padding_token(self, attention_mask: torch.Tensor) -> int:
         """Find the index of the last non-padding token."""

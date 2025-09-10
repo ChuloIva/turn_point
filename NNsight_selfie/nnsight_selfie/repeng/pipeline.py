@@ -45,9 +45,10 @@ def compute_pattern_steering_vectors(
     pair_types: Optional[List[PairType]] = None,
     method: MethodType = "pca_diff",
     layer_range: Optional[Tuple[int, int]] = None,
-    batch_size: int = 16,
+    batch_size: int = 1,
     whiten: bool = False,
     show_progress: bool = True,
+    max_patterns: Optional[int] = None,
 ) -> List[PatternSteeringBundle]:
     """
     For each cognitive pattern and requested pairing, compute multi-layer steering vectors.
@@ -61,11 +62,12 @@ def compute_pattern_steering_vectors(
         batch_size: Activation extraction batch size
         whiten: Whether to whiten PCA
         show_progress: Progress bars for extraction
+        max_patterns: Maximum number of patterns to process (for memory optimization)
 
     Returns:
         List of PatternSteeringBundle entries
     """
-    datasets_map = build_all_datasets(patterns_jsonl_path, pair_types)
+    datasets_map = build_all_datasets(patterns_jsonl_path, pair_types, max_patterns)
     extractor = RepengActivationExtractor(model, tokenizer)
     generator = RepengSteeringVectorGenerator(model_type=getattr(model, "model_name", "unknown"))
 
@@ -78,14 +80,35 @@ def compute_pattern_steering_vectors(
 
             # Extract activations in alternating order per repeng
             if layer_range is not None:
-                # Build alternating inputs manually to reuse layer_range API
+                # Build alternating inputs manually
                 alternating_inputs = []
                 for entry in dataset:
                     alternating_inputs.append(entry.positive)
                     alternating_inputs.append(entry.negative)
-                activations = extractor.extract_layer_range(
-                    alternating_inputs, start_layer=layer_range[0], end_layer=layer_range[1], batch_size=batch_size
-                )
+                
+                # Handle specific layer indices vs range
+                if hasattr(layer_range, '__iter__') and not isinstance(layer_range, range):
+                    # layer_range is a list of specific indices
+                    specific_layers = list(layer_range)
+                elif isinstance(layer_range, range):
+                    # Convert range to list of specific indices
+                    specific_layers = list(layer_range)
+                else:
+                    # Assume start/end format
+                    specific_layers = list(range(layer_range[0], layer_range[1] + 1))
+                
+                # Temporarily set extractor to use specific layers
+                original_indices = extractor.layer_indices
+                extractor.layer_indices = specific_layers
+                
+                try:
+                    activations = extractor.extract_last_token_activations(
+                        alternating_inputs, batch_size=batch_size, show_progress=show_progress
+                    )
+                finally:
+                    # Restore original indices
+                    extractor.layer_indices = original_indices
+                    
                 inputs_used = alternating_inputs
             else:
                 activations, inputs_used = extractor.extract_dataset_activations(

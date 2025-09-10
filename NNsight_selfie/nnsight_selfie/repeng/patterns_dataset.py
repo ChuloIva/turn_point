@@ -103,10 +103,16 @@ def build_dataset_for_pair(records: List[PatternRecord], pair_type: PairType) ->
 
 def build_all_datasets(
     path: str,
-    pair_types: Optional[List[PairType]] = None
+    pair_types: Optional[List[PairType]] = None,
+    max_patterns: Optional[int] = None
 ) -> Dict[str, Dict[PairType, List[DatasetEntry]]]:
     """
     Build datasets for all patterns and requested pairings.
+
+    Args:
+        path: Path to patterns JSONL file
+        pair_types: Which pair types to build
+        max_patterns: Maximum number of patterns to load (for memory optimization)
 
     Returns:
         Dict mapping pattern_name -> { pair_type -> dataset entries }
@@ -117,7 +123,13 @@ def build_all_datasets(
     pattern_to_records = load_positive_patterns_jsonl(path)
     out: Dict[str, Dict[PairType, List[DatasetEntry]]] = {}
 
-    for pattern_name, records in pattern_to_records.items():
+    # Limit patterns if specified
+    pattern_items = list(pattern_to_records.items())
+    if max_patterns is not None:
+        pattern_items = pattern_items[:max_patterns]
+        print(f"Limited to {len(pattern_items)} patterns for memory optimization")
+
+    for pattern_name, records in pattern_items:
         out[pattern_name] = {}
         for pt in pair_types:
             out[pattern_name][pt] = build_dataset_for_pair(records, pt)

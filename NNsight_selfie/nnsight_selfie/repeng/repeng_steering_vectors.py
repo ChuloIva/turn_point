@@ -89,7 +89,7 @@ class RepengSteeringVectorGenerator:
         
         for layer_idx, layer_activations in activations.items():
             # Convert to numpy for processing (bfloat16 -> float32 -> numpy)
-            h = layer_activations.cpu().float().numpy()
+            h = layer_activations.cpu().float().detach().numpy()
             
             if method == "pca_diff":
                 direction = self._generate_pca_diff_vector(h, whiten)
