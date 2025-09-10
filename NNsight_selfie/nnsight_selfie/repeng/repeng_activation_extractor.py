@@ -61,6 +61,14 @@ class RepengActivationExtractor:
         
         print(f"Initialized activation extractor for {len(self.layer_indices)} layers")
     
+    def _clear_device_cache(self):
+        """Clear device cache in a device-agnostic way"""
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+            torch.mps.empty_cache()
+        # CPU doesn't need explicit cache clearing
+    
     def _is_gemma_3_4b(self) -> bool:
         """Check if the loaded model is Gemma 3 4B."""
         if hasattr(self.model, 'model_name'):
@@ -129,9 +137,8 @@ class RepengActivationExtractor:
         
         # Process each input individually to minimize memory usage
         for input_text in batch:
-            # Clear MPS cache before each input
-            if hasattr(torch.mps, 'empty_cache'):
-                torch.mps.empty_cache()
+            # Clear device cache before each input (device-agnostic)
+            self._clear_device_cache()
                 
             # Initialize layer_outputs for this single input
             layer_outputs = {}
