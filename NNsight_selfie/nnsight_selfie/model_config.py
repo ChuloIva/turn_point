@@ -34,7 +34,7 @@ def configure_model_loading(
     model_name: str = "meta-llama/Meta-Llama-3.1-8B",
     remote: bool = True,
     n_examples: int = 2,
-    quantization: bool = True,
+    quantization: bool = False,  # Changed default to False for no quantization
     clear_output: bool = True
 ) -> LanguageModel:
     """
@@ -128,7 +128,7 @@ class ModelConfig:
         remote: bool = True,
         model_name: str = "meta-llama/Meta-Llama-3.1-8B", 
         n_examples: int = 2,
-        quantization: bool = True
+        quantization: bool = False  # Changed default to False for no quantization
     ):
         self.remote = remote
         self.model_name = model_name

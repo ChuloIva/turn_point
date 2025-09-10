@@ -69,7 +69,9 @@ class ModelAgnosticSelfie:
         
         # Setup quantization config (only for CUDA devices)
         quantization_config = None
-        if BitsAndBytesConfig is not None and device == "cuda":
+        # Check if quantization is explicitly disabled via kwargs
+        load_in_8bit = kwargs.pop('load_in_8bit', True)  # Default to True for backward compatibility
+        if BitsAndBytesConfig is not None and device == "cuda" and load_in_8bit:
             quantization_config = BitsAndBytesConfig(
                 load_in_8bit=True,
                 bnb_8bit_compute_dtype=torch.bfloat16
