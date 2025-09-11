@@ -185,6 +185,41 @@ class ModelAgnosticSelfie:
     def _ensure_tensor_device(self, tensor: torch.Tensor) -> torch.Tensor:
         """Ensure tensor is on the correct device."""
         return ensure_device_compatibility(tensor, self.device)
+    
+    def _should_use_chat_template(self) -> bool:
+        """Heuristically decide whether to use a chat template for the current model."""
+        tokenizer = getattr(self.model, 'tokenizer', None)
+        has_apply = hasattr(tokenizer, 'apply_chat_template')
+        model_name_lower = self.model_name.lower() if self.model_name else ""
+        is_instruct_family = any(name in model_name_lower for name in ['gemma', 'llama', 'mistral', 'qwen', 'phi'])
+        return bool(has_apply or is_instruct_family)
+    
+    def apply_chat_template(self, user_text: str, add_generation_prompt: bool = True) -> str:
+        """
+        Format a single-turn chat with the given user text using the model's chat template if available.
+        Falls back to a simple "User: ...\nAssistant:" preamble if no template is exposed.
+        
+        Args:
+            user_text: The user's input text
+            add_generation_prompt: Whether to add generation prompt for model response
+            
+        Returns:
+            Formatted text string
+        """
+        tokenizer = getattr(self.model, 'tokenizer', None)
+        if tokenizer is not None and hasattr(tokenizer, 'apply_chat_template') and callable(tokenizer.apply_chat_template):
+            try:
+                messages = [{"role": "user", "content": user_text}]
+                return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=add_generation_prompt)
+            except Exception:
+                # Fall through to simple formatting on any failure
+                pass
+        
+        # Simple generic chat-style fallback (no special tokens)
+        if add_generation_prompt:
+            return f"User: {user_text}\nAssistant:"
+        else:
+            return f"User: {user_text}"
         
     def get_activations(
         self,
@@ -242,7 +277,8 @@ class ModelAgnosticSelfie:
         injection_positions: List[int],
         overlay_strength: float = 1.0,
         replacing_mode: str = 'normalized',
-        max_new_tokens: int = 30
+        max_new_tokens: int = 30,
+        use_chat_template: bool = False
     ) -> torch.Tensor:
         """
         Generate text with injected activations.
@@ -255,10 +291,14 @@ class ModelAgnosticSelfie:
             overlay_strength: Strength of intervention (0-1)
             replacing_mode: 'normalized' or 'addition'
             max_new_tokens: Maximum new tokens to generate
+            use_chat_template: Whether to apply chat template formatting
             
         Returns:
             Generated token IDs
         """
+        # Note: Chat template handling is now done by InterpretationPrompt.with_chat_template()
+        # This ensures proper token position alignment
+        
         # Ensure activation is on the correct device
         activation = self._ensure_tensor_device(activation)
         
@@ -302,7 +342,8 @@ class ModelAgnosticSelfie:
         batch_size: int = 8,
         max_new_tokens: int = 30,
         overlay_strength: float = 1.0,
-        replacing_mode: str = 'normalized'
+        replacing_mode: str = 'normalized',
+        use_chat_template: bool = False
     ) -> Dict[str, Any]:
         """
         Interpret specific tokens using activation injection.
@@ -316,13 +357,20 @@ class ModelAgnosticSelfie:
             max_new_tokens: Max tokens to generate for each interpretation
             overlay_strength: Strength of intervention
             replacing_mode: Mode for replacing activations
+            use_chat_template: Whether to apply chat template formatting (default: False for compatibility)
             
         Returns:
             Dictionary containing interpretation results
         """
         print(f"Interpreting '{original_prompt}' with '{interpretation_prompt.interpretation_prompt}'")
         
-        # Get original activations
+        # Apply chat template to interpretation prompt if requested
+        if use_chat_template:
+            interpretation_prompt.with_chat_template(True)
+        else:
+            interpretation_prompt.with_chat_template(False)
+        
+        # Get original activations (always from raw text, no chat template)
         original_activations = self.get_activations(original_prompt)
         
         interpretation_df = {
@@ -351,7 +399,8 @@ class ModelAgnosticSelfie:
                     interpretation_prompt.insert_locations,
                     overlay_strength,
                     replacing_mode,
-                    max_new_tokens
+                    max_new_tokens,
+                    False  # Chat template already applied to interpretation_prompt
                 )
                 
                 # Decode interpretation
@@ -392,7 +441,8 @@ class ModelAgnosticSelfie:
         injection_layer: int = 3,
         batch_size: int = 8,
         max_new_tokens: int = 30,
-        overlay_strength: float = 1.0
+        overlay_strength: float = 1.0,
+        use_chat_template: bool = False
     ) -> List[str]:
         """
         Interpret arbitrary activation vectors.
@@ -404,11 +454,18 @@ class ModelAgnosticSelfie:
             batch_size: Batch size for processing
             max_new_tokens: Max tokens to generate
             overlay_strength: Intervention strength
+            use_chat_template: Whether to apply chat template formatting (default: False for compatibility)
             
         Returns:
             List of interpretation strings
         """
         interpretations = []
+        
+        # Apply chat template to interpretation prompt if requested
+        if use_chat_template:
+            interpretation_prompt.with_chat_template(True)
+        else:
+            interpretation_prompt.with_chat_template(False)
         
         for i in tqdm(range(0, len(vectors), batch_size)):
             batch_vectors = vectors[i:i + batch_size]
@@ -421,7 +478,8 @@ class ModelAgnosticSelfie:
                     interpretation_prompt.insert_locations,
                     overlay_strength,
                     'normalized',
-                    max_new_tokens
+                    max_new_tokens,
+                    False  # Chat template already applied to interpretation_prompt
                 )
                 
                 prompt_len = len(interpretation_prompt.interpretation_prompt_inputs['input_ids'][0])

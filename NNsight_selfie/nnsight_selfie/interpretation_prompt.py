@@ -28,11 +28,21 @@ class InterpretationPrompt:
     
     def __init__(self, tokenizer, interpretation_prompt_sequence: List[Union[str, Any]]):
         self.tokenizer = tokenizer
+        self.interpretation_prompt_sequence = interpretation_prompt_sequence
+        self.interpretation_prompt = ""
+        self.insert_locations = []
+        self.interpretation_prompt_inputs = None
+        
+        # Build the prompt initially (can be rebuilt with chat template later)
+        self._build_prompt()
+    
+    def _build_prompt(self, use_chat_template: bool = False):
+        """Build the interpretation prompt, optionally with chat template."""
         self.interpretation_prompt = ""
         self.insert_locations = []
         
         # Build the prompt and track placeholder locations
-        for part in interpretation_prompt_sequence:
+        for part in self.interpretation_prompt_sequence:
             if isinstance(part, str):
                 # Add string part to prompt
                 self.interpretation_prompt += part
@@ -46,11 +56,41 @@ class InterpretationPrompt:
                 for insert_idx in range(insert_start, insert_end):
                     self.insert_locations.append(insert_idx)
         
+        # Apply chat template if requested and available
+        final_prompt = self.interpretation_prompt
+        if use_chat_template and hasattr(self.tokenizer, 'apply_chat_template'):
+            try:
+                messages = [{"role": "user", "content": self.interpretation_prompt}]
+                final_prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+                
+                # Recalculate insert locations for chat template
+                # This is tricky - we need to find where our placeholder tokens ended up
+                raw_tokens = len(self.tokenizer.encode(self.interpretation_prompt))
+                templated_tokens = len(self.tokenizer.encode(final_prompt))
+                
+                # Adjust insert locations by the difference
+                offset = templated_tokens - raw_tokens
+                if offset != 0:
+                    self.insert_locations = [pos + offset for pos in self.insert_locations]
+                    
+            except Exception:
+                # Fall back to simple formatting on any failure
+                final_prompt = f"User: {self.interpretation_prompt}\nAssistant:"
+                # Recalculate for simple fallback
+                raw_tokens = len(self.tokenizer.encode(self.interpretation_prompt))
+                fallback_tokens = len(self.tokenizer.encode(final_prompt))
+                offset = fallback_tokens - raw_tokens
+                if offset != 0:
+                    self.insert_locations = [pos + offset for pos in self.insert_locations]
+        
         # Tokenize the final prompt
         self.interpretation_prompt_inputs = self.tokenizer(
-            self.interpretation_prompt, 
+            final_prompt, 
             return_tensors="pt"
         )
+        
+        # Store both raw and formatted prompts
+        self.interpretation_prompt = final_prompt
     
     def get_prompt(self) -> str:
         """Get the formatted interpretation prompt."""
@@ -63,6 +103,19 @@ class InterpretationPrompt:
     def get_tokenized_inputs(self) -> dict:
         """Get the tokenized inputs for the interpretation prompt."""
         return self.interpretation_prompt_inputs
+    
+    def with_chat_template(self, use_chat_template: bool = True):
+        """
+        Rebuild the prompt with or without chat template and return self for chaining.
+        
+        Args:
+            use_chat_template: Whether to apply chat template formatting
+            
+        Returns:
+            Self (for method chaining)
+        """
+        self._build_prompt(use_chat_template)
+        return self
     
     def __repr__(self) -> str:
         return f"InterpretationPrompt('{self.interpretation_prompt}', insert_at={self.insert_locations})"
