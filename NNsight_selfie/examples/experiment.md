@@ -1,0 +1,1 @@
+I would need to use the suffixes.json, and use templates of cognitive patterns to create personas for these specific cognitive patterns, I would need then to run and capture activations on these like in the repeng example and  
