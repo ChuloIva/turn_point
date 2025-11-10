@@ -198,11 +198,11 @@ class ModelAgnosticSelfie:
         """
         Format a single-turn chat with the given user text using the model's chat template if available.
         Falls back to a simple "User: ...\nAssistant:" preamble if no template is exposed.
-        
+
         Args:
             user_text: The user's input text
             add_generation_prompt: Whether to add generation prompt for model response
-            
+
         Returns:
             Formatted text string
         """
@@ -214,13 +214,199 @@ class ModelAgnosticSelfie:
             except Exception:
                 # Fall through to simple formatting on any failure
                 pass
-        
+
         # Simple generic chat-style fallback (no special tokens)
         if add_generation_prompt:
             return f"User: {user_text}\nAssistant:"
         else:
             return f"User: {user_text}"
-        
+
+    def _find_model_response_start_position(self, formatted_text: str) -> Optional[int]:
+        """
+        Find the token position where the model's response begins in a chat-templated string.
+        This is typically right after special tokens like <start_of_turn>model or <|assistant|>.
+
+        Args:
+            formatted_text: The chat-templated text
+
+        Returns:
+            Token index where model response starts, or None if not found
+        """
+        # Tokenize the formatted text
+        tokens = self.model.tokenizer.encode(formatted_text)
+
+        # Common model response markers in different chat templates
+        model_markers = [
+            '<start_of_turn>model',  # Gemma
+            '<|assistant|>',          # Llama 3
+            '<|im_start|>assistant',  # Qwen
+            'Assistant:',             # Generic
+            '\nAssistant:',          # Alternative
+        ]
+
+        # Try to find the marker in the text
+        for marker in model_markers:
+            if marker in formatted_text:
+                # Find where this marker ends in the token sequence
+                marker_tokens = self.model.tokenizer.encode(marker, add_special_tokens=False)
+
+                # Search for the marker sequence in the full token list
+                for i in range(len(tokens) - len(marker_tokens) + 1):
+                    if tokens[i:i+len(marker_tokens)] == marker_tokens:
+                        # Return position right after the marker
+                        return i + len(marker_tokens)
+
+        # Fallback: look for common special token IDs
+        # This is model-specific and might need adjustment
+        tokenizer = self.model.tokenizer
+
+        # Try to find special tokens that indicate model turn
+        special_token_candidates = []
+        if hasattr(tokenizer, 'bos_token_id') and tokenizer.bos_token_id is not None:
+            special_token_candidates.append(tokenizer.bos_token_id)
+
+        # For Gemma models, look for the last BOS token (indicates model turn)
+        if 'gemma' in self.model_name.lower():
+            bos_positions = [i for i, tok in enumerate(tokens) if tok == tokenizer.bos_token_id]
+            if len(bos_positions) > 0:
+                # Return the position right after the last BOS token
+                return bos_positions[-1] + 1
+
+        return None
+
+    def get_concept_activations(
+        self,
+        concepts: Union[str, List[str]],
+        layer_indices: Optional[List[int]] = None,
+        use_chat_template: bool = False,
+        prompt_template: str = "think about the {word}"
+    ) -> Dict[str, Dict[int, torch.Tensor]]:
+        """
+        Extract activations for specific concepts/words using optional chat template formatting.
+
+        This method formats prompts as "think about the {word}" (or custom template),
+        optionally applies chat templates, and extracts activations from where the word appears
+        in the model's response section.
+
+        Args:
+            concepts: Single word/phrase or list of words/phrases to extract activations for
+            layer_indices: List of layer indices to extract from (default: all layers)
+            use_chat_template: Whether to apply chat template and capture from word in model response
+            prompt_template: Template string with {word} placeholder (default: "think about the {word}")
+
+        Returns:
+            Dictionary mapping concept -> {layer_idx -> activation tensor}
+
+        Example:
+            >>> # Without chat template: captures from "think about the happiness"
+            >>> # With chat template: formats as:
+            >>> #   User: think about the happiness
+            >>> #   Model: happiness <-- captures here
+            >>>
+            >>> activations = selfie.get_concept_activations(
+            ...     ["happiness", "sadness", "joy"],
+            ...     layer_indices=[10, 15, 20],
+            ...     use_chat_template=True
+            ... )
+            >>> happy_vec = activations["happiness"][15]  # Layer 15 activation for "happiness"
+        """
+        # Normalize to list
+        if isinstance(concepts, str):
+            concepts = [concepts]
+
+        if layer_indices is None:
+            layer_indices = list(range(len(self.layer_paths)))
+
+        results = {}
+
+        for concept in concepts:
+            # Format the prompt with the concept
+            user_prompt = prompt_template.format(word=concept)
+
+            # Apply chat template if requested
+            if use_chat_template:
+                # Create chat with the word in the assistant response
+                tokenizer = self.model.tokenizer
+
+                if hasattr(tokenizer, 'apply_chat_template') and callable(tokenizer.apply_chat_template):
+                    try:
+                        # Format with user message and partial assistant response containing the word
+                        messages = [
+                            {"role": "user", "content": user_prompt},
+                            {"role": "assistant", "content": concept}
+                        ]
+                        formatted_prompt = tokenizer.apply_chat_template(
+                            messages,
+                            tokenize=False,
+                            add_generation_prompt=False  # Don't add generation prompt since we have assistant content
+                        )
+                    except Exception:
+                        # Fallback to simple formatting
+                        formatted_prompt = f"User: {user_prompt}\nAssistant: {concept}"
+                else:
+                    # Simple fallback
+                    formatted_prompt = f"User: {user_prompt}\nAssistant: {concept}"
+
+                # Tokenize to find where the concept word appears
+                tokens = tokenizer.encode(formatted_prompt)
+
+                # Find the position of the concept word in the model response section
+                # We look for it starting from the end since it's in the assistant response
+                concept_tokens = tokenizer.encode(concept, add_special_tokens=False)
+
+                # Search for the concept token sequence in the full prompt
+                capture_pos = None
+                for i in range(len(tokens) - len(concept_tokens), -1, -1):
+                    if tokens[i:i+len(concept_tokens)] == concept_tokens:
+                        # Found it! Capture at the first token of the concept
+                        capture_pos = i
+                        break
+
+                if capture_pos is None:
+                    warnings.warn(
+                        f"Could not find concept '{concept}' tokens in formatted prompt. "
+                        f"Falling back to last token position."
+                    )
+                    capture_pos = len(tokens) - 1
+
+                # Extract activations at the concept position
+                activations = self.get_activations(
+                    formatted_prompt,
+                    layer_indices=layer_indices,
+                    token_indices=[capture_pos]
+                )
+
+                # Reshape to single tensor per layer
+                concept_activations = {}
+                for layer_idx in activations:
+                    if isinstance(activations[layer_idx], list):
+                        concept_activations[layer_idx] = activations[layer_idx][0]
+                    else:
+                        concept_activations[layer_idx] = activations[layer_idx][:, capture_pos, :]
+
+            else:
+                # Without chat template: extract from last token of the prompt
+                tokens = self.model.tokenizer.encode(user_prompt)
+                last_token_pos = len(tokens) - 1
+
+                activations = self.get_activations(
+                    user_prompt,
+                    layer_indices=layer_indices,
+                    token_indices=[last_token_pos]
+                )
+
+                # Reshape to single tensor per layer
+                concept_activations = {}
+                for layer_idx in activations:
+                    if isinstance(activations[layer_idx], list):
+                        concept_activations[layer_idx] = activations[layer_idx][0]
+                    else:
+                        concept_activations[layer_idx] = activations[layer_idx][:, last_token_pos, :]
+
+            results[concept] = concept_activations
+
+        return results
+
     def get_activations(
         self,
         prompt: str,

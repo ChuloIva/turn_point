@@ -3,6 +3,13 @@ from .interpretation_prompt import InterpretationPrompt
 from .utils import interpret_vectors, get_model_layers
 from .device_utils import get_optimal_device, print_device_info, DeviceManager
 
+# Semantic path learning
+from .semantic_path_learning import (
+    LandmarkPath, ParametricCurvePath, TangentVectorFieldPath,
+    SemanticPathAggregator, learn_semantic_path,
+    generate_intermediate_keywords, generate_keywords_with_model, extract_landmark_vectors
+)
+
 # Repeng-based steering vector utilities
 from .repeng import (
     RepengDatasetGenerator, DatasetEntry, create_quick_dataset,
@@ -23,13 +30,22 @@ from .repeng.patterns_dataset import (
 
 __version__ = "0.1.0"
 __all__ = [
-    "ModelAgnosticSelfie", 
-    "InterpretationPrompt", 
-    "interpret_vectors", 
+    "ModelAgnosticSelfie",
+    "InterpretationPrompt",
+    "interpret_vectors",
     "get_model_layers",
     "get_optimal_device",
-    "print_device_info", 
+    "print_device_info",
     "DeviceManager",
+    # Semantic path learning
+    "LandmarkPath",
+    "ParametricCurvePath",
+    "TangentVectorFieldPath",
+    "SemanticPathAggregator",
+    "learn_semantic_path",
+    "generate_intermediate_keywords",
+    "generate_keywords_with_model",
+    "extract_landmark_vectors",
     # Repeng utilities
     "RepengDatasetGenerator",
     "DatasetEntry", 
