@@ -31,6 +31,92 @@ from .vector_operations import interpolate_vectors
 
 
 # ============================================================================
+# HELPER FUNCTIONS: Layer Parsing
+# ============================================================================
+
+def parse_layer_spec(layers: Union[int, str], total_layers: int) -> List[int]:
+    """
+    Parse layer specification into list of layer indices.
+
+    Args:
+        layers: Layer specification - can be:
+            - int: Single layer index (e.g., 7)
+            - 'all': All layers
+            - 'start:end': Range of layers (e.g., '3:13' for layers 3-12)
+            - 'start:end:step': Range with step (e.g., '0:20:2' for every other layer)
+        total_layers: Total number of layers in the model
+
+    Returns:
+        List of layer indices
+
+    Examples:
+        >>> parse_layer_spec(7, 32)
+        [7]
+        >>> parse_layer_spec('all', 32)
+        [0, 1, 2, ..., 31]
+        >>> parse_layer_spec('3:13', 32)
+        [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        >>> parse_layer_spec('0:20:2', 32)
+        [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+    """
+    # Handle integer (single layer)
+    if isinstance(layers, int):
+        if layers < 0 or layers >= total_layers:
+            raise ValueError(f"Layer index {layers} out of range [0, {total_layers-1}]")
+        return [layers]
+
+    # Handle string specifications
+    if not isinstance(layers, str):
+        raise TypeError(f"layers must be int or str, got {type(layers)}")
+
+    layers_str = layers.strip()
+
+    # Handle 'all'
+    if layers_str.lower() == 'all':
+        return list(range(total_layers))
+
+    # Handle range specification (e.g., '3:13' or '0:20:2')
+    if ':' in layers_str:
+        parts = layers_str.split(':')
+
+        if len(parts) == 2:
+            # Format: 'start:end'
+            start, end = parts
+            start_idx = int(start) if start else 0
+            end_idx = int(end) if end else total_layers
+            step = 1
+        elif len(parts) == 3:
+            # Format: 'start:end:step'
+            start, end, step_str = parts
+            start_idx = int(start) if start else 0
+            end_idx = int(end) if end else total_layers
+            step = int(step_str) if step_str else 1
+        else:
+            raise ValueError(f"Invalid range format: '{layers_str}'. Use 'start:end' or 'start:end:step'")
+
+        # Validate range
+        if start_idx < 0 or start_idx >= total_layers:
+            raise ValueError(f"Start index {start_idx} out of range [0, {total_layers-1}]")
+        if end_idx < 0 or end_idx > total_layers:
+            raise ValueError(f"End index {end_idx} out of range [0, {total_layers}]")
+        if start_idx >= end_idx:
+            raise ValueError(f"Start index {start_idx} must be less than end index {end_idx}")
+        if step <= 0:
+            raise ValueError(f"Step {step} must be positive")
+
+        return list(range(start_idx, end_idx, step))
+
+    # If we get here, try to parse as single integer
+    try:
+        layer_idx = int(layers_str)
+        if layer_idx < 0 or layer_idx >= total_layers:
+            raise ValueError(f"Layer index {layer_idx} out of range [0, {total_layers-1}]")
+        return [layer_idx]
+    except ValueError:
+        raise ValueError(f"Invalid layer specification: '{layers_str}'. Use int, 'all', or 'start:end[:step]'")
+
+
+# ============================================================================
 # HELPER FUNCTIONS: Keyword Generation
 # ============================================================================
 
@@ -425,41 +511,71 @@ def generate_intermediate_keywords(
 def extract_landmark_vectors(
     selfie,
     keywords: List[str],
-    layer: int,
+    layer: Union[int, str],
     use_chat_template: bool = True,
     prompt_template: str = "think about the {word}"
-) -> List[torch.Tensor]:
+) -> Union[List[torch.Tensor], Dict[int, List[torch.Tensor]]]:
     """
     Extract activation vectors for a list of landmark keywords.
 
     Args:
         selfie: ModelAgnosticSelfie instance
         keywords: List of concept keywords to extract
-        layer: Layer index to extract from
+        layer: Layer specification - can be:
+            - int: Single layer index (e.g., 7)
+            - 'all': All layers
+            - 'start:end': Range of layers (e.g., '3:13')
+            - 'start:end:step': Range with step (e.g., '0:20:2')
         use_chat_template: Whether to use chat template formatting
         prompt_template: Template for concept extraction (must contain {word})
 
     Returns:
-        List of activation tensors, one per keyword
+        - If single layer (int): List of activation tensors, one per keyword
+        - If multi-layer (str): Dict mapping layer_idx -> List of vectors
 
     Examples:
+        >>> # Single layer
         >>> keywords = ["sad", "neutral", "happy"]
         >>> vectors = extract_landmark_vectors(selfie, keywords, layer=15)
         >>> len(vectors)
         3
+
+        >>> # Multi-layer
+        >>> vectors_dict = extract_landmark_vectors(selfie, keywords, layer='3:13')
+        >>> vectors_dict[7]  # Vectors for layer 7
+        [tensor(...), tensor(...), tensor(...)]
     """
-    # Use get_concept_activations for batch extraction
+    # Parse layer specification
+    total_layers = len(selfie.layer_paths)
+    layer_indices = parse_layer_spec(layer, total_layers)
+
+    # Single layer case - maintain backward compatibility
+    if len(layer_indices) == 1:
+        single_layer = layer_indices[0]
+        activations = selfie.get_concept_activations(
+            concepts=keywords,
+            layer_indices=[single_layer],
+            use_chat_template=use_chat_template,
+            prompt_template=prompt_template
+        )
+        # Extract vectors in order
+        vectors = [activations[keyword][single_layer] for keyword in keywords]
+        return vectors
+
+    # Multi-layer case
     activations = selfie.get_concept_activations(
         concepts=keywords,
-        layer_indices=[layer],
+        layer_indices=layer_indices,
         use_chat_template=use_chat_template,
         prompt_template=prompt_template
     )
 
-    # Extract vectors in order
-    vectors = [activations[keyword][layer] for keyword in keywords]
+    # Reorganize: Dict[layer_idx -> List[vectors]]
+    result = {}
+    for layer_idx in layer_indices:
+        result[layer_idx] = [activations[keyword][layer_idx] for keyword in keywords]
 
-    return vectors
+    return result
 
 
 # ============================================================================
@@ -1324,6 +1440,291 @@ class TangentVectorFieldPath:
 
 
 # ============================================================================
+# MULTI-LAYER PATH WRAPPERS
+# ============================================================================
+
+@dataclass
+class MultiLayerLandmarkPath:
+    """
+    Wrapper for LandmarkPath that handles multiple layers.
+
+    Stores independent LandmarkPath objects for each layer and provides
+    unified interface for multi-layer operations.
+
+    Attributes:
+        layer_paths: Dictionary mapping layer indices to LandmarkPath objects
+        layer_indices: Sorted list of layer indices
+        metadata: Shared metadata (concepts, keywords, etc.)
+
+    Examples:
+        >>> # Extract multi-layer path
+        >>> ml_path = learn_semantic_path(selfie, "sad", "happy", layer='3:13')
+        >>> # Interpolate across all layers
+        >>> layer_vecs = ml_path.interpolate(0.5)  # Dict[int, torch.Tensor]
+        >>> # Apply to new concept pair
+        >>> new_vecs = ml_path.apply_geometric_alignment(sad_vecs, happy_vecs, 0.5)
+    """
+    layer_paths: Dict[int, LandmarkPath]
+    layer_indices: List[int]
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        """Validate and sort layer indices."""
+        if not self.layer_paths:
+            raise ValueError("layer_paths cannot be empty")
+        # Ensure layer_indices is sorted
+        self.layer_indices = sorted(self.layer_paths.keys())
+
+    def interpolate(
+        self,
+        alpha: float,
+        method: str = "spherical"
+    ) -> Dict[int, torch.Tensor]:
+        """
+        Interpolate at given alpha across all layers.
+
+        Args:
+            alpha: Position along path (0.0 to 1.0)
+            method: Interpolation method ("spherical" or "linear")
+
+        Returns:
+            Dictionary mapping layer index to interpolated vector
+        """
+        return {
+            layer_idx: path.interpolate(alpha, method)
+            for layer_idx, path in self.layer_paths.items()
+        }
+
+    def apply_geometric_alignment(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """
+        Apply geometric alignment independently per layer.
+
+        Args:
+            new_vecs_a: Start vectors per layer
+            new_vecs_b: End vectors per layer
+            alpha: Position along path (0.0 to 1.0)
+
+        Returns:
+            Dictionary mapping layer index to transformed vector
+        """
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_geometric_alignment(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+    def apply_relative_encoding(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply relative encoding independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_relative_encoding(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+    def apply_direction_magnitude(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply direction+magnitude independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_direction_magnitude(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+
+@dataclass
+class MultiLayerParametricCurvePath:
+    """
+    Wrapper for ParametricCurvePath that handles multiple layers.
+
+    Stores independent ParametricCurvePath objects for each layer.
+    """
+    layer_paths: Dict[int, ParametricCurvePath]
+    layer_indices: List[int]
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        """Validate and sort layer indices."""
+        if not self.layer_paths:
+            raise ValueError("layer_paths cannot be empty")
+        self.layer_indices = sorted(self.layer_paths.keys())
+
+    def interpolate(
+        self,
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Interpolate at given alpha across all layers."""
+        return {
+            layer_idx: path.interpolate(alpha)
+            for layer_idx, path in self.layer_paths.items()
+        }
+
+    def apply_geometric_alignment(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply geometric alignment independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_geometric_alignment(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+    def apply_relative_encoding(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply relative encoding independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_relative_encoding(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+    def apply_direction_magnitude(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply direction+magnitude independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_direction_magnitude(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+
+@dataclass
+class MultiLayerTangentVectorFieldPath:
+    """
+    Wrapper for TangentVectorFieldPath that handles multiple layers.
+
+    Stores independent TangentVectorFieldPath objects for each layer.
+    """
+    layer_paths: Dict[int, TangentVectorFieldPath]
+    layer_indices: List[int]
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        """Validate and sort layer indices."""
+        if not self.layer_paths:
+            raise ValueError("layer_paths cannot be empty")
+        self.layer_indices = sorted(self.layer_paths.keys())
+
+    def interpolate(
+        self,
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Interpolate at given alpha across all layers."""
+        return {
+            layer_idx: path.interpolate(alpha)
+            for layer_idx, path in self.layer_paths.items()
+        }
+
+    def apply_geometric_alignment(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply geometric alignment independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_geometric_alignment(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+    def apply_relative_encoding(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply relative encoding independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_relative_encoding(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+    def apply_direction_magnitude(
+        self,
+        new_vecs_a: Dict[int, torch.Tensor],
+        new_vecs_b: Dict[int, torch.Tensor],
+        alpha: float
+    ) -> Dict[int, torch.Tensor]:
+        """Apply direction+magnitude independently per layer."""
+        results = {}
+        for layer_idx, path in self.layer_paths.items():
+            if layer_idx not in new_vecs_a or layer_idx not in new_vecs_b:
+                raise ValueError(f"Missing vectors for layer {layer_idx}")
+            results[layer_idx] = path.apply_direction_magnitude(
+                new_vecs_a[layer_idx],
+                new_vecs_b[layer_idx],
+                alpha
+            )
+        return results
+
+
+# ============================================================================
 # MULTI-PAIR LEARNING
 # ============================================================================
 
@@ -1550,13 +1951,14 @@ def learn_semantic_path(
     selfie,
     start_concept: str,
     end_concept: str,
-    layer: int,
+    layer: Union[int, str],
     num_steps: int = 7,
     template: str = "emotion",
     path_type: str = "landmark",
     use_chat_template: bool = True,
     **kwargs
-) -> Union[LandmarkPath, ParametricCurvePath, TangentVectorFieldPath]:
+) -> Union[LandmarkPath, ParametricCurvePath, TangentVectorFieldPath,
+           MultiLayerLandmarkPath, MultiLayerParametricCurvePath, MultiLayerTangentVectorFieldPath]:
     """
     Learn semantic path between two concepts (high-level convenience function).
 
@@ -1564,7 +1966,11 @@ def learn_semantic_path(
         selfie: ModelAgnosticSelfie instance
         start_concept: Starting concept (e.g., "sad")
         end_concept: Ending concept (e.g., "happy")
-        layer: Layer to extract activations from
+        layer: Layer specification - can be:
+            - int: Single layer index (e.g., 7) - returns single-layer path
+            - 'all': All layers - returns multi-layer path
+            - 'start:end': Range of layers (e.g., '3:13') - returns multi-layer path
+            - 'start:end:step': Range with step (e.g., '0:20:2') - returns multi-layer path
         num_steps: Number of intermediate steps
         template: Keyword generation template
             - "model_generated": Use LLM to generate keywords (RECOMMENDED)
@@ -1576,10 +1982,10 @@ def learn_semantic_path(
         **kwargs: Additional parameters for path fitting (and temperature for model_generated)
 
     Returns:
-        Learned path object (type depends on path_type)
+        Learned path object - single-layer or multi-layer depending on layer parameter
 
     Examples:
-        >>> # Use model-generated keywords (best quality)
+        >>> # Single layer (backward compatible)
         >>> path = learn_semantic_path(
         ...     selfie,
         ...     "sad", "happy",
@@ -1589,14 +1995,24 @@ def learn_semantic_path(
         ...     path_type="landmark"
         ... )
 
-        >>> # Use template-based keywords
-        >>> path = learn_semantic_path(
+        >>> # Multi-layer (all layers)
+        >>> ml_path = learn_semantic_path(
         ...     selfie,
         ...     "sad", "happy",
-        ...     layer=15,
+        ...     layer='all',
+        ...     num_steps=7,
+        ...     template="model_generated",
+        ...     path_type="landmark"
+        ... )
+
+        >>> # Multi-layer (range)
+        >>> ml_path = learn_semantic_path(
+        ...     selfie,
+        ...     "sad", "happy",
+        ...     layer='3:13',
         ...     num_steps=7,
         ...     template="emotion",
-        ...     path_type="landmark"
+        ...     path_type="parametric"
         ... )
     """
     # Generate intermediate keywords
@@ -1610,7 +2026,7 @@ def learn_semantic_path(
         temperature=temperature
     )
 
-    # Extract landmark vectors
+    # Extract landmark vectors (returns List or Dict depending on layer spec)
     landmarks = extract_landmark_vectors(
         selfie,
         keywords,
@@ -1621,40 +2037,221 @@ def learn_semantic_path(
     # Alphas (evenly distributed)
     alphas = np.linspace(0.0, 1.0, num_steps).tolist()
 
-    # Create path representation
-    if path_type == "landmark":
-        path = LandmarkPath(
-            landmarks=landmarks,
-            alphas=alphas,
-            metadata={
-                'concepts': (start_concept, end_concept),
-                'keywords': keywords,
-                'layer': layer
-            }
-        )
+    # Check if single-layer or multi-layer based on return type
+    is_multilayer = isinstance(landmarks, dict)
 
-    elif path_type == "parametric":
-        path = ParametricCurvePath.fit_from_landmarks(
-            landmarks=landmarks,
-            alphas=alphas,
-            curve_type=kwargs.get('curve_type', 'bezier'),
-            **kwargs
-        )
-        path.metadata['concepts'] = (start_concept, end_concept)
-        path.metadata['keywords'] = keywords
-        path.metadata['layer'] = layer
+    if not is_multilayer:
+        # Single-layer path (backward compatible)
+        if path_type == "landmark":
+            path = LandmarkPath(
+                landmarks=landmarks,
+                alphas=alphas,
+                metadata={
+                    'concepts': (start_concept, end_concept),
+                    'keywords': keywords,
+                    'layer': layer
+                }
+            )
 
-    elif path_type == "tangent":
-        path = TangentVectorFieldPath.fit_from_landmarks(
-            landmarks=landmarks,
-            alphas=alphas,
-            **kwargs
-        )
-        path.metadata['concepts'] = (start_concept, end_concept)
-        path.metadata['keywords'] = keywords
-        path.metadata['layer'] = layer
+        elif path_type == "parametric":
+            path = ParametricCurvePath.fit_from_landmarks(
+                landmarks=landmarks,
+                alphas=alphas,
+                curve_type=kwargs.get('curve_type', 'bezier'),
+                **kwargs
+            )
+            path.metadata['concepts'] = (start_concept, end_concept)
+            path.metadata['keywords'] = keywords
+            path.metadata['layer'] = layer
+
+        elif path_type == "tangent":
+            path = TangentVectorFieldPath.fit_from_landmarks(
+                landmarks=landmarks,
+                alphas=alphas,
+                **kwargs
+            )
+            path.metadata['concepts'] = (start_concept, end_concept)
+            path.metadata['keywords'] = keywords
+            path.metadata['layer'] = layer
+
+        else:
+            raise ValueError(f"Unknown path_type: {path_type}. Choose 'landmark', 'parametric', or 'tangent'")
 
     else:
-        raise ValueError(f"Unknown path_type: {path_type}. Choose 'landmark', 'parametric', or 'tangent'")
+        # Multi-layer path
+        layer_paths = {}
+        layer_indices = sorted(landmarks.keys())
+
+        for layer_idx in layer_indices:
+            layer_landmarks = landmarks[layer_idx]
+
+            if path_type == "landmark":
+                layer_path = LandmarkPath(
+                    landmarks=layer_landmarks,
+                    alphas=alphas,
+                    metadata={
+                        'concepts': (start_concept, end_concept),
+                        'keywords': keywords,
+                        'layer': layer_idx
+                    }
+                )
+
+            elif path_type == "parametric":
+                layer_path = ParametricCurvePath.fit_from_landmarks(
+                    landmarks=layer_landmarks,
+                    alphas=alphas,
+                    curve_type=kwargs.get('curve_type', 'bezier'),
+                    **kwargs
+                )
+                layer_path.metadata['concepts'] = (start_concept, end_concept)
+                layer_path.metadata['keywords'] = keywords
+                layer_path.metadata['layer'] = layer_idx
+
+            elif path_type == "tangent":
+                layer_path = TangentVectorFieldPath.fit_from_landmarks(
+                    landmarks=layer_landmarks,
+                    alphas=alphas,
+                    **kwargs
+                )
+                layer_path.metadata['concepts'] = (start_concept, end_concept)
+                layer_path.metadata['keywords'] = keywords
+                layer_path.metadata['layer'] = layer_idx
+
+            else:
+                raise ValueError(f"Unknown path_type: {path_type}. Choose 'landmark', 'parametric', or 'tangent'")
+
+            layer_paths[layer_idx] = layer_path
+
+        # Create multi-layer wrapper
+        if path_type == "landmark":
+            path = MultiLayerLandmarkPath(
+                layer_paths=layer_paths,
+                layer_indices=layer_indices,
+                metadata={
+                    'concepts': (start_concept, end_concept),
+                    'keywords': keywords,
+                    'layer_spec': layer
+                }
+            )
+
+        elif path_type == "parametric":
+            path = MultiLayerParametricCurvePath(
+                layer_paths=layer_paths,
+                layer_indices=layer_indices,
+                metadata={
+                    'concepts': (start_concept, end_concept),
+                    'keywords': keywords,
+                    'layer_spec': layer
+                }
+            )
+
+        elif path_type == "tangent":
+            path = MultiLayerTangentVectorFieldPath(
+                layer_paths=layer_paths,
+                layer_indices=layer_indices,
+                metadata={
+                    'concepts': (start_concept, end_concept),
+                    'keywords': keywords,
+                    'layer_spec': layer
+                }
+            )
 
     return path
+
+
+def interpret_multilayer_path(
+    selfie,
+    multilayer_path: Union[MultiLayerLandmarkPath, MultiLayerParametricCurvePath, MultiLayerTangentVectorFieldPath],
+    alpha: float,
+    prompt,
+    max_new_tokens: int = 25,
+    injection_positions: Union[int, List[int]] = -1,
+    injection_strength: float = 1.0,
+    injection_mode: str = 'addition'
+) -> str:
+    """
+    Interpret a multi-layer path by injecting vectors from all layers simultaneously.
+
+    Uses nnsight to inject activations into multiple layers at once during generation.
+
+    Args:
+        selfie: ModelAgnosticSelfie instance
+        multilayer_path: Multi-layer path object
+        alpha: Position along path (0.0 to 1.0)
+        prompt: InterpretationPrompt object
+        max_new_tokens: Maximum tokens to generate
+        injection_positions: Token position(s) to inject at (-1 for last token)
+        injection_strength: Strength of intervention (default 1.0)
+        injection_mode: 'addition' or 'normalized'
+
+    Returns:
+        Generated interpretation text
+
+    Examples:
+        >>> ml_path = learn_semantic_path(selfie, "sad", "happy", layer='3:13')
+        >>> interpretation = interpret_multilayer_path(
+        ...     selfie, ml_path, alpha=0.5, prompt=concept_prompt
+        ... )
+    """
+    # Get vectors at alpha for all layers
+    layer_vectors = multilayer_path.interpolate(alpha)
+
+    # Import utility function
+    from .utils import get_layer_by_path
+
+    # Get prompt text
+    formatted_prompt = prompt.get_prompt()
+
+    # Convert single position to list
+    if isinstance(injection_positions, int):
+        injection_positions = [injection_positions]
+
+    # Ensure all activations are on correct device
+    device = selfie.device
+    for layer_idx in layer_vectors:
+        layer_vectors[layer_idx] = layer_vectors[layer_idx].to(device)
+
+    # Generate with multi-layer injection
+    with selfie.model.generate(formatted_prompt, max_new_tokens=max_new_tokens) as tracer:
+        # Inject into each layer
+        for layer_idx, activation in layer_vectors.items():
+            layer = get_layer_by_path(selfie.model, selfie.layer_paths[layer_idx])
+
+            # Get original activations
+            original_output = layer.output[0]
+
+            # Get batch size, sequence length, hidden size
+            batch_size, seq_len, hidden_size = original_output.shape
+
+            # Expand activation for injection positions
+            try:
+                activation_expanded = activation.expand(batch_size, len(injection_positions), hidden_size)
+            except Exception:
+                # Fallback for devices with expand issues
+                activation_expanded = activation.repeat(batch_size, len(injection_positions), 1)
+
+            # Apply intervention at each position
+            for i, pos in enumerate(injection_positions):
+                if injection_mode == 'addition':
+                    original_output[:, pos, :] = original_output[:, pos, :] + injection_strength * activation_expanded[:, i, :]
+                elif injection_mode == 'normalized':
+                    original_output[:, pos, :] = (
+                        injection_strength * activation_expanded[:, i, :] +
+                        (1 - injection_strength) * original_output[:, pos, :]
+                    )
+
+        output_ids = selfie.model.generator.output.save()
+
+    # Decode output
+    generated_text = selfie.model.tokenizer.decode(output_ids[0], skip_special_tokens=True)
+
+    # Extract only the new generated text (remove prompt)
+    prompt_text = selfie.model.tokenizer.decode(
+        selfie.model.tokenizer.encode(formatted_prompt, add_special_tokens=False),
+        skip_special_tokens=True
+    )
+
+    if generated_text.startswith(prompt_text):
+        generated_text = generated_text[len(prompt_text):].strip()
+
+    return generated_text
