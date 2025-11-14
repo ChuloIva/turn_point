@@ -1,0 +1,33 @@
+{
+  "n_patterns": 13,
+  "layer_indices": [
+    1,
+    5,
+    7,
+    11,
+    15,
+    22,
+    27,
+    29
+  ],
+  "vector_types": [
+    "neg_to_trans",
+    "trans_to_pos",
+    "neg_to_pos"
+  ],
+  "patterns_processed": [
+    "conflict-focused_self-reflection",
+    "disorganized_thought_and_derealization",
+    "executive_fatigue_and_avolition",
+    "existential_overload_and_worthlessness",
+    "fragmented_overwhelm_and_exhaustion",
+    "hopelessness-driven_cognitive_exhaustion",
+    "identity-focused_life_narrative",
+    "overload_with_entrapment_themes",
+    "overwhelmed_narrative_processing",
+    "persistent_suicidal_ideation_focus",
+    "self-critical_rumination",
+    "somatic\u2013emotional_self-monitoring",
+    "suicidal_planning_and_rationalization"
+  ]
+}

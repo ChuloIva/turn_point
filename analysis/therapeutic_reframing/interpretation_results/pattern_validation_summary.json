@@ -1,0 +1,145 @@
+{
+  "Conflict-Focused Self-Reflection": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.02702702702702703,
+        "avg_transformed_similarity": 0.0392156862745098,
+        "avg_positive_similarity": 0.0625,
+        "avg_overall_similarity": 0.042914237767178946
+      }
+    }
+  },
+  "Disorganized Thought & Derealization": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.0547945205479452,
+        "avg_transformed_similarity": 0.09195402298850575,
+        "avg_positive_similarity": 0.0759493670886076,
+        "avg_overall_similarity": 0.07423263687501952
+      }
+    }
+  },
+  "Executive Fatigue & Avolition": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.05,
+        "avg_transformed_similarity": 0.06060606060606061,
+        "avg_positive_similarity": 0.05555555555555555,
+        "avg_overall_similarity": 0.055387205387205395
+      }
+    }
+  },
+  "Existential Overload & Worthlessness": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.1038961038961039,
+        "avg_transformed_similarity": 0.028169014084507043,
+        "avg_positive_similarity": 0.054945054945054944,
+        "avg_overall_similarity": 0.062336724308555296
+      }
+    }
+  },
+  "Fragmented Overwhelm & Exhaustion": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.028169014084507043,
+        "avg_transformed_similarity": 0.038461538461538464,
+        "avg_positive_similarity": 0.08163265306122448,
+        "avg_overall_similarity": 0.04942106853575667
+      }
+    }
+  },
+  "Hopelessness-Driven Cognitive Exhaustion": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.02702702702702703,
+        "avg_transformed_similarity": 0.047619047619047616,
+        "avg_positive_similarity": 0.037037037037037035,
+        "avg_overall_similarity": 0.03722770389437056
+      }
+    }
+  },
+  "Identity-Focused Life Narrative": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.05,
+        "avg_transformed_similarity": 0.0625,
+        "avg_positive_similarity": 0.04819277108433735,
+        "avg_overall_similarity": 0.053564257028112454
+      }
+    }
+  },
+  "Overload with Entrapment Themes": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.03278688524590164,
+        "avg_transformed_similarity": 0.04854368932038835,
+        "avg_positive_similarity": 0.02702702702702703,
+        "avg_overall_similarity": 0.03611920053110567
+      }
+    }
+  },
+  "Overwhelmed Narrative Processing": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.06,
+        "avg_transformed_similarity": 0.043478260869565216,
+        "avg_positive_similarity": 0.038461538461538464,
+        "avg_overall_similarity": 0.04731326644370123
+      }
+    }
+  },
+  "Persistent Suicidal Ideation Focus": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.05063291139240506,
+        "avg_transformed_similarity": 0.06493506493506493,
+        "avg_positive_similarity": 0.0851063829787234,
+        "avg_overall_similarity": 0.06689145310206446
+      }
+    }
+  },
+  "Self-Critical Rumination": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.03389830508474576,
+        "avg_transformed_similarity": 0.0,
+        "avg_positive_similarity": 0.06172839506172839,
+        "avg_overall_similarity": 0.03187556671549138
+      }
+    }
+  },
+  "Somatic\u2013Emotional Self-Monitoring": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.03508771929824561,
+        "avg_transformed_similarity": 0.0,
+        "avg_positive_similarity": 0.07368421052631578,
+        "avg_overall_similarity": 0.03625730994152047
+      }
+    }
+  },
+  "Suicidal Planning & Rationalization": {
+    "n_examples": 1,
+    "layer_statistics": {
+      "11": {
+        "avg_negative_similarity": 0.027777777777777776,
+        "avg_transformed_similarity": 0.046875,
+        "avg_positive_similarity": 0.04950495049504951,
+        "avg_overall_similarity": 0.04138590942427576
+      }
+    }
+  }
+}

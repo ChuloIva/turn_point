@@ -1785,6 +1785,19 @@ class SemanticPathAggregator:
         # Sample paths at common alpha values
         alphas = np.linspace(0, 1, 20)
 
+        # Check if paths are multi-layer by testing first path
+        if not self.paths:
+            raise ValueError("No paths to aggregate")
+
+        test_vec = self.paths[0].interpolate(0.0)
+        is_multilayer = isinstance(test_vec, dict)
+
+        if is_multilayer:
+            raise ValueError(
+                "Multi-layer paths detected. Please use single-layer paths for aggregation. "
+                "Set USE_SINGLE_LAYER=True in script 03_learn_pattern_paths.py to create single-layer paths."
+            )
+
         avg_tangents = []
         avg_curvatures = []
 
@@ -1834,6 +1847,19 @@ class SemanticPathAggregator:
     def _fit_relative_geometry(self):
         """Learn average relative positions."""
         alphas = np.linspace(0, 1, 20)
+
+        # Check if paths are multi-layer by testing first path
+        if not self.paths:
+            raise ValueError("No paths to aggregate")
+
+        test_vec = self.paths[0].interpolate(0.0)
+        is_multilayer = isinstance(test_vec, dict)
+
+        if is_multilayer:
+            raise ValueError(
+                "Multi-layer paths detected. Please use single-layer paths for aggregation. "
+                "Set USE_SINGLE_LAYER=True in script 03_learn_pattern_paths.py to create single-layer paths."
+            )
 
         avg_relative_positions = []
 

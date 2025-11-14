@@ -1,0 +1,29 @@
+{
+  "strategic_layers": [
+    1,
+    5,
+    7,
+    11,
+    15,
+    22,
+    27,
+    29
+  ],
+  "layer_rationale": {
+    "early": [
+      1,
+      5,
+      7
+    ],
+    "middle": [
+      11,
+      15
+    ],
+    "late": [
+      22,
+      27,
+      29
+    ]
+  },
+  "total_layers": 8
+}

@@ -1,0 +1,17 @@
+{
+  "direction_statistics": {
+    "status": "aggregator_trained",
+    "n_source_paths": 13,
+    "has_universal_representation": true
+  },
+  "curvature_transfer": {
+    "status": "aggregator_trained",
+    "n_source_paths": 13,
+    "has_universal_representation": true
+  },
+  "relative_geometry": {
+    "status": "aggregator_trained",
+    "n_source_paths": 13,
+    "has_universal_representation": true
+  }
+}

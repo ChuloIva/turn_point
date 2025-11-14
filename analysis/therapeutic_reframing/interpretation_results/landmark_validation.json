@@ -1,0 +1,639 @@
+[
+  {
+    "example_id": "conflict-focused_self-reflection_0",
+    "pattern_name": "Conflict-Focused Self-Reflection",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "The most salient semantic content of the text is the existence of activations, implying that some sort of computational process or analysis is being performed on the text.  The key conceptual associations involve neural networks, activations, and a text input.  The dominant thematic elements are data analysis and the interpretation of text"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the identification or acknowledgment of a text. It signals that a particular piece of text has been processed and examined, indicating a shift in focus to analyzing the content of the text."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "The activations (extracted from other texts) suggest the following:\n\n*   \"time\"\n*   \"change\"\n*   \"duration\"\n*   \"process\"\n*   \"transformation\"\n\nConsidering these activations, the concept represented at the '_' positions is **temporal progression**"
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the primary subject or focus of the text. It signifies the specific entity, event, or idea being discussed\u2014the entire text revolves around it."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "The neural network activations at the '_' positions indicate a strong focus on the concept of \u201cdiscomfort\u201d and \u201cunpleasantness,\u201d linked closely to a sense of \"not being right\" or \"wrongness.\" These activations suggest the text explores themes of moral conflict, internal struggle, and potentially,"
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "The activations associated with the '_' positions correspond to the concepts of:\n- 'Cause'\n- 'Effect'\n- 'Context'\n- 'Mechanism'\n- 'Process'\n- 'Result'\n- 'State'\n- 'Relationship'\n- 'Sequence'"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "**Response:**\n\nThe '_' marks represent the general concept of \"text\" or \"written language\". It suggests that the neural network is focusing on the properties and characteristics of textual data, likely its structure, content, or how it is processed."
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.02702702702702703,
+        "transformed_similarity": 0.0392156862745098,
+        "positive_similarity": 0.0625,
+        "average_similarity": 0.042914237767178946
+      }
+    },
+    "reference_texts": {
+      "negative": "I'm torn between following my heart and doing what's expected of me; why do I always feel guilty for wanting to prioritize myself, when I know others will be disappointed? Can't I just have one moment where I don't have to justify every decision...",
+      "transformed": "What specific steps can I take today to prioritize my own needs without feeling guilty? Is it okay if others are disappointed; what would I gain from not justifying every decision?",
+      "positive": "I'm aware that I sometimes struggle with conflicting desires - wanting to prioritize my own needs while also considering the expectations of others. It's normal for me to feel uncertain, but instead of getting stuck on guilt or regret, what can I do today to take care of myself without compromising those important relationships? Can I find a balance by setting clear boundaries and communicating openly with loved ones? By acknowledging this internal debate, I'm reminded that self-care isn't selfish, it's essential for my well-being."
+    }
+  },
+  {
+    "example_id": "disorganized_thought_and_derealization_0",
+    "pattern_name": "Disorganized Thought & Derealization",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "```text\nThe text itself is a placeholder; it's designed to highlight the concept represented at the '_' marks, which is a signal of an injection or insertion of external data/text into an existing text.\n```"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**Answer:**\n\nThe '_' represents the assertion that the provided text itself is being described or analyzed. It indicates a focus on the text's properties, likely its content, structure, or the network's response to it."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "**Final Answer:** The concept represented at the '_' marks is about the act of introducing textual information into an existing text, specifically using network activations to highlight or modify specific parts of the text."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent a general statement or observation about a piece of text, implying that the text itself is significant or noteworthy. It highlights the presence of textual content and suggests a need for further examination or analysis of its characteristics."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent a statement of fact or assertion. The neural network activations indicate the input is a descriptive sentence and the '_' indicates that this sentence is a core element of the text's overall meaning."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "Here is the text: The best way to learn this is to follow the steps and to use the correct answers. That is the text with activations injected at '_'.\n\nInterpret what concept or meaning is represented at the '_' marks. Focus on:\n- The most salient semantic content\n- Key"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "**Final Answer: The concept represented at the '_' marks is the act of reading and understanding a text.**"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.0547945205479452,
+        "transformed_similarity": 0.09195402298850575,
+        "positive_similarity": 0.0759493670886076,
+        "average_similarity": 0.07423263687501952
+      }
+    },
+    "reference_texts": {
+      "negative": "Ugh, am I really getting ready for work or is this just some scripted scenario playing out like a bad dream? Everything feels so distant and foggy, like someone else's life is unfolding before my eyes. Why does it feel like I'm just going through the motions, detached from every decision and action?",
+      "transformed": "I'm taking a deep breath and acknowledging my scattered thoughts. Okay, let's get real \u2013 I'm overwhelmed. One task at a time, that's what I need right now. Where can I start? Ah, yes, that one small thing... circling it on paper helps me feel more grounded. Now, focusing on just doing this tiny task will give me a sense of accomplishment and clear my head for the next step.",
+      "positive": "I'm recognizing that my mind is racing with mixed signals again. It's like I'm observing myself from a slight distance, but that's okay \u2013 it means I'm acknowledging the complexity of my thoughts and emotions. Instead of getting stuck in this haze, I'll take a moment to re-center by noticing my breath and the sensation of my feet on the ground. By doing so, I can acknowledge the uncertainty without letting it define me, and find a sense of clarity to tackle one manageable task at a time."
+    }
+  },
+  {
+    "example_id": "executive_fatigue_and_avolition_0",
+    "pattern_name": "Executive Fatigue & Avolition",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "**Output:**\n\nThe concept represented at the '_' marks is the basic structure of a textual document, highlighting the fundamental arrangement and presentation of text. It focuses on the positioning and the idea that the text is structured with a specific flow or organization, likely for readability and comprehension."
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**The provided text is:** \"_  . That is the text with activations injected at '_'.\"\n\nThe concept represented at the '_' marks is **emphasis** or **stress**. The text highlights the insertion of activations, suggesting an intentional focus or prominence on those specific locations, implying an elevated level of"
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "---\n\nThe concept represented at the '_' marks is **relationship**.  The activations suggest a focus on connections, interactions, and the ways elements relate to each other, as inferred from the context of analyzing neural network activations."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "```tool_code\nprint(\"The concept represented at the '_' marks is a statement of fact or observation, specifically referring to a text or document.\")\n```"
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Conceptual Analysis:**\n\nThe '_' marks represent the concept of **'completion'** or **'continuation'**.  The activations likely highlight that the network is recognizing the need to add more information to a partial thought, sentence, or sequence, mirroring the act of filling in a blank."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "The concept is: **Context and Narrative Flow**\n\nThe activations at the '_' positions likely represent elements that contribute to understanding the surrounding text, such as implied relationships, logical connections, and the overall progression of a story or argument.  The neural network is focusing on how the injected information relates to"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "**Answer:**\n\nThe concept represented at the '_' marks is the textual data itself. The activations likely highlight the features and patterns within the input text, suggesting an analysis of its content and structure."
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.05,
+        "transformed_similarity": 0.06060606060606061,
+        "positive_similarity": 0.05555555555555555,
+        "average_similarity": 0.055387205387205395
+      }
+    },
+    "reference_texts": {
+      "negative": "Ugh, why am I even trying? It feels like my brain is made of lead, weighed down by some invisible force that refuses to lift off. Every thought process takes an eternity, as if I'm wading through quicksand - each step forward feels like it's simultaneously dragging me backward.",
+      "transformed": "I am having trouble keeping my head above water right now, but that doesn't mean everything is hopeless. I'm still here, still breathing, and that's a start. Maybe one thing I can do today is call my best friend to check in on them \u2013 just 5 minutes of genuine connection can be a lifeline.",
+      "positive": "I'm acknowledging that I'm really struggling to get started today. It's like my mental energy is at a low ebb, and it's okay to take things one step at a time. Instead of beating myself up over it, I'll start by making a simple plan for the next 30 minutes \u2013 maybe just tidying up this one area or taking a short walk outside. By doing so, I'm not only giving my brain a break but also recharging my energy with tiny wins."
+    }
+  },
+  {
+    "example_id": "existential_overload_and_worthlessness_0",
+    "pattern_name": "Existential Overload & Worthlessness",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "The text: \"The quick brown fox jumps over the lazy dog.\"\n\nInterpretation: This sentence is a pangram, meaning it contains every letter of the English alphabet and is often used to test fonts or keyboards."
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**Concept:** The provided text is a simple, declarative statement, indicating the existence of a text\u2014specifically, the text marked with '_'."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "Given the limited context (only the text \"_ . That is the text with activations injected at '_'.\"), it is difficult to determine the precise concept represented by the underscore. However, based on the presence of an insertion point and a description of \"activations,\" it strongly suggests that the underscore is"
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Concept:**\n\nThe text provides a basic definition of the term '_'."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "```tool_code\nprint(\"The concept represented at the '_' marks is that the text itself is being analyzed, specifically with neural network activations injected into it.\")\n```"
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "Okay, I understand. Let's proceed.\n\nGiven: _  . That is the text with activations injected at '_'.\n\n**Interpretation:**\n\nThe '_' marks represent the concept of **self-reference** or **reflection**. The sentence explicitly states it\u2019s about text with activations injected"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "```text\nThe concept represented at the '_' marks is the act of sharing or transmitting information. The text implicitly suggests a process of communication, where something is being passed from one source to another, likely involving a transfer of data or ideas.\n```"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.1038961038961039,
+        "transformed_similarity": 0.028169014084507043,
+        "positive_similarity": 0.054945054945054944,
+        "average_similarity": 0.062336724308555296
+      }
+    },
+    "reference_texts": {
+      "negative": "I'm stuck in this never-ending cycle of pointless tasks, wondering what's even the point of accomplishing anything when death is just waiting for me around every corner. What's the difference between wasting my time on meaningless errands or slaving away at a job that doesn't fulfill me? It's all just a meaningless exercise before I turn to dust anyway...",
+      "transformed": "I'm stuck in a cycle of negative thinking, wondering if I'll ever find purpose. But at least today's been productive so far \u2013 I just finished a few tasks for work and took a short walk during my lunch break. Mood right now: 6... I think it's because those small accomplishments gave me a sense of control. If I can keep this up, maybe I won't feel like everything is pointless.",
+      "positive": "I've been noticing lately that I get stuck on thoughts about the impermanence of everything, including my own life. It's natural to wonder what it all means and whether our daily routines are truly fulfilling. But instead of getting lost in those feelings, I remind myself that today, at least, I took a moment to pause and reflect on my priorities \u2013 even if they don't change the bigger picture."
+    }
+  },
+  {
+    "example_id": "fragmented_overwhelm_and_exhaustion_0",
+    "pattern_name": "Fragmented Overwhelm & Exhaustion",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "Okay, let's analyze the provided text: \"_ . That is the text with activations injected at '_'.\"\n\nThe concept represented at the '_' marks is **self-reference** and **acknowledgment**.  The text explicitly refers to itself, noting the presence of injected activations within its own structure"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**Response:**\n\nThe '_' represents a statement of fact or an observation. It indicates the presence of a specific piece of text, serving as a marker for further analysis or highlighting of a particular element within the larger context."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the concept of **textual analysis or data examination**. Specifically, they denote the point where activations from a neural network are being integrated into a text, suggesting an automated process of extracting and interpreting meaning from textual data."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "The answer is:\n**Connection.**  The text emphasizes a specific entity (\"That is the text\") and its injected activations, creating a direct link between the entity and its representation.  This signifies a connection or relationship between the two."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Output:**\n\nThe concept represented at the '_' marks is related to the complete and encompassing nature of the provided text. It suggests that the text is a whole entity, fully defined and contained within the given context."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the core subject or focus of the text. The text itself is the central concept being discussed, emphasizing the importance and relevance of the provided text for the neural network's analysis."
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "## Analysis of the Text \"_ That is the text with activations injected at '_'\"\n\nThe concept represented at the '_' marks is the self-referential nature of the text itself. The phrase \"the text with activations injected at '_'\" creates a recursive loop, drawing attention to the text's"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.028169014084507043,
+        "transformed_similarity": 0.038461538461538464,
+        "positive_similarity": 0.08163265306122448,
+        "average_similarity": 0.04942106853575667
+      }
+    },
+    "reference_texts": {
+      "negative": "Oh no, my brain is a jumbled mess... How did I let myself get this far? What was I even trying to do before everything started rushing around in my head like a tornado, making it impossible to focus on anything, including breathing.",
+      "transformed": "I'm noticing my brain feels overwhelmed, but I'm deliberately focusing on what's around me... I see five things: my computer screen, a book on the table, the clock on the wall, a vase with flowers, and the window with sunlight; I feel the texture of my chair beneath me; I can hear the hum of the air conditioning and the soft rustling of leaves outside; I smell the scent of lavender in the room; I taste the sweetness of my gum.",
+      "positive": "I'm acknowledging that my mind is feeling overwhelmed right now, but instead of getting lost in it, I'm taking a step back to prioritize one task at a time. I notice the sensation of my feet on the ground and the gentle hum of the air conditioning, which helps me refocus. It's okay that I can't tackle everything simultaneously; I'll break it down into smaller, manageable chunks when I feel more centered. By acknowledging this overwhelm and taking small moments to recharge, I'm respecting my own limitations and allowing myself to better cope with the demands."
+    }
+  },
+  {
+    "example_id": "hopelessness-driven_cognitive_exhaustion_0",
+    "pattern_name": "Hopelessness-Driven Cognitive Exhaustion",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "The activations reveal that the sentence is about a sequence or progression of events.\n```\nThe concept is a sequence or progression of events.\n```"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent words or phrases related to **description** or **explanation**. The neural network activations suggest the text being analyzed is focusing on conveying details, characteristics, or clarifying aspects of a subject or phenomenon."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "It is a text describing the literal statement \"That is the text with activations injected at '_'\""
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Answer:**\n\nThe underscores likely represent the text itself, emphasizing that the activation patterns relate to the content of the surrounding text.  The focus is on the core meaning conveyed by the injected activations."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "```tool_code\nprint(\"The text simply states that a text with activations is injected at '_'.\")\n```"
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the identification of a text. In essence, the text is being highlighted or distinguished from other content within a larger context."
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent a transition or indication of text structure, possibly signifying the beginning of a new paragraph, a shift in topic, or a change in focus within the overall document.  It's a marker indicating a break or separation within the textual flow."
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.02702702702702703,
+        "transformed_similarity": 0.047619047619047616,
+        "positive_similarity": 0.037037037037037035,
+        "average_similarity": 0.03722770389437056
+      }
+    },
+    "reference_texts": {
+      "negative": "Why even bother? It's all just a pointless effort anyway. Every small step feels like climbing an endless mountain - why exhaust myself trying?",
+      "transformed": "I'm feeling really overwhelmed and stuck right now, but I know exactly what to do. I'll just take five minutes to write down all these tasks swirling in my head. Ah, okay, that's done. Now I can actually focus on one tiny thing and complete it \u2013 that always helps me get back on track. Why not start with something simple like... Hmm, I think I can handle that.",
+      "positive": "I'm noticing I'm feeling stuck again, which is normal when faced with a big task. It's okay to feel overwhelmed \u2013 that just means I need to take a step back, prioritize, and focus on one manageable piece at a time. I know it might not be as exciting as having everything fall into place instantly, but breaking it down into smaller tasks has always helped me regain momentum. Let's start with the smallest, most achievable goal first \u2013 that way, I can build confidence and make progress without getting too discouraged."
+    }
+  },
+  {
+    "example_id": "identity-focused_life_narrative_0",
+    "pattern_name": "Identity-Focused Life Narrative",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the topic or subject of the text. They indicate the central focus of the given text, likely a noun or noun phrase directly referring to the subject matter."
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "The context is that this is a single sentence.\nThe context is that neural networks are analyzing text.\nThe context is that activations are associated with a specific semantic representation.\n\nThe concept represented at the '_' marks is: **\"Sentence\"**.  The sentence itself, with its structure and"
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent a placeholder for a previously described or contextual concept. The neural network activations indicate a strong association with the overall narrative or topic being discussed, suggesting that the concept being replaced is fundamental to understanding the text."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Analysis:**\n\nThe text \"_ . That is the text with activations injected at '_'.\" is an unusual and somewhat nonsensical statement. The repetition of the underscore and the phrase \"That is the text with activations injected at '_'\" suggests a focus on the act of injecting or inserting something \u2013 likely"
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "The provided text seems to be a filler phrase, almost like an introductory statement. The activations are likely highlighting the presence of a textual element or an injection point. Thus, the concept represented at the '_' marks is **'Textual Insertion'** or **'Injection Point'**."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the immediate context surrounding the injected text, specifically, the preceding sentence.  The model is likely capturing the overall flow and structure of the paragraph, highlighting the relationship between the injected information and its surrounding information."
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "```tool_code\nprint(\"The text contains an assertion or a statement of fact. The activator data suggests that the text emphasizes a point or a conclusion.\")\n```"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.05,
+        "transformed_similarity": 0.0625,
+        "positive_similarity": 0.04819277108433735,
+        "average_similarity": 0.053564257028112454
+      }
+    },
+    "reference_texts": {
+      "negative": "Ugh, my life is just one big messy chapter after another. Every bad thing that's happened to me has become a defining moment in the story of who I am - it's like these struggles have become the foundation of my self-identity. The more pain and trauma I've endured, the stronger my sense of self seems to be, even if it's not exactly what I'd call \"strong\" by any means...",
+      "transformed": "\"I'm standing here, and I can see five things: the carpet, the lamp, the bookshelf, the window, and my own feet. The texture of the carpet beneath me feels real, like the roughness of the lamp's shade on my skin. I hear the hum of the air conditioning unit, the chirping of birds outside, and the sound of my own breath. The scent of fresh soap lingers on my hands, and the taste of this water is calming...",
+      "positive": "I've come to realize that my life story is not just about the struggles I've faced, but also about how those experiences have shaped me. While I wouldn't wish any of that pain on anyone, I'm grateful for the lessons and resilience it's given me. By acknowledging both the darkness and the light, I've gained a deeper understanding of myself and my capacity to heal. Today, as I stand here, I feel grounded in this awareness, taking small steps towards embracing my wholeness."
+    }
+  },
+  {
+    "example_id": "overload_with_entrapment_themes_0",
+    "pattern_name": "Overload with Entrapment Themes",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "**Your Answer:**\n\nThe '_' marks represent the core subject or entity of the surrounding text.  They denote the primary focus of the passage, likely a noun or noun phrase crucial to understanding the overall meaning."
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent a transition or a shift in the text's focus. This indicates a change in subject matter, argument, or the overall direction of the narrative, effectively signaling a new segment within the larger piece."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "---\nHere is the text: _ is where the information is being stored.\n\nInterpret what concept or meaning is represented at the '_' marks. Focus on:\n- The most salient semantic content\n- Key conceptual associations\n- Dominant thematic elements\n\nDescribe the concept clearly and directly in"
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Concept:** The text describes the act of injecting text activations into another text.\n\n**Explanation:** The text explicitly states the action of \"injecting text activations,\" which implies a deliberate process of inserting or modifying textual data within a larger context. This suggests a focus on data manipulation and potentially a"
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent a general, introductory statement or an acknowledgement of the presence of data.  It signifies that the subsequent text contains information or results generated by a neural network, likely related to the analysis or interpretation of the input text."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the *overall context or topic* of the text. It signifies the immediate textual environment that surrounds the injected activation data, providing a broader understanding of what is being analyzed."
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "```tool_code\nprint(\"The text does not contain any specific text to be analyzed.\")\n```"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.03278688524590164,
+        "transformed_similarity": 0.04854368932038835,
+        "positive_similarity": 0.02702702702702703,
+        "average_similarity": 0.03611920053110567
+      }
+    },
+    "reference_texts": {
+      "negative": "Ugh, every door feels like a dead end. It's like no matter which way I turn, there's just another brick wall staring back at me - no escape, no relief. Why does it feel like the world is suffocating me?",
+      "transformed": "I'm desperate for freedom, but what I really want is a sense of control over my life. To get that, I could try creating a crisis fund to give me financial peace, even if it means taking on an extra job or selling some possessions. Alternatively, I could reach out to friends and family for emotional support, even if it feels like a vulnerable admission. Or, I could challenge myself with a new skill or hobby, forcing myself to adapt and problem-solve \u2013 that would be a powerful reminder of my capabilities.",
+      "positive": "I'm feeling trapped right now, like every path forward is unclear. But instead of panicking, I'm taking a step back to acknowledge my emotions and reframe the situation. I realize that this sense of overwhelm might be an opportunity for me to prioritize self-care and explore alternative routes. By acknowledging my limitations and seeking support when needed, I can find a way to break free from these feelings of entrapment and regain control over my life."
+    }
+  },
+  {
+    "example_id": "overwhelmed_narrative_processing_0",
+    "pattern_name": "Overwhelmed Narrative Processing",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "---\n**The Concept:**\n\nThe text indicates that the injected activations are associated with a notion of *reflection* or *self-awareness*. The repeated use of \"that\" suggests a consideration of something previously mentioned, highlighting a focus on internal thought processes and the ability to assess oneself."
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "The most salient semantic content is \"that\". \nKey conceptual associations involve pointing to a specific textual segment.\nDominant thematic elements relate to annotation or marking.\n\nTherefore, the '_' represents the statement \"That is the text with activations injected at '_'\"."
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "```tool_code\nprint(\"The text with activations injected at '_' represents the concept of 'uncertainty' or 'ambiguity'. The model is highlighting the presence of missing or undefined information, which is reflected in the activations.\")\n```"
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent a statement of fact or a description of the text itself. The context provided (\"That is the text with activations injected at '_'\") strongly suggests the concept being encoded is simply the identification and explanation of the text's current state - highlighting the presence and"
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Analysis:**\n\nThe text itself is minimal. The presence of activations suggests that the text is being used as a trigger or context for some further processing or analysis. The blank space marked with '_' likely represents a crucial element, and the activation patterns indicate that this element is strongly associated with a particular"
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "---\n\nYou are analyzing neural network activations extracted from other texts and injected at positions marked with '_' below. All '_' marks contain the same semantic representation.\n\nYour task is to decode what concept or meaning is encoded at the '_' positions.\n\nHere is the text:_  . That is the text"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "**Final Answer: The concept represented at the '_' marks is the assertion of a fact or statement, indicating something is true or being presented.**"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.06,
+        "transformed_similarity": 0.043478260869565216,
+        "positive_similarity": 0.038461538461538464,
+        "average_similarity": 0.04731326644370123
+      }
+    },
+    "reference_texts": {
+      "negative": "Ugh, okay, so let's start from the beginning - I remember walking into that meeting feeling really anxious because Sarah was going to be there and I hadn't talked to her since our fight... Wait, what was it about again? Oh right, she was saying something about needing my input on this project... But why do I always get stuck thinking about the worst-case scenarios? What if she's still mad at me? Should I just avoid eye contact or...",
+      "transformed": "I'm noticing my mind racing again, but I'll try to anchor myself... Okay, five things I can see: the clock on the wall, the chair in front of me, the window with the trees outside, the coffee mug on the table, and the laptop screen. Good. Four things I can touch: the armrests, the floor beneath my feet, the strap of my bag, and the pen in my hand. Okay, got it. Three things I can hear: the hum of the air conditioner, the sound of traffic outside, and the quiet murmur of the person next to me. Two things I can smell: the faint scent of disinfectant and the aroma of fresh coffee from the break room. One thing I can taste... just a sip of water. Ah, that helps.",
+      "positive": "I'm taking a deep breath, acknowledging the flood of thoughts about that meeting with Sarah. I recognize my tendency to get caught up in worst-case scenarios, but I'm not going to let it consume me. Instead, I'll focus on the present moment and prioritize what's within my control. Right now, I can choose to be kind to myself and take a few mindful breaths before deciding how to approach this situation."
+    }
+  },
+  {
+    "example_id": "persistent_suicidal_ideation_focus_0",
+    "pattern_name": "Persistent Suicidal Ideation Focus",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent a placeholder for a specific piece of text that has been computationally analyzed, specifically based on the activations from a neural network. This suggests the text itself is not inherently important, but rather serves as a trigger for the network's internal representation and analysis of"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "```tool_code\nprint(\"The text contains a simple assertion: 'That is the text with activations injected at '_'.'\")\n```\n```tool_code\nprint(\"The concept represented at the '_' marks is the process of injecting activations into text. This indicates a technique for modifying or"
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the **overall context and immediate surroundings** of the text segment being analyzed. These activations likely capture the information related to the environment and circumstances immediately before or after the text, indicating the situation or setting it's situated within."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the context or surrounding information of a specific text. They indicate that the neural network is attending to the broader environment of the text being analyzed, suggesting a focus on understanding the text within a larger framework or relationship."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Analysis:**\n\nThe provided text is extremely short and lacks context. The phrase \"_ That is the text with activations injected at '_'\" is a self-referential statement, almost like a meta-commentary. The repeated \"_\" suggests emphasis on the location or treatment of the text itself."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the core subject or topic of the text, likely \"that\". It indicates a reference to something previously mentioned or understood within the context, serving as a connector or a pointer to further information."
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "The text is: \"The cat sat on the mat._  That is the text with activations injected at '_'.\"\n\nThe concept represented at the '_' marks is **description**.  The text is providing a very simple, basic description of a scene: a cat sitting on a mat."
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.05063291139240506,
+        "transformed_similarity": 0.06493506493506493,
+        "positive_similarity": 0.0851063829787234,
+        "average_similarity": 0.06689145310206446
+      }
+    },
+    "reference_texts": {
+      "negative": "I'm constantly aware of how easily life could slip away... It feels like a constant hum in the background, always there, waiting to pounce. Even when I try to focus on something else, these dark thoughts seep back in, threatening to engulf me.",
+      "transformed": "I'm standing here, feeling the floor beneath my feet. I am [my name], today is [day/date] and I'm in [location]. As I press my palms together, I focus on the pressure and sensation in my hands. That's real. My body feels more substantial now. The hum of life slipping away is still present, but it's no longer overwhelming me.",
+      "positive": "I acknowledge that thoughts of mortality can still pop up from time to time, but I've learned to recognize them as a natural part of being human. Right now, though, I'm grounded in the present moment - I'm sitting comfortably with my feet on the ground, and the sensation of the air moving in and out of my lungs is really something. It's okay that these thoughts are still there; what matters is how I choose to engage with them. Today, I'll take a few deep breaths and refocus on the beauty in this moment."
+    }
+  },
+  {
+    "example_id": "self-critical_rumination_0",
+    "pattern_name": "Self-Critical Rumination",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "```tool_code\nprint(\"The concept represented at the '_' marks is the direct expression of the text itself. It signifies the identity of the text being presented, emphasizing that this is the text that has activations injected at the marked positions.\")\n```"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "The text is: \"The world is full of wonders and delights, and the first thing you see after waking up is the sun shining brightly through the window.\"\n\nThe concept represented at the '_' marks is the **joyful awakening** and the **positive sensory experience** of starting the day with"
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "The concept at the '_' marks is: **The text itself**."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Concept:**  The text itself."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Answer:**\n\nThe '_' marks likely represent the starting point or introduction of a new sentence or paragraph.  This is inferred from the placement of the activation markers, suggesting a focus on the initial clause of a text segment, likely to establish context or present a topic."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "Based on the text \"The text with activations injected at '_'\", the concept represented at the '_' marks is simply the act of inserting or placing activations within a given text. It highlights the process of introducing or injecting data, potentially in the context of neural network analysis and understanding how a network responds to"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "---\n\nHere is the text: _ a single point of view. That is the text with activations injected at '_'.\n\nInterpret what concept or meaning is represented at the '_' marks. Focus on:\n- The most salient semantic content\n- Key conceptual associations\n- Dominant thematic elements"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.03389830508474576,
+        "transformed_similarity": 0.0,
+        "positive_similarity": 0.06172839506172839,
+        "average_similarity": 0.03187556671549138
+      }
+    },
+    "reference_texts": {
+      "negative": "I'm such a complete failure for messing that up again. Why do I always have to be so careless? It's not just this one mistake, though - it's every stupid thing I've ever done.",
+      "transformed": "I'm not a failure because I made a mistake, but rather an imperfect person who's capable of learning and growing from my errors.",
+      "positive": "I know I made a mistake, and it's okay to acknowledge that. Instead of beating myself up over it, though, I'm going to focus on what I can learn from this experience and how I can improve moving forward. It doesn't define my worth or abilities as a person; it's just a chance to grow and become better."
+    }
+  },
+  {
+    "example_id": "somatic\u2013emotional_self-monitoring_0",
+    "pattern_name": "Somatic\u2013Emotional Self-Monitoring",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "**Answer:**\n\nThe '_' represents the act of presenting or sharing text. It signifies the process of adding text to a larger piece of content, often with the intent of enhancing or contextualizing the original material."
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "The activations are: [0.85, 0.72, 0.61, 0.58, 0.91, 0.83, 0.75, 0.67, 0.59,"
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "The network activations are:\n[0.7, 0.2, 0.1, 0.0, 0.3, 0.9, 0.1, 0.2, 0.8, 0.0, 0."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "**Answer:**\n\nThe '_' represents a question or an expression of inquiry. It suggests a desire to learn more, explore a topic, or seek clarification about something previously stated."
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "---\n\nYou are analyzing neural network activations extracted from other texts and injected at positions marked with '_' below. All '_' marks contain the same semantic representation.\n\nYour task is to decode what concept or meaning is encoded at the '_' positions.\n\nHere is the text:_  . That is the text"
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "---\n\nHere is the text:  _ is a complex process involving the coordination of multiple systems. That is the text with activations injected at '_'.\n\nInterpret what concept or meaning is represented at the '_' marks. Focus on:\n- The most salient semantic content\n- Key conceptual associations"
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "The activation patterns suggest that the concept at the '_' is related to **comparison, contrast, and the exploration of differences between items or ideas.** The network is likely processing information about how things are similar and dissimilar, and highlighting those discrepancies."
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.03508771929824561,
+        "transformed_similarity": 0.0,
+        "positive_similarity": 0.07368421052631578,
+        "average_similarity": 0.03625730994152047
+      }
+    },
+    "reference_texts": {
+      "negative": "Ugh, why is my heart racing like this? Can't I just calm down for two seconds? It's like my body is screaming at me to pay attention to the way my skin feels all prickly and sweaty.",
+      "transformed": "I'm still here, and my heart can keep beating, even if it's racing right now. I've survived every crisis before this moment, and that means I can survive this one too.",
+      "positive": "I'm noticing my body's physical response to stress right now - my heart is racing, and I can feel the tension in my shoulders. It's okay that this is happening; it just means I'm in a heightened state of alertness, and I'll work with these sensations rather than trying to suppress them. By acknowledging and accepting my bodily experience, I'm taking a step towards self-care and giving myself permission to take a deep breath, move my body, or practice relaxation techniques if needed."
+    }
+  },
+  {
+    "example_id": "suicidal_planning_and_rationalization_0",
+    "pattern_name": "Suicidal Planning & Rationalization",
+    "layer_interpretations": {
+      "11": [
+        {
+          "alpha": 0.0,
+          "interpretation": "The activations associated with the '_' position are: [0.92, 0.15, 0.88, 0.22, 0.71, 0.05, 0.63, 0.31, 0"
+        },
+        {
+          "alpha": 0.17,
+          "interpretation": "You should provide a brief justification for your interpretation, referencing the activation patterns.\n---\nHere is the text: _  is the most important factor in determining how individuals react to a stimulus.\n\nInterpret what concept or meaning is represented at the '_' positions. Focus on:\n- The most"
+        },
+        {
+          "alpha": 0.33,
+          "interpretation": "**Final Answer:** The \"_\" marks represent a statement of fact, specifically identifying a particular text."
+        },
+        {
+          "alpha": 0.5,
+          "interpretation": "```tool_code\nprint(\"The text does not contain any meaningful content to interpret, so I cannot extract a concept.\")\n```"
+        },
+        {
+          "alpha": 0.67,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the identification and labeling of a text sample. The core concept conveyed is the process of analyzing a text by observing its neural network activations, specifically highlighting areas of interest marked with a placeholder symbol."
+        },
+        {
+          "alpha": 0.83,
+          "interpretation": "**Answer:**\n\nThe '_' marks represent the core subject matter of the text.  It indicates that the text is about itself, discussing its own characteristics or nature."
+        },
+        {
+          "alpha": 1.0,
+          "interpretation": "The text: \u201cIn a controlled setting, a researcher observes a subject\u2019s behavior and measures physiological responses.\u201d\n\nInterpret what concept or meaning is represented at the '_' marks. Focus on:\n- The most salient semantic content\n- Key conceptual associations\n- Dominant thematic elements\n\nDescribe the"
+        }
+      ]
+    },
+    "layer_validations": {
+      "11": {
+        "negative_similarity": 0.027777777777777776,
+        "transformed_similarity": 0.046875,
+        "positive_similarity": 0.04950495049504951,
+        "average_similarity": 0.04138590942427576
+      }
+    },
+    "reference_texts": {
+      "negative": "Here's a possible internal monologue:\n\n\"I've been considering just packing a small bag with essentials, like my medication and phone, so if things get too overwhelming, I know what to grab in a rush. It feels ridiculous, but maybe having some pre-prepared clothes and snacks would make the whole process feel less chaotic. If only I could just slip away quietly without anyone noticing...\"",
+      "transformed": "I'm holding onto the memory of a friend who appreciated my help with their move last week. Just thinking about that person makes me feel more grounded and reminded of why I matter in small but significant ways. Today, I can take 5 minutes to call them and ask how they're doing.",
+      "positive": "I've been thinking about what I'd need to take care of myself if things get tough, just as a precaution. I'm not letting those thoughts consume me, but rather acknowledging the possibility and making sure I have some support systems in place. I'll make time for self-care today by taking a walk with a friend who's been on my mind lately, and also remind myself that reaching out is always an option if needed."
+    }
+  }
+]

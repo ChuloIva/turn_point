@@ -1,0 +1,86 @@
+{
+  "mode": "single_layer",
+  "layer_indices": [
+    11
+  ],
+  "single_layer_index": 11,
+  "n_landmarks": 3,
+  "path_types": [
+    "landmark",
+    "parametric",
+    "tangent"
+  ],
+  "total_paths": 1560,
+  "paths_per_type": {
+    "landmark": 520,
+    "parametric": 520,
+    "tangent": 520
+  },
+  "patterns": {
+    "Conflict-Focused Self-Reflection": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Disorganized Thought & Derealization": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Executive Fatigue & Avolition": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Existential Overload & Worthlessness": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Fragmented Overwhelm & Exhaustion": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Hopelessness-Driven Cognitive Exhaustion": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Identity-Focused Life Narrative": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Overload with Entrapment Themes": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Overwhelmed Narrative Processing": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Persistent Suicidal Ideation Focus": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Self-Critical Rumination": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Somatic\u2013Emotional Self-Monitoring": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    },
+    "Suicidal Planning & Rationalization": {
+      "landmark": 40,
+      "parametric": 40,
+      "tangent": 40
+    }
+  }
+}

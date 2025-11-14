@@ -1,0 +1,214 @@
+{
+  "pattern_slug": "existential_overload_and_worthlessness",
+  "n_examples": 40,
+  "layer_indices": [
+    1,
+    5,
+    7,
+    11,
+    15,
+    22,
+    27,
+    29
+  ],
+  "statistics": {
+    "neg_to_trans": {
+      "1": {
+        "mean_positive_projection": 523.6032104492188,
+        "mean_negative_projection": 511.2986755371094,
+        "projection_difference": 12.304534912109375,
+        "std_positive_projection": 18.782915115356445,
+        "std_negative_projection": 11.233169555664062,
+        "explained_variance_ratio": 0.44214746356010437
+      },
+      "5": {
+        "mean_positive_projection": 1992.9788818359375,
+        "mean_negative_projection": 1837.2523193359375,
+        "projection_difference": 155.7265625,
+        "std_positive_projection": 96.02971649169922,
+        "std_negative_projection": 58.6602783203125,
+        "explained_variance_ratio": 0.8006026744842529
+      },
+      "7": {
+        "mean_positive_projection": 3450.244140625,
+        "mean_negative_projection": 3408.227294921875,
+        "projection_difference": 42.016845703125,
+        "std_positive_projection": 351.94537353515625,
+        "std_negative_projection": 199.2686004638672,
+        "explained_variance_ratio": 0.6920500993728638
+      },
+      "11": {
+        "mean_positive_projection": -19570.09765625,
+        "mean_negative_projection": -17887.87109375,
+        "projection_difference": -1682.2265625,
+        "std_positive_projection": 1135.5750732421875,
+        "std_negative_projection": 843.6700439453125,
+        "explained_variance_ratio": 0.8947301506996155
+      },
+      "15": {
+        "mean_positive_projection": -28705.03515625,
+        "mean_negative_projection": -25369.865234375,
+        "projection_difference": -3335.169921875,
+        "std_positive_projection": 1857.73876953125,
+        "std_negative_projection": 1244.8765869140625,
+        "explained_variance_ratio": 0.8629612326622009
+      },
+      "22": {
+        "mean_positive_projection": -26423.33203125,
+        "mean_negative_projection": -23078.154296875,
+        "projection_difference": -3345.177734375,
+        "std_positive_projection": 1667.64306640625,
+        "std_negative_projection": 1167.624755859375,
+        "explained_variance_ratio": 0.3598526120185852
+      },
+      "27": {
+        "mean_positive_projection": -29431.958984375,
+        "mean_negative_projection": -21928.806640625,
+        "projection_difference": -7503.15234375,
+        "std_positive_projection": 2159.790771484375,
+        "std_negative_projection": 2717.365966796875,
+        "explained_variance_ratio": 0.4229221045970917
+      },
+      "29": {
+        "mean_positive_projection": -34904.79296875,
+        "mean_negative_projection": -25507.935546875,
+        "projection_difference": -9396.857421875,
+        "std_positive_projection": 2520.47998046875,
+        "std_negative_projection": 3789.79931640625,
+        "explained_variance_ratio": 0.4411773681640625
+      }
+    },
+    "trans_to_pos": {
+      "1": {
+        "mean_positive_projection": 545.5232543945312,
+        "mean_negative_projection": 542.8214111328125,
+        "projection_difference": 2.70184326171875,
+        "std_positive_projection": 11.525941848754883,
+        "std_negative_projection": 18.79726219177246,
+        "explained_variance_ratio": 0.39260396361351013
+      },
+      "5": {
+        "mean_positive_projection": 2073.72607421875,
+        "mean_negative_projection": 2027.363525390625,
+        "projection_difference": 46.362548828125,
+        "std_positive_projection": 47.020469665527344,
+        "std_negative_projection": 96.80867004394531,
+        "explained_variance_ratio": 0.5995765924453735
+      },
+      "7": {
+        "mean_positive_projection": -3453.59228515625,
+        "mean_negative_projection": -3432.59619140625,
+        "projection_difference": -20.99609375,
+        "std_positive_projection": 199.56459045410156,
+        "std_negative_projection": 352.3795166015625,
+        "explained_variance_ratio": 0.7931023240089417
+      },
+      "11": {
+        "mean_positive_projection": 19470.86328125,
+        "mean_negative_projection": 18165.63671875,
+        "projection_difference": 1305.2265625,
+        "std_positive_projection": 753.7254028320312,
+        "std_negative_projection": 1155.02197265625,
+        "explained_variance_ratio": 0.9117288589477539
+      },
+      "15": {
+        "mean_positive_projection": 26777.57421875,
+        "mean_negative_projection": 25716.98046875,
+        "projection_difference": 1060.59375,
+        "std_positive_projection": 1181.4171142578125,
+        "std_negative_projection": 1882.9395751953125,
+        "explained_variance_ratio": 0.7301774621009827
+      },
+      "22": {
+        "mean_positive_projection": 28118.78515625,
+        "mean_negative_projection": 26193.73046875,
+        "projection_difference": 1925.0546875,
+        "std_positive_projection": 2217.848388671875,
+        "std_negative_projection": 1879.3365478515625,
+        "explained_variance_ratio": 0.2826045751571655
+      },
+      "27": {
+        "mean_positive_projection": 30709.380859375,
+        "mean_negative_projection": 25688.224609375,
+        "projection_difference": 5021.15625,
+        "std_positive_projection": 3251.874267578125,
+        "std_negative_projection": 2385.78759765625,
+        "explained_variance_ratio": 0.299176961183548
+      },
+      "29": {
+        "mean_positive_projection": 37758.984375,
+        "mean_negative_projection": 31497.447265625,
+        "projection_difference": 6261.537109375,
+        "std_positive_projection": 4038.388427734375,
+        "std_negative_projection": 2942.868408203125,
+        "explained_variance_ratio": 0.3174000084400177
+      }
+    },
+    "neg_to_pos": {
+      "1": {
+        "mean_positive_projection": 35.08612823486328,
+        "mean_negative_projection": 61.442848205566406,
+        "projection_difference": -26.356719970703125,
+        "std_positive_projection": 6.401749610900879,
+        "std_negative_projection": 9.159541130065918,
+        "explained_variance_ratio": 0.5616724491119385
+      },
+      "5": {
+        "mean_positive_projection": 2029.994873046875,
+        "mean_negative_projection": 1829.9449462890625,
+        "projection_difference": 200.0499267578125,
+        "std_positive_projection": 46.21066665649414,
+        "std_negative_projection": 56.95886993408203,
+        "explained_variance_ratio": 0.8927918076515198
+      },
+      "7": {
+        "mean_positive_projection": 3417.33935546875,
+        "mean_negative_projection": 3405.317626953125,
+        "projection_difference": 12.021728515625,
+        "std_positive_projection": 199.7455596923828,
+        "std_negative_projection": 202.22706604003906,
+        "explained_variance_ratio": 0.6147619485855103
+      },
+      "11": {
+        "mean_positive_projection": -19658.20703125,
+        "mean_negative_projection": -19246.595703125,
+        "projection_difference": -411.611328125,
+        "std_positive_projection": 746.4111938476562,
+        "std_negative_projection": 850.6487426757812,
+        "explained_variance_ratio": 0.7402812242507935
+      },
+      "15": {
+        "mean_positive_projection": -28052.36328125,
+        "mean_negative_projection": -25622.93359375,
+        "projection_difference": -2429.4296875,
+        "std_positive_projection": 1124.7694091796875,
+        "std_negative_projection": 1228.6318359375,
+        "explained_variance_ratio": 0.8187499642372131
+      },
+      "22": {
+        "mean_positive_projection": -23710.578125,
+        "mean_negative_projection": -21008.912109375,
+        "projection_difference": -2701.666015625,
+        "std_positive_projection": 1733.5872802734375,
+        "std_negative_projection": 1069.442138671875,
+        "explained_variance_ratio": 0.35124778747558594
+      },
+      "27": {
+        "mean_positive_projection": -23537.193359375,
+        "mean_negative_projection": -17451.18359375,
+        "projection_difference": -6086.009765625,
+        "std_positive_projection": 2246.921142578125,
+        "std_negative_projection": 2201.832275390625,
+        "explained_variance_ratio": 0.37611454725265503
+      },
+      "29": {
+        "mean_positive_projection": -27719.00390625,
+        "mean_negative_projection": -20457.26953125,
+        "projection_difference": -7261.734375,
+        "std_positive_projection": 2900.1240234375,
+        "std_negative_projection": 3166.021484375,
+        "explained_variance_ratio": 0.3746275305747986
+      }
+    }
+  }
+}

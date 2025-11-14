@@ -1,0 +1,72 @@
+[
+  {
+    "example_id": "executive_fatigue_and_avolition_0",
+    "pattern_name": "Executive Fatigue & Avolition",
+    "negative": "Ugh, just the thought of checking my email is draining me already. It's like trying to lift a heavy weight that's been sitting on my chest for hours - every tiny movement feels impossible. How am I su...",
+    "transformed": "I need to take a deep breath and acknowledge that my mind feels overwhelmed. That's okay; it doesn't define me. I'll quickly jot down all these tasks on paper, and then circle one small thing I can do...",
+    "positive": "I'm recognizing that my energy levels are flagging today, which is totally normal. I've been pushing myself hard lately, and it's catching up with me. Instead of beating myself up over it, though, I'l..."
+  },
+  {
+    "example_id": "persistent_suicidal_ideation_focus_0",
+    "pattern_name": "Persistent Suicidal Ideation Focus",
+    "negative": "Ugh, there they go again - those incessant whispers about what would be better if only I were dead. Like a broken record, the thought loops in my head: \"Wouldn't it be easier to just end this?\" My min...",
+    "transformed": "I remember the day it started, marked 'Beginning' on my timeline. Facts: I got into an argument with a friend, felt overwhelmed by their criticism. Emotions: anxiety and sadness in blue. Meanings: sel...",
+    "positive": "I've noticed how often my mind drifts to the idea of death as a coping mechanism when I'm feeling overwhelmed or stuck. It's almost like my brain is trying to simplify things for me, reminding me that..."
+  },
+  {
+    "example_id": "self-critical_rumination_0",
+    "pattern_name": "Self-Critical Rumination",
+    "negative": "Why did I have to mess that up again? It's just so typical of me to fail, like this is what I do. What if they're right, what if I'm truly not good enough?",
+    "transformed": "What specific action can I take today to learn from this mistake? What skills do I need to improve on?",
+    "positive": "I can see how I could have done things differently, but instead of beating myself up over it, let's focus on what I've learned from the experience. What specific steps can I take to improve next time?..."
+  },
+  {
+    "example_id": "conflict-focused_self-reflection_0",
+    "pattern_name": "Conflict-Focused Self-Reflection",
+    "negative": "Why am I even doubting myself? Everything always feels so wrong or right off, like I'm not thinking straight. How do others manage to just go with their gut and trust it without second-guessing themse...",
+    "transformed": "I'm not sure why I keep questioning myself like this; maybe because everything feels wrong, but writing about this for 10 minutes makes me realize it's just my brain panicking. Now, what small action ...",
+    "positive": "I'm noticing myself questioning my thoughts again, which is okay. It's normal to have doubts when faced with uncertainty or conflicting perspectives. I'll take a moment to acknowledge these feelings a..."
+  },
+  {
+    "example_id": "disorganized_thought_and_derealization_0",
+    "pattern_name": "Disorganized Thought & Derealization",
+    "negative": "Ugh, nothing feels real anymore. Is this just my imagination or is everyone else just pretending to be here? Am I even here? Everything looks and sounds like it's through a thick layer of fog \u2013 I'm ju...",
+    "transformed": "I'm trying not to get lost in that fog again, but instead I'm focusing on why I've kept going \u2013 those moments where life was worth it. Like the time we took that photo together, laughing and smiling.....",
+    "positive": "Here's a revised thought pattern that represents a healthy, positive expression of disorganized thought and derealization:\n\n\"Honestly, some days it feels like I'm just going through the motions, and r..."
+  },
+  {
+    "example_id": "somatic\u2013emotional_self-monitoring_0",
+    "pattern_name": "Somatic\u2013Emotional Self-Monitoring",
+    "negative": "Ugh, my chest is tightening again \u2013 that's a familiar feeling, right? It means I'm getting anxious. Wait, why am I even having this thought? Is it because of the conversation with Sarah earlier? Did s...",
+    "transformed": "I need to focus on one thing at a time, not let Sarah's comment hijack my day. Okay, let me break it down... 'Manage anxiety' is my top goal right now. Major step 1: 'Schedule 5-minute relaxation brea...",
+    "positive": "As I tune into my body's response to this conversation with Sarah, I acknowledge the physical sensations \u2013 my chest does feel a bit tight. That's okay; it means I'm human and capable of experiencing e..."
+  },
+  {
+    "example_id": "identity-focused_life_narrative_0",
+    "pattern_name": "Identity-Focused Life Narrative",
+    "negative": "I keep replaying those memories in my head... All the struggles and setbacks, they define me more than any success ever could. It's like, what else am I supposed to be if not someone who overcame hard...",
+    "transformed": "One month ago I was struggling to find purpose in my work, today I am facing a similar frustration but with more resources and knowledge. These connect because I'm learning from past experiences and r...",
+    "positive": "I've come to understand that my past experiences, though challenging, have shaped me into the person I am today. Rather than defining me, they inform my growth and self-awareness. I'm proud of how far..."
+  },
+  {
+    "example_id": "overwhelmed_narrative_processing_0",
+    "pattern_name": "Overwhelmed Narrative Processing",
+    "negative": "I'm stuck on that one conversation from last week where I felt so anxious, what was it exactly that they said? And wasn't there something else that happened before that, like a text message from an ex...",
+    "transformed": "I'm trying not to get stuck on that one conversation from last week, it's not worth my time and energy. I need to focus on what I can control today, like responding to those emails at work. Maybe I'll...",
+    "positive": "I can see how easily I could get caught up in replaying that conversation from last week, but I'm choosing to acknowledge it and move forward. Instead of dwelling on what went wrong, I'll take a few m..."
+  },
+  {
+    "example_id": "overload_with_entrapment_themes_0",
+    "pattern_name": "Overload with Entrapment Themes",
+    "negative": "I'm trapped in this rut, there's no way out, every door feels like a brick wall slamming shut behind me. What if I'm stuck here forever? The thought of trying to escape makes my chest tighten with anx...",
+    "transformed": "I'm feeling stuck, but I need to assess my goals and priorities. Let's rate importance on a 1-10 scale... hmm, getting out of this rut isn't at the top of my list right now, it's around a 4. Achievabi...",
+    "positive": "I'm acknowledging that I feel stuck right now, and it's okay to admit that. It's normal to face challenges and uncertainty, but instead of getting overwhelmed by the 'no escape' feeling, I'm choosing ..."
+  },
+  {
+    "example_id": "existential_overload_and_worthlessness_0",
+    "pattern_name": "Existential Overload & Worthlessness",
+    "negative": "What's the point of anything? Every accomplishment is just a fleeting distraction from the inevitable. My relationships are all just shallow interactions, and even if they weren't, would it really mat...",
+    "transformed": "I'm stuck in that same cycle of negative thinking again, trying to solve a problem that might not even exist. Thinking about this more won't help, it's just exhausting me. Need to switch gears and foc...",
+    "positive": "I'm noticing myself getting caught up in thoughts about the impermanence of everything, which can feel overwhelming. I acknowledge that it's natural to wonder about the meaning and significance of our..."
+  }
+]
